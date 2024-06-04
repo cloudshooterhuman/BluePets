@@ -104,7 +104,7 @@ fun PostScreen(
 
             is PostUiState.Success -> {
                 items(postState.posts) { movie ->
-                    GenrePosterImage(movie)
+                    PostImage(movie)
                 }
 
                 item(span = { GridItemSpan(maxLineSpan) }) {
@@ -116,7 +116,7 @@ fun PostScreen(
 }
 
 @Composable
-fun GenrePosterImage(post: PostModel) {
+fun PostImage(post: PostModel) {
     AsyncImage(
         model = ImageRequest.Builder(LocalContext.current)
             .data(post.imageUrl)
@@ -126,20 +126,4 @@ fun GenrePosterImage(post: PostModel) {
         contentScale = ContentScale.Crop,
         placeholder = painterResource(id = R.drawable.ic_launcher_background)
     )
-}
-
-
-@Composable
-fun Greeting(name: String, modifier: Modifier = Modifier) {
-    Text(
-        text = "Hello $name!",
-        modifier = modifier
-    )
-}
-
-@Composable
-fun GreetingPreview() {
-    MyApplicationTheme {
-        Greeting("Android")
-    }
 }

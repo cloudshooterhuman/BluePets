@@ -20,11 +20,6 @@ fun PostAppNavHost(
     composable("home") {
       PostScreen(navController, modifier)
     }
-    /*composable(Screen.ActionMovies.route) {
-      ActionMoviesScreen()
-    }
-    composable(Screen.AnimationMovies.route) {
-      AnimationMoviesScreen()
-    }*/
+
   }
 }
