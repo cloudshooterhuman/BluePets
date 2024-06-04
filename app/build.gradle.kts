@@ -85,6 +85,9 @@ dependencies {
     implementation("androidx.hilt:hilt-navigation-compose:1.0.0")
     kapt("com.google.dagger:hilt-android-compiler:${Versions.HILT}")
 
+    //Compose images loader
+    implementation("io.coil-kt:coil-compose:${Versions.COIL}")
+
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)

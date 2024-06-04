@@ -4,13 +4,34 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.PaddingValues
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.lazy.grid.GridCells
+import androidx.compose.foundation.lazy.grid.GridItemSpan
+import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
+import androidx.compose.foundation.lazy.grid.items
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.dp
+import androidx.hilt.navigation.compose.hiltViewModel
+import coil.compose.AsyncImage
+import coil.request.ImageRequest
+import com.cleancompose.domain.models.PostModel
+import com.cleancompose.ui.presentation.PostUiState
+import com.cleancompose.ui.presentation.PostViewModel
 import com.cleancompose.ui.theme.MyApplicationTheme
 
 class MainActivity : ComponentActivity() {
@@ -29,6 +50,70 @@ class MainActivity : ComponentActivity() {
         }
     }
 }
+
+@Composable
+fun ActionMoviesScreen(viewModel: PostViewModel = hiltViewModel()) {
+    LaunchedEffect(Unit) {
+        viewModel.fetchPosts()
+    }
+
+    val uiState: PostUiState by viewModel.uiState.collectAsState()
+
+    LazyVerticalGrid(
+        columns = GridCells.Adaptive(100.dp),
+        horizontalArrangement = Arrangement.spacedBy(8.dp),
+        verticalArrangement = Arrangement.spacedBy(8.dp),
+        contentPadding = PaddingValues(
+            top = 16.dp,
+            bottom = 16.dp
+        )
+    ) {
+
+
+
+        when (val postState = uiState) {
+            PostUiState.Error -> {
+                item(span = { GridItemSpan(maxLineSpan) }) {
+                    Text("Error fetching posts",
+                        modifier = Modifier
+                            .padding(horizontal = 16.dp)
+                    )
+                }
+            }
+            PostUiState.Loading -> {
+                item(span = { GridItemSpan(maxLineSpan) }) {
+                    //LoadingIndicator()
+                    Text("Loading ...",
+                        modifier = Modifier
+                            .padding(horizontal = 16.dp)
+                    )
+                }
+            }
+            is PostUiState.Success -> {
+                items(postState.posts) { movie ->
+                    GenrePosterImage(movie)
+                }
+
+                item(span = { GridItemSpan(maxLineSpan) }) {
+                    Spacer(Modifier.height(16.dp))
+                }
+            }
+        }
+    }
+}
+@Composable
+fun GenrePosterImage(post: PostModel) {
+    AsyncImage(
+        model = ImageRequest.Builder(LocalContext.current)
+            .data(post.imageUrl)
+            .crossfade(true)
+            .build(),
+        contentDescription = post.text,
+        contentScale = ContentScale.Crop,
+        placeholder = painterResource(id = R.drawable.ic_launcher_background)
+    )
+}
+
 
 @Composable
 fun Greeting(name: String, modifier: Modifier = Modifier) {
