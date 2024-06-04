@@ -11,5 +11,5 @@ import retrofit2.http.Query
 interface PostService {
     @GET("post?limit=23")
     @Headers("app-id: ${DummyApi.APP_ID}")
-    suspend fun getPosts(@Query("page") page: UInt): Flow<Page<PostDTO>>
+    suspend fun getPosts(@Query("page") page: Int): Flow<Page<PostDTO>>
 }
