@@ -1,8 +1,11 @@
 // Top-level build file where you can add configuration options common to all sub-projects/modules.
 plugins {
-    alias(libs.plugins.android.application) apply false
-    alias(libs.plugins.jetbrains.kotlin.android) apply false
-    `kotlin-dsl`
+    id("com.android.application") version "7.3.1" apply false
+    id("com.android.library") version "7.3.1" apply false
+    id("org.jetbrains.kotlin.android") version "1.8.10" apply false
+    id("com.google.dagger.hilt.android") version "2.43.2" apply false
+
+
 }
 
 buildscript {
@@ -12,6 +15,6 @@ buildscript {
     }
 
     dependencies {
-        classpath("com.google.dagger:hilt-android-gradle-plugin:2.42")
+        classpath("com.google.dagger:hilt-android-gradle-plugin:2.43.2")
     }
 }

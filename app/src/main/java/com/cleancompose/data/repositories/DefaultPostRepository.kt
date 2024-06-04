@@ -8,8 +8,10 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.map
 import javax.inject.Inject
+import javax.inject.Singleton
 
-class DefaultPostRepository @Inject constructor(
+@Singleton
+internal class DefaultPostRepository @Inject constructor(
     private val postService: PostService,
     private val postMapper: PostMapper
 ) : PostsRepository {

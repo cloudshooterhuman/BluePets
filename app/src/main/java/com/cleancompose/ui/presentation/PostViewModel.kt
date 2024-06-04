@@ -3,8 +3,7 @@ package com.cleancompose.ui.presentation
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.cleancompose.core.asResult
-import com.cleancompose.data.repositories.DefaultPostRepository
-import com.cleancompose.domain.models.PostModel
+import com.cleancompose.domain.usecases.GetPostUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharingStarted
@@ -15,17 +14,12 @@ import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
-sealed interface PostUiState {
-    data class Success(val posts: List<PostModel>) : PostUiState
-    object Error : PostUiState
-    object Loading : PostUiState
-}
 
 private const val DEFAULT_TIMEOUT = 5000L
 
 @HiltViewModel
 class PostViewModel @Inject constructor(
-    private val postRepository: DefaultPostRepository
+    private val postUseCase: GetPostUseCase
 ) : ViewModel() {
 
 
@@ -34,7 +28,7 @@ class PostViewModel @Inject constructor(
 
     fun fetchPosts() =
         viewModelScope.launch {
-            postRepository.getPosts(0)
+            postUseCase.invoke(0)
                 .asResult()
                 .map { result ->
                     when (result) {

@@ -12,10 +12,10 @@ class DummyApi @Inject constructor(
     @ApplicationContext context: Context
 ) {
     companion object {
-        const val APP_ID = "65df8a3c671497f7fc0965b4"
+        const val APP_ID = "665f91372bdeb7ac1f668bc7"
     }
 
-    private val postService: PostService
+    val postService: PostService
 
     init {
         val oktHttpClient = OkHttpClient.Builder()

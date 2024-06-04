@@ -3,7 +3,6 @@ package com.cleancompose
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
-import androidx.activity.enableEdgeToEdge
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Spacer
@@ -14,6 +13,7 @@ import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.GridItemSpan
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
 import androidx.compose.foundation.lazy.grid.items
+import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -24,26 +24,32 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.navigation.NavController
+import androidx.navigation.compose.rememberNavController
 import coil.compose.AsyncImage
 import coil.request.ImageRequest
 import com.cleancompose.domain.models.PostModel
+import com.cleancompose.ui.navigation.PostAppNavHost
 import com.cleancompose.ui.presentation.PostUiState
 import com.cleancompose.ui.presentation.PostViewModel
 import com.cleancompose.ui.theme.MyApplicationTheme
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class MainActivity : ComponentActivity() {
+    @OptIn(ExperimentalMaterial3Api::class)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        enableEdgeToEdge()
         setContent {
+            val navController = rememberNavController()
             MyApplicationTheme {
                 Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
-                    Greeting(
-                        name = "Android",
-                        modifier = Modifier.padding(innerPadding)
+                    PostAppNavHost(
+                        navController = navController,
+                        modifier = Modifier
+                            .padding(innerPadding)
                     )
                 }
             }
@@ -52,7 +58,11 @@ class MainActivity : ComponentActivity() {
 }
 
 @Composable
-fun ActionMoviesScreen(viewModel: PostViewModel = hiltViewModel()) {
+fun PostScreen(
+    navController: NavController,
+    modifier: Modifier = Modifier,
+    viewModel: PostViewModel = hiltViewModel()
+) {
     LaunchedEffect(Unit) {
         viewModel.fetchPosts()
     }
@@ -70,25 +80,28 @@ fun ActionMoviesScreen(viewModel: PostViewModel = hiltViewModel()) {
     ) {
 
 
-
         when (val postState = uiState) {
             PostUiState.Error -> {
                 item(span = { GridItemSpan(maxLineSpan) }) {
-                    Text("Error fetching posts",
+                    Text(
+                        "Error fetching posts",
                         modifier = Modifier
                             .padding(horizontal = 16.dp)
                     )
                 }
             }
+
             PostUiState.Loading -> {
                 item(span = { GridItemSpan(maxLineSpan) }) {
                     //LoadingIndicator()
-                    Text("Loading ...",
+                    Text(
+                        "Loading ...",
                         modifier = Modifier
                             .padding(horizontal = 16.dp)
                     )
                 }
             }
+
             is PostUiState.Success -> {
                 items(postState.posts) { movie ->
                     GenrePosterImage(movie)
@@ -101,6 +114,7 @@ fun ActionMoviesScreen(viewModel: PostViewModel = hiltViewModel()) {
         }
     }
 }
+
 @Composable
 fun GenrePosterImage(post: PostModel) {
     AsyncImage(
@@ -123,7 +137,6 @@ fun Greeting(name: String, modifier: Modifier = Modifier) {
     )
 }
 
-@Preview(showBackground = true)
 @Composable
 fun GreetingPreview() {
     MyApplicationTheme {
