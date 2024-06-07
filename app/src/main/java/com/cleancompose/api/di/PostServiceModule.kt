@@ -12,5 +12,6 @@ import dagger.hilt.components.SingletonComponent
 @InstallIn(SingletonComponent::class)
 object PostServiceModule {
     @Provides
-    fun providePostService(@ApplicationContext appContext: Context) = DummyApi(appContext).postService
+    fun providePostService(@ApplicationContext appContext: Context) =
+        DummyApi(appContext).postService
 }
