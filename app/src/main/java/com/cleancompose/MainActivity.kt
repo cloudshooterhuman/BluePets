@@ -3,6 +3,7 @@ package com.cleancompose
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.PaddingValues
@@ -10,14 +11,12 @@ import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.GridItemSpan
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
 import androidx.compose.foundation.lazy.grid.items
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.ExperimentalMaterial3Api
-import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -41,6 +40,8 @@ import com.cleancompose.ui.presentation.PostUiState
 import com.cleancompose.ui.presentation.PostViewModel
 import com.cleancompose.ui.theme.MyApplicationTheme
 import dagger.hilt.android.AndroidEntryPoint
+import java.net.URLEncoder
+import java.nio.charset.StandardCharsets
 
 @AndroidEntryPoint
 class MainActivity : ComponentActivity() {
@@ -94,15 +95,14 @@ fun PostScreen(
             }
 
             PostUiState.Loading -> {
-                item(span = { GridItemSpan(maxLineSpan) }) {
+                item(span = { GridItemSpan(maxLineSpan)}) {
                     LoadingIndicator(modifier)
-
                 }
             }
 
             is PostUiState.Success -> {
                 items(postState.posts) { movie ->
-                    PostImage(movie)
+                    PostImage(movie, navController)
                 }
 
                 item(span = { GridItemSpan(maxLineSpan) }) {
@@ -116,16 +116,16 @@ fun PostScreen(
 @Composable
 private fun LoadingIndicator(modifier: Modifier) {
     Box(
-        contentAlignment = Alignment.Center,
         modifier = modifier
-            .fillMaxSize()
+            .fillMaxSize(),
+        contentAlignment = Alignment.Center
     ) {
         CircularProgressIndicator(color = Color.LightGray)
     }
 }
 
 @Composable
-fun PostImage(post: PostModel) {
+fun PostImage(post: PostModel, navController: NavController) {
     AsyncImage(
         model = ImageRequest.Builder(LocalContext.current)
             .data(post.imageUrl)
@@ -133,6 +133,23 @@ fun PostImage(post: PostModel) {
             .build(),
         contentDescription = post.text,
         contentScale = ContentScale.Crop,
-        placeholder = painterResource(id = R.drawable.ic_launcher_background)
+        placeholder = painterResource(id = R.drawable.ic_launcher_background),
+        modifier = Modifier.clickable(onClick = {
+            val imageUrl = post.imageUrl
+            val encodedUrl = URLEncoder.encode(imageUrl, StandardCharsets.UTF_8.toString())
+            navController.navigate("picture/$encodedUrl")
+        })
     )
 }
+
+@Composable
+fun PictureScreen(modifier: Modifier, imageUrl: String?) {
+    AsyncImage(
+        model = ImageRequest.Builder(LocalContext.current)
+            .data(imageUrl)
+            .crossfade(true)
+            .build(),
+        contentDescription = "post.text",
+        contentScale = ContentScale.Crop,
+        placeholder = painterResource(id = R.drawable.ic_launcher_background)
+    )}

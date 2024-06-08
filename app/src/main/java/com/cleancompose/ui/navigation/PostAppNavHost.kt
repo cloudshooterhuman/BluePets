@@ -5,6 +5,7 @@ import androidx.compose.ui.Modifier
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
+import com.cleancompose.PictureScreen
 import com.cleancompose.PostScreen
 
 @Composable
@@ -17,9 +18,17 @@ fun PostAppNavHost(
         startDestination = "home",
         modifier = modifier
     ) {
+
         composable("home") {
             PostScreen(navController, modifier)
         }
 
+        composable("picture/{imageUrl}") {
+            val imageUrl = it.arguments?.getString("imageUrl")
+            PictureScreen(modifier, imageUrl)
+        }
+
     }
 }
+
+
