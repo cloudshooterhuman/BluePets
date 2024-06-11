@@ -6,12 +6,12 @@ plugins {
 }
 android {
     namespace = "com.cleancompose"
-    compileSdk = 33
+    compileSdk = 34
 
     defaultConfig {
         applicationId = "com.cleancompose"
         minSdk = 24
-        targetSdk = 33
+        targetSdk = 34
         versionCode = 1
         versionName = "1.0"
 
@@ -32,11 +32,11 @@ android {
         }
     }
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_1_8
-        targetCompatibility = JavaVersion.VERSION_1_8
+        sourceCompatibility = JavaVersion.VERSION_17
+        targetCompatibility = JavaVersion.VERSION_17
     }
     kotlinOptions {
-        jvmTarget = "1.8"
+        jvmTarget = "17"
     }
 
     @Suppress("UnstableApiUsage")
@@ -54,31 +54,33 @@ android {
 dependencies {
 
 
-    implementation("androidx.activity:activity-compose:${Versions.APP_COMPAT}")
+    implementation(libs.androidx.activity.compose)
 
     //Compose
-    implementation (platform("androidx.compose:compose-bom:${Versions.COMPOSE_BOM}"))
-    implementation ("androidx.compose.ui:ui")
-    implementation ("androidx.compose.material3:material3")
+    implementation (platform(libs.androidx.compose.bom))
+    implementation (libs.ui)
+    implementation (libs.material3)
 
 
+    // Lifecycle utilities for Compose
+    implementation(libs.lifecycle.runtime.compose)
 
     // Retrofit
-    api("com.squareup.retrofit2:retrofit:${Versions.RETROFIT}")
-    implementation("com.squareup.retrofit2:converter-gson:${Versions.RETROFIT}")
+    api(libs.retrofit)
+    implementation(libs.converter.gson)
 
     // Hilt
-    implementation("com.google.dagger:hilt-android:${Versions.HILT}")
-    implementation("androidx.hilt:hilt-navigation-compose:1.0.0")
-    kapt("com.google.dagger:hilt-android-compiler:${Versions.HILT}")
+    implementation(libs.hilt.android)
+    implementation(libs.androidx.hilt.navigation.compose)
+    kapt(libs.dagger.hilt.android.compiler)
 
     // UI
-    implementation("androidx.core:core-ktx:${Versions.ANDROID_CORE}")
-    implementation("com.google.android.material:material:${Versions.MATERIAL}")
+    implementation(libs.androidx.core.ktx)
+    implementation(libs.material)
     // Navigation
-    implementation("androidx.navigation:navigation-compose:${Versions.NAVIGATION}")
-    implementation("androidx.navigation:navigation-runtime-ktx:${Versions.NAVIGATION}")
-    implementation("androidx.navigation:navigation-fragment-ktx:${Versions.NAVIGATION}")
+    implementation(libs.androidx.navigation.compose)
+    implementation(libs.navigation.runtime.ktx)
+    implementation(libs.navigation.fragment.ktx)
 
     // Testing
     testImplementation("junit:junit:${Versions.JUNIT}")
@@ -86,7 +88,7 @@ dependencies {
 
 
     //Compose images loader
-    implementation("io.coil-kt:coil-compose:${Versions.COIL}")
+    implementation(libs.coil.compose)
 
 
 

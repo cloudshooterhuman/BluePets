@@ -30,6 +30,7 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import coil.compose.AsyncImage
@@ -70,7 +71,7 @@ fun PostScreen(
     viewModel: PostViewModel = hiltViewModel()
 ) {
 
-    val uiState: PostUiState by viewModel.uiState.collectAsState()
+    val uiState: PostUiState by viewModel.uiState.collectAsStateWithLifecycle()
 
     LazyVerticalGrid(
         columns = GridCells.Adaptive(100.dp),
