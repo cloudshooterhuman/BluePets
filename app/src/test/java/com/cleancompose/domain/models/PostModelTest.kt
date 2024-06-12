@@ -1,7 +1,5 @@
 package com.cleancompose.domain.models
 
-import org.junit.Assert.*
-
 object DomainModelFactory {
 
     const val POST_ID = "23"
@@ -16,7 +14,7 @@ object DomainModelFactory {
     const val OWNER_PICTURE_URL = "OWNER_PICTURE_URL"
 
     fun getDefaultPostModel(
-        id: String = POST_ID
+        id: String = POST_ID,
     ) = PostModel(
         id = id,
         text = POST_TEXT,

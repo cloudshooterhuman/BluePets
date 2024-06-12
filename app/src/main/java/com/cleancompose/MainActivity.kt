@@ -8,10 +8,8 @@ import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.PaddingValues
-import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
@@ -19,7 +17,6 @@ import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.GridItemSpan
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
 import androidx.compose.foundation.shape.CircleShape
-import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Scaffold
@@ -61,7 +58,7 @@ class MainActivity : ComponentActivity() {
             val navController = rememberNavController()
             MyApplicationTheme {
                 Scaffold(topBar = {
-                    TopAppBar(title = { Text("Pets") })
+                    TopAppBar(title = { Text(stringResource(R.string.tolbar_title)) })
                 }, modifier = Modifier.fillMaxSize()) { innerPadding ->
                     PostAppNavHost(
                         navController = navController,
@@ -82,55 +79,52 @@ fun PostScreen(
 ) {
 
     val lazyPagingPosts = viewModel.uiState.collectAsLazyPagingItems()
-    Box(
-        modifier = Modifier.fillMaxSize(),
-        contentAlignment = Alignment.Center
+
+    LazyVerticalGrid(
+        columns = GridCells.Adaptive(100.dp),
+        horizontalArrangement = Arrangement.spacedBy(8.dp),
+        verticalArrangement = Arrangement.spacedBy(8.dp),
+        contentPadding = PaddingValues(
+            top = 16.dp,
+            bottom = 16.dp
+        )
     ) {
-        LazyVerticalGrid(
-            columns = GridCells.Adaptive(100.dp),
-            horizontalArrangement = Arrangement.spacedBy(8.dp),
-            verticalArrangement = Arrangement.spacedBy(8.dp),
-            contentPadding = PaddingValues(
-                top = 16.dp,
-                bottom = 16.dp
-            )
-        ) {
-            if (lazyPagingPosts.loadState.hasError) {
-                item(span = { GridItemSpan(maxLineSpan) }) {
-                    Image(
-                        painter = painterResource(R.drawable.wifi_off_icon),
-                        contentDescription = stringResource(
-                            id = R.string.content_desc_error
-                        ),
-                        contentScale = ContentScale.Fit,
-                        modifier = Modifier
-                            .size(dimensionResource(id = R.dimen.icon_size))
-                            .clip(CircleShape)
+        if (lazyPagingPosts.loadState.hasError) {
+            item(span = { GridItemSpan(maxLineSpan) }) {
+                Image(
+                    painter = painterResource(R.drawable.wifi_off_icon),
+                    contentDescription = stringResource(
+                        id = R.string.content_desc_error
+                    ),
+                    contentScale = ContentScale.Fit,
+                    modifier = Modifier
+                        .size(dimensionResource(id = R.dimen.icon_size))
+                        .clip(CircleShape)
 
-                    )
-                }
-            }
-
-
-            if (lazyPagingPosts.loadState.refresh == LoadState.Loading) {
-                item(span = { GridItemSpan(maxLineSpan) }) {
-                    LoadingIndicator(modifier)
-                }
-            }
-
-            if (lazyPagingPosts.itemCount > 0) {
-                items(lazyPagingPosts.itemCount, key = lazyPagingPosts.itemKey { it.id }) { index ->
-                    lazyPagingPosts[index]?.let { PostImage(it, navController) }
-                }
-
-                item(span = { GridItemSpan(maxLineSpan) }) {
-                    Spacer(Modifier.height(16.dp))
-                }
+                )
             }
         }
 
+
+        if (lazyPagingPosts.loadState.refresh == LoadState.Loading) {
+            item(span = { GridItemSpan(maxLineSpan) }) {
+                LoadingIndicator(modifier)
+            }
+        }
+
+        if (lazyPagingPosts.itemCount > 0) {
+            items(lazyPagingPosts.itemCount, key = lazyPagingPosts.itemKey { it.id }) { index ->
+                lazyPagingPosts[index]?.let { PostImage(it, navController) }
+            }
+
+            item(span = { GridItemSpan(maxLineSpan) }) {
+                Spacer(Modifier.height(16.dp))
+            }
+        }
     }
+
 }
+
 
 @Composable
 private fun LoadingIndicator(modifier: Modifier) {

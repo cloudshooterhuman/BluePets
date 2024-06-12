@@ -10,7 +10,7 @@ import io.mockk.mockk
 import kotlinx.coroutines.flow.last
 import kotlinx.coroutines.test.runTest
 import okhttp3.MediaType.Companion.toMediaType
-import okhttp3.ResponseBody
+import okhttp3.ResponseBody.Companion.toResponseBody
 import org.junit.Assert.*
 import org.junit.Test
 import retrofit2.Response
@@ -71,7 +71,7 @@ class DefaultPostRepositoryTest {
             val page = 0
             coEvery { postService.getPosts(page) } returns Response.error(
                 404,
-                ResponseBody.create("application/json".toMediaType(), "HTTP NOT FOUND")
+                "HTTP NOT FOUND".toResponseBody("application/json".toMediaType())
             )
 
             // When
