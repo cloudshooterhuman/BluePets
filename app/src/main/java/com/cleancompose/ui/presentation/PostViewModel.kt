@@ -10,7 +10,7 @@ import javax.inject.Inject
 
 @HiltViewModel
 class PostViewModel @Inject constructor(
-    postUseCase: GetPostUseCase
+    postUseCase: GetPostUseCase,
 ) : ViewModel() {
     val uiState: Flow<PagingData<PostModel>> = postUseCase.invoke()
 }

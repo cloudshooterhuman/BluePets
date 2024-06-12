@@ -11,7 +11,7 @@ import javax.inject.Singleton
 
 @Singleton
 internal class DefaultPostRepository @Inject constructor(
-    private val postService: PostService, private val postMapper: PostMapper
+    private val postService: PostService, private val postMapper: PostMapper,
 ) : PostsRepository {
     override fun getPosts(postId: Int): Flow<List<PostModel>> = flow {
         val fromListDto = postMapper.fromListDto(postService.getPosts(postId).data)

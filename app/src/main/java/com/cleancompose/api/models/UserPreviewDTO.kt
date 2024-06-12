@@ -6,5 +6,5 @@ data class UserPreviewDTO(
     val title: String,
     val firstName: String,
     val lastName: String,
-    val picture: String
+    val picture: String,
 )

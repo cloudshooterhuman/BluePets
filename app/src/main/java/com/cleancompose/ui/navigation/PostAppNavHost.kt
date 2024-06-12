@@ -11,7 +11,7 @@ import com.cleancompose.PostScreen
 @Composable
 fun PostAppNavHost(
     navController: NavHostController,
-    modifier: Modifier
+    modifier: Modifier,
 ) {
     NavHost(
         navController = navController,
@@ -25,7 +25,7 @@ fun PostAppNavHost(
 
         composable("picture/{imageUrl}") {
             val imageUrl = it.arguments?.getString("imageUrl")
-            PictureScreen(modifier, imageUrl)
+            PictureScreen(imageUrl)
         }
 
     }

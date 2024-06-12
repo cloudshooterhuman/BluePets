@@ -7,5 +7,5 @@ data class PostDTO(
     val likes: Int,
     val tags: List<String>,
     val publishDate: String,
-    val owner: UserPreviewDTO
+    val owner: UserPreviewDTO,
 )

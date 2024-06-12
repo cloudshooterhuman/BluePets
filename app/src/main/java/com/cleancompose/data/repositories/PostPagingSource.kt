@@ -7,8 +7,9 @@ import com.cleancompose.domain.repositories.PostsRepository
 import kotlinx.coroutines.flow.last
 
 private const val STARTING_PAGE_INDEX = 0
-class PostPagingSource(private val postRepository: PostsRepository)
-    : PagingSource<Int, PostModel>() {
+
+class PostPagingSource(private val postRepository: PostsRepository) :
+    PagingSource<Int, PostModel>() {
     override fun getRefreshKey(state: PagingState<Int, PostModel>): Int? {
         return state.anchorPosition
     }
