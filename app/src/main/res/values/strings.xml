@@ -1,4 +1,5 @@
 <resources>
     <string name="app_name">My Application</string>
     <string name="section_error_action">Error fetching posts</string>
+    <string name="content_desc_error">error fetching data</string>
 </resources>

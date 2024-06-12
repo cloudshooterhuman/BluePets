@@ -39,12 +39,10 @@ android {
         jvmTarget = "17"
     }
 
-    @Suppress("UnstableApiUsage")
     buildFeatures {
         compose = true
     }
 
-    @Suppress("UnstableApiUsage")
     composeOptions {
         kotlinCompilerExtensionVersion = "1.4.2"
     }
@@ -89,7 +87,7 @@ dependencies {
     // Testing
     testImplementation(libs.junit)
     testImplementation(libs.mockk)
-    testImplementation("org.jetbrains.kotlinx:kotlinx-coroutines-test:1.8.0")
+    testImplementation(libs.kotlinx.coroutines.test)
 
 
     //Compose images loader
