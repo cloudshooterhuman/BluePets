@@ -10,7 +10,7 @@ class PostMapper @Inject constructor(
     fun fromListDto(postPreviews: List<PostDTO>): List<PostModel> =
         postPreviews.map { fromDto(it) }
 
-    private fun fromDto(postPreview: PostDTO) = PostModel(
+    fun fromDto(postPreview: PostDTO) = PostModel(
         id = postPreview.id,
         text = postPreview.text,
         imageUrl = postPreview.image,
