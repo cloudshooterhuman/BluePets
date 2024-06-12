@@ -16,7 +16,7 @@ internal class DefaultPostRepository @Inject constructor(
     override fun getPosts(postId: Int): Flow<List<PostModel>> = flow {
         postService.getPosts(postId).let {
             if (it.isSuccessful) {
-                val fromListDto = postMapper.fromListDto(it.body()!!.data)
+                val fromListDto = postMapper.fromListDto(postService.getPosts(postId).body()!!.data)
                 emit(fromListDto)
             } else {
                 emit(emptyList())
