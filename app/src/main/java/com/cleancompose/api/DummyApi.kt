@@ -13,17 +13,16 @@ class DummyApi @Inject constructor(
 ) {
     companion object {
         const val APP_ID = "665f91372bdeb7ac1f668bc7"
+        const val API_URL = "https://dummyapi.io/data/v1/"
     }
 
     val postService: PostService
 
     init {
-        val oktHttpClient = OkHttpClient.Builder()
-        //.addInterceptor(NetworkConnectionInterceptor(context))
 
         val retrofit = Retrofit.Builder()
-            .baseUrl("https://dummyapi.io/data/v1/")
-            .client(oktHttpClient.build())
+            .baseUrl(API_URL)
+            .client(OkHttpClient.Builder().build())
             .addConverterFactory(GsonConverterFactory.create())
             .build()
 
