@@ -3,4 +3,5 @@
     <string name="section_error_action">Error fetching posts</string>
     <string name="content_desc_error">error fetching data</string>
     <string name="tolbar_title">Pets</string>
+    <string name="unknwon_error">Unknwon error</string>
 </resources>

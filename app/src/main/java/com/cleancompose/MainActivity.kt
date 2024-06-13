@@ -7,6 +7,7 @@ import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
@@ -19,6 +20,7 @@ import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
@@ -89,26 +91,46 @@ fun PostScreen(
             bottom = 16.dp
         )
     ) {
-        if (lazyPagingPosts.loadState.hasError) {
-            item(span = { GridItemSpan(maxLineSpan) }) {
-                Image(
-                    painter = painterResource(R.drawable.wifi_off_icon),
-                    contentDescription = stringResource(
-                        id = R.string.content_desc_error
-                    ),
-                    contentScale = ContentScale.Fit,
-                    modifier = Modifier
-                        .size(dimensionResource(id = R.dimen.icon_size))
-                        .clip(CircleShape)
+        when (val state = lazyPagingPosts.loadState.prepend) {
+            is LoadState.NotLoading -> Unit
+            is LoadState.Loading -> {
+                item(span = { GridItemSpan(maxLineSpan) }) {
+                    LoadingIndicator(modifier)
+                }
 
-                )
+            }
+            is LoadState.Error -> {
+                item(span = { GridItemSpan(maxLineSpan) }) {
+                    NetworkErrorIndicator(state.error.message?:stringResource(R.string.unknwon_error))            }
+                }
+        }
+
+        when (val state = lazyPagingPosts.loadState.refresh) {
+            is LoadState.NotLoading -> Unit
+            is LoadState.Loading -> {
+                item(span = { GridItemSpan(maxLineSpan) }) {
+                    LoadingIndicator(modifier)
+                }
+
+            }
+            is LoadState.Error -> {
+                item(span = { GridItemSpan(maxLineSpan) }) {
+                    NetworkErrorIndicator(state.error.message?:stringResource(R.string.unknwon_error))            }
             }
         }
 
 
-        if (lazyPagingPosts.loadState.refresh == LoadState.Loading) {
-            item(span = { GridItemSpan(maxLineSpan) }) {
-                LoadingIndicator(modifier)
+        when (val state = lazyPagingPosts.loadState.append) {
+            is LoadState.NotLoading -> Unit
+            is LoadState.Loading -> {
+                item(span = { GridItemSpan(maxLineSpan) }) {
+                    LoadingIndicator(modifier)
+                }
+
+            }
+            is LoadState.Error -> {
+                item(span = { GridItemSpan(maxLineSpan) }) {
+                    NetworkErrorIndicator(state.error.message?: stringResource(R.string.unknwon_error))            }
             }
         }
 
@@ -121,6 +143,30 @@ fun PostScreen(
                 Spacer(Modifier.height(16.dp))
             }
         }
+    }
+
+}
+
+@Composable
+private fun NetworkErrorIndicator(message: String) {
+    Column (horizontalAlignment = Alignment.CenterHorizontally){
+        Image(
+            painter = painterResource(R.drawable.wifi_off_icon),
+            contentDescription = stringResource(
+                id = R.string.content_desc_error
+            ),
+            contentScale = ContentScale.Fit,
+            modifier = Modifier
+                .size(dimensionResource(id = R.dimen.icon_size))
+                .clip(CircleShape)
+
+        )
+
+        Spacer(Modifier.height(16.dp))
+
+        Text(text = message,
+            style = MaterialTheme.typography.bodyLarge
+        )
     }
 
 }
