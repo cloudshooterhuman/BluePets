@@ -4,6 +4,7 @@ import com.cleancompose.api.models.Page
 import com.cleancompose.api.services.PostService
 import com.cleancompose.data.mappers.ModelDataFactory.getPostDTO
 import com.cleancompose.data.mappers.PostMapper
+import com.cleancompose.domain.ResultOf
 import com.cleancompose.domain.models.DomainModelFactory.getDefaultPostModel
 import io.mockk.coEvery
 import io.mockk.mockk
@@ -38,10 +39,10 @@ class DefaultPostRepositoryTest {
             coEvery { postMapper.fromListDto(postDTOs) } returns expectedPost
 
             // When
-            val actualPost = postRepository.getPosts(page).last()
+            val actualPost = postRepository.getPosts(page) as ResultOf.Success
 
             // Then
-            assertEquals(expectedPost, actualPost)
+            assertEquals(expectedPost, actualPost.value)
         }
 
     @Test
@@ -58,10 +59,10 @@ class DefaultPostRepositoryTest {
             coEvery { postMapper.fromListDto(emptyList()) } returns emptyList()
 
             // When
-            val post = postRepository.getPosts(page)
+            val post = postRepository.getPosts(page) as ResultOf.Success
 
             // Then
-            assertTrue(post.last().isEmpty())
+            assertTrue(post.value.isEmpty())
         }
 
     @Test
@@ -75,9 +76,9 @@ class DefaultPostRepositoryTest {
             )
 
             // When
-            val posts = postRepository.getPosts(page)
+            val failure = postRepository.getPosts(page) as ResultOf.Failure
 
             // Then
-            assertTrue(posts.last().isEmpty())
+            assertEquals(failure.throwable.message, "Response.error()")
         }
 }

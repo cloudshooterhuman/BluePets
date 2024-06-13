@@ -5,5 +5,5 @@ import javax.inject.Inject
 
 
 class GetPostUseCase @Inject constructor(private val postRepository: PostsRepository) {
-    fun invoke(nextPage: Int) = postRepository.getPosts(nextPage)
+    suspend fun invoke(nextPage: Int) = postRepository.getPosts(nextPage)
 }

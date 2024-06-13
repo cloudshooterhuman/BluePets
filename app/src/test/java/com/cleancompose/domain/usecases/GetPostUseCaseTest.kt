@@ -1,5 +1,6 @@
 package com.cleancompose.domain.usecases
 
+import com.cleancompose.domain.ResultOf
 import com.cleancompose.domain.models.DomainModelFactory.getDefaultPostModel
 import com.cleancompose.domain.repositories.PostsRepository
 import io.mockk.coEvery
@@ -24,25 +25,25 @@ class GetPostUseCaseTest {
                 getDefaultPostModel(UUID.randomUUID().toString())
             }
 
-            coEvery { postRepository.getPosts(0) } returns flow { emit(expectedPostsList) }
+            coEvery { postRepository.getPosts(0) } returns ResultOf.Success(expectedPostsList)
 
             // When
-            val actualPostsList = getPostUseCase.invoke(0).last()
+            val actualPostsList = getPostUseCase.invoke(0) as ResultOf.Success
 
             // Then
-            assertEquals(expectedPostsList, actualPostsList)
+            assertEquals(expectedPostsList, actualPostsList.value)
         }
 
     @Test
     fun `Given repository returns empty list, When GetPostUseCase is invoked, Then returns empty list`() =
         runTest {
             // Given
-            coEvery { postRepository.getPosts(0) } returns flow { emit(emptyList()) }
+            coEvery { postRepository.getPosts(0) } returns ResultOf.Success(emptyList())
 
             // When
-            val postsList = getPostUseCase.invoke(0).last()
+            val postsList = getPostUseCase.invoke(0) as ResultOf.Success
 
             // Then
-            assertTrue(postsList.isEmpty())
+            assertTrue(postsList.value.isEmpty())
         }
 }
