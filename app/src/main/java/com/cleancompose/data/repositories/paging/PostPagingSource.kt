@@ -1,4 +1,4 @@
-package com.cleancompose.data.repositories
+package com.cleancompose.data.repositories.paging
 
 import androidx.paging.PagingSource
 import androidx.paging.PagingState

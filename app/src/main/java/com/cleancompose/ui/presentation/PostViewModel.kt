@@ -4,7 +4,7 @@ import androidx.lifecycle.ViewModel
 import androidx.paging.Pager
 import androidx.paging.PagingConfig
 import androidx.paging.PagingData
-import com.cleancompose.data.repositories.PostPagingSource
+import com.cleancompose.data.repositories.paging.PostPagingSource
 import com.cleancompose.domain.models.PostModel
 import com.cleancompose.domain.usecases.GetPostUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
