@@ -20,7 +20,7 @@ internal class DefaultPostRepository @Inject constructor(
     override suspend fun getPosts(postId: Int): ResultOf<List<PostModel>> {
         return try {
             postService.getPosts(postId).let {
-                if (it.isSuccessful) {
+                if (it.isSuccessful && it.body() != null) {
                     val fromListDto =
                         postMapper.fromListDto(postService.getPosts(postId).body()!!.data)
                     ResultOf.Success(fromListDto)
