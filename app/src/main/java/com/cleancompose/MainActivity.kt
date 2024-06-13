@@ -45,6 +45,7 @@ import coil.compose.AsyncImage
 import coil.request.ImageRequest
 import com.cleancompose.domain.models.PostModel
 import com.cleancompose.ui.navigation.PostAppNavHost
+import com.cleancompose.ui.navigation.Screen
 import com.cleancompose.ui.presentation.PostViewModel
 import com.cleancompose.ui.theme.MyApplicationTheme
 import dagger.hilt.android.AndroidEntryPoint
@@ -209,7 +210,7 @@ fun PostImage(post: PostModel, navController: NavController) {
         modifier = Modifier.clickable(onClick = {
             val imageUrl = post.imageUrl
             val encodedUrl = URLEncoder.encode(imageUrl, StandardCharsets.UTF_8.toString())
-            navController.navigate("picture/$encodedUrl")
+            navController.navigate(Screen.Picture.createRoute(encodedUrl))
         })
     )
 }

@@ -15,20 +15,28 @@ fun PostAppNavHost(
 ) {
     NavHost(
         navController = navController,
-        startDestination = "home",
+        startDestination = Screen.Home.route,
         modifier = modifier
     ) {
 
-        composable("home") {
+        composable(Screen.Home.route) {
             PostScreen(navController, modifier)
         }
 
-        composable("picture/{imageUrl}") {
+        composable(Screen.Picture.route) {
             val imageUrl = it.arguments?.getString("imageUrl")
             PictureScreen(imageUrl)
         }
 
     }
 }
+
+sealed class Screen(val route: String) {
+    object Home : Screen("home")
+    object Picture : Screen("picture/{imageUrl}") {
+        fun createRoute(pictureUri: String) = "picture/$pictureUri"
+    }
+}
+
 
 
