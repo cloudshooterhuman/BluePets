@@ -5,8 +5,6 @@ import com.cleancompose.domain.models.DomainModelFactory.getDefaultPostModel
 import com.cleancompose.domain.repositories.PostsRepository
 import io.mockk.coEvery
 import io.mockk.mockk
-import kotlinx.coroutines.flow.flow
-import kotlinx.coroutines.flow.last
 import kotlinx.coroutines.test.runTest
 import org.junit.Assert.assertEquals
 import org.junit.Assert.assertTrue

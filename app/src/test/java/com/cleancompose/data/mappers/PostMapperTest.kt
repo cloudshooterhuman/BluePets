@@ -5,7 +5,7 @@ import com.cleancompose.domain.models.DomainModelFactory.getDefaultOwnerPreviewM
 import com.cleancompose.domain.models.DomainModelFactory.getDefaultPostModel
 import io.mockk.every
 import io.mockk.mockk
-import org.junit.Assert.*
+import org.junit.Assert.assertEquals
 import org.junit.Test
 
 class PostMapperTest {

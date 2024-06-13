@@ -99,10 +99,14 @@ fun PostScreen(
                 }
 
             }
+
             is LoadState.Error -> {
                 item(span = { GridItemSpan(maxLineSpan) }) {
-                    NetworkErrorIndicator(state.error.message?:stringResource(R.string.unknwon_error))            }
+                    NetworkErrorIndicator(
+                        state.error.message ?: stringResource(R.string.unknwon_error)
+                    )
                 }
+            }
         }
 
         when (val state = lazyPagingPosts.loadState.refresh) {
@@ -113,9 +117,13 @@ fun PostScreen(
                 }
 
             }
+
             is LoadState.Error -> {
                 item(span = { GridItemSpan(maxLineSpan) }) {
-                    NetworkErrorIndicator(state.error.message?:stringResource(R.string.unknwon_error))            }
+                    NetworkErrorIndicator(
+                        state.error.message ?: stringResource(R.string.unknwon_error)
+                    )
+                }
             }
         }
 
@@ -128,9 +136,13 @@ fun PostScreen(
                 }
 
             }
+
             is LoadState.Error -> {
                 item(span = { GridItemSpan(maxLineSpan) }) {
-                    NetworkErrorIndicator(state.error.message?: stringResource(R.string.unknwon_error))            }
+                    NetworkErrorIndicator(
+                        state.error.message ?: stringResource(R.string.unknwon_error)
+                    )
+                }
             }
         }
 
@@ -149,7 +161,7 @@ fun PostScreen(
 
 @Composable
 private fun NetworkErrorIndicator(message: String) {
-    Column (horizontalAlignment = Alignment.CenterHorizontally){
+    Column(horizontalAlignment = Alignment.CenterHorizontally) {
         Image(
             painter = painterResource(R.drawable.wifi_off_icon),
             contentDescription = stringResource(
@@ -164,7 +176,8 @@ private fun NetworkErrorIndicator(message: String) {
 
         Spacer(Modifier.height(16.dp))
 
-        Text(text = message,
+        Text(
+            text = message,
             style = MaterialTheme.typography.bodyLarge
         )
     }

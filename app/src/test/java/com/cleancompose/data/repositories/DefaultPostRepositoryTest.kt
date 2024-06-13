@@ -8,11 +8,11 @@ import com.cleancompose.domain.ResultOf
 import com.cleancompose.domain.models.DomainModelFactory.getDefaultPostModel
 import io.mockk.coEvery
 import io.mockk.mockk
-import kotlinx.coroutines.flow.last
 import kotlinx.coroutines.test.runTest
 import okhttp3.MediaType.Companion.toMediaType
 import okhttp3.ResponseBody.Companion.toResponseBody
-import org.junit.Assert.*
+import org.junit.Assert.assertEquals
+import org.junit.Assert.assertTrue
 import org.junit.Test
 import retrofit2.Response
 import java.util.UUID

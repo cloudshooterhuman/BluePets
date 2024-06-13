@@ -5,10 +5,9 @@ import android.os.Build
 import androidx.annotation.RequiresExtension
 import com.cleancompose.api.services.PostService
 import com.cleancompose.data.mappers.PostMapper
-import com.cleancompose.domain.repositories.PostsRepository
 import com.cleancompose.domain.ResultOf
 import com.cleancompose.domain.models.PostModel
-import kotlinx.coroutines.flow.flow
+import com.cleancompose.domain.repositories.PostsRepository
 import java.io.IOException
 import javax.inject.Inject
 import javax.inject.Singleton
@@ -22,14 +21,14 @@ internal class DefaultPostRepository @Inject constructor(
         return try {
             postService.getPosts(postId).let {
                 if (it.isSuccessful) {
-                    val fromListDto = postMapper.fromListDto(postService.getPosts(postId).body()!!.data)
-                     ResultOf.Success(fromListDto)
+                    val fromListDto =
+                        postMapper.fromListDto(postService.getPosts(postId).body()!!.data)
+                    ResultOf.Success(fromListDto)
                 } else {
-                     ResultOf.Failure(it.errorBody().toString(), Throwable(it.message()))
+                    ResultOf.Failure(it.errorBody().toString(), Throwable(it.message()))
                 }
             }
-        }
-        catch (e: IOException) {
+        } catch (e: IOException) {
             ResultOf.Failure("[IO] error please retry", e)
         } catch (e: HttpException) {
             ResultOf.Failure("[HTTP] error please retry", e)
