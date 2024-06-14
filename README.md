@@ -28,6 +28,13 @@ B. Gestion de la vue Jetpack Compose.
 
 ![image](https://github.com/selmanon/composeCleanArch/assets/2206036/6d5d69e3-8a1b-4ff0-ac7d-ccd5e1df9fad)
 
+## Rendu de l'application
+<p align="center">
+  <img src="https://github.com/selmanon/composeCleanArch/blob/master/screenshoots/pets_home.png" width="350" title="Home screen">
+  <img src="https://github.com/selmanon/composeCleanArch/assets/2206036/4d43fe66-726f-4578-8b64-82a3291bad3d" width="350" alt="Pets screen">
+</p>
+
+
 # Point d'amélioration :
 - Avoir des modules pour chaque couche.
 - TU pour le viewModel/paging.
