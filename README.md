@@ -1,3 +1,7 @@
+<p align="center">
+  <img src="https://github.com/selmanon/BluePets/assets/2206036/3289251a-5ec3-45b1-b9a4-f4b36c97c1e6" width="50" title="Home screen">
+</p>
+
 ## Objectifs
 
 **Clean Archi** : couches presentation, domain et data et injection de dépendance.
@@ -21,7 +25,7 @@ Le domaine est le coeur de l'application qui contient la logique et les règles 
 La couche de données va permettre de récupérer et persister les données de l'application aux travers de Repositories et des Data Sources qui peuvent être locales avec un BDD ou distantes avec une API.
 
 # Partie 3. Dev de la couche presentation
-Le rôle de l'UI est d'afficher les données de l'application à l'écran et de servir de point principal d'interaction utilisateur. Le pattern utilisé est MVVM (Model - View - ViewModel)/UFD.
+Le rôle de l'UI est d'afficher les données de l'application à l'écran et de servir de point principal d'interaction utilisateur. Le pattern utilisé est MVVM (Model - View - ViewModel)/UDF.
 
 ![image](https://github.com/selmanon/composeCleanArch/assets/2206036/6d5d69e3-8a1b-4ff0-ac7d-ccd5e1df9fad)
 
@@ -36,7 +40,7 @@ Le rôle de l'UI est d'afficher les données de l'application à l'écran et de 
 - Avoir un modue pour chaque couche.
 - TUs pour le viewModel/paging.
 - Tests d'interface utilisateur.
-- Gestion du scroll.
+- Gestion du scroll. (fixed)
 - Ajout le pull to refresh/Enrichire l'UI/UX
 - Ajouter un buildSrc module pour la gestion des versions (Android/Apk)
 
