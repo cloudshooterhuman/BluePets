@@ -25,7 +25,7 @@ Le domaine est le coeur de l'application qui contient la logique et les règles 
 La couche de données va permettre de récupérer et persister les données de l'application aux travers de Repositories et des Data Sources qui peuvent être locales avec un BDD ou distantes avec une API.
 
 # Partie 3. Dev de la couche presentation
-Le rôle de l'UI est d'afficher les données de l'application à l'écran et de servir de point principal d'interaction utilisateur. Le pattern utilisé est MVVM (Model - View - ViewModel)/UFD.
+Le rôle de l'UI est d'afficher les données de l'application à l'écran et de servir de point principal d'interaction utilisateur. Le pattern utilisé est MVVM (Model - View - ViewModel)/UDF.
 
 ![image](https://github.com/selmanon/composeCleanArch/assets/2206036/6d5d69e3-8a1b-4ff0-ac7d-ccd5e1df9fad)
 
