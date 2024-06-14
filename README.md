@@ -29,6 +29,7 @@ B. Gestion de la vue Jetpack Compose.
 ![image](https://github.com/selmanon/composeCleanArch/assets/2206036/6d5d69e3-8a1b-4ff0-ac7d-ccd5e1df9fad)
 
 # Point d'amélioration :
+- Avoir des modules pour chaque couche.
 - TU pour le viewModel/paging.
 - TU d'interface utilisateur.
 - Gestion du scroll.
