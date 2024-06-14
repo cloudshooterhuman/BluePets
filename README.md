@@ -40,7 +40,7 @@ Le rôle de l'UI est d'afficher les données de l'application à l'écran et de 
 - Avoir un modue pour chaque couche.
 - TUs pour le viewModel/paging.
 - Tests d'interface utilisateur.
-- Gestion du scroll.
+- Gestion du scroll. (fixed)
 - Ajout le pull to refresh/Enrichire l'UI/UX
 - Ajouter un buildSrc module pour la gestion des versions (Android/Apk)
 
