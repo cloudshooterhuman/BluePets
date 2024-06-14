@@ -36,11 +36,12 @@ B. Gestion de la vue Jetpack Compose.
 
 
 # Point d'amélioration :
-- Avoir des modules pour chaque couche.
+- Avoir un modue pour chaque couche.
 - TU pour le viewModel/paging.
-- TU d'interface utilisateur.
+- Test d'interface utilisateur.
 - Gestion du scroll.
-- Ajout le pull to refresh.
+- Ajout le pull to refresh/Enrichire l'UI/UX
+- Ajouter un buildSrc module pour la gestion des versions (Android/Apk)
 
 
 
