@@ -4,5 +4,5 @@ import com.cleancompose.domain.ResultOf
 import com.cleancompose.domain.models.PostModel
 
 interface PostsRepository {
-    suspend fun getPosts(postId: Int): ResultOf<List<PostModel>>
+    suspend fun getPosts(page: Int): ResultOf<List<PostModel>>
 }

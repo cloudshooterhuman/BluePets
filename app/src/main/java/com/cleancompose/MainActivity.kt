@@ -222,7 +222,7 @@ fun PictureScreen(imageUrl: String?) {
             .data(imageUrl)
             .crossfade(true)
             .build(),
-        contentDescription = "post.text",
+        contentDescription = stringResource(R.string.post_text),
         contentScale = ContentScale.Crop,
         placeholder = painterResource(id = R.drawable.ic_launcher_background)
     )

@@ -17,12 +17,12 @@ internal class DefaultPostRepository @Inject constructor(
     private val postService: PostService, private val postMapper: PostMapper,
 ) : PostsRepository {
     @RequiresExtension(extension = Build.VERSION_CODES.S, version = 7)
-    override suspend fun getPosts(postId: Int): ResultOf<List<PostModel>> {
+    override suspend fun getPosts(page: Int): ResultOf<List<PostModel>> {
         return try {
-            postService.getPosts(postId).let {
+            postService.getPosts(page).let {
                 if (it.isSuccessful && it.body() != null) {
                     val fromListDto =
-                        postMapper.fromListDto(postService.getPosts(postId).body()!!.data)
+                        postMapper.fromListDto(postService.getPosts(page).body()!!.data)
                     ResultOf.Success(fromListDto)
                 } else {
                     ResultOf.Failure(it.errorBody().toString(), Throwable(it.message()))

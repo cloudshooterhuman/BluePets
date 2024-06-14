@@ -25,7 +25,6 @@ class PostPagingSource(private val getPostUseCase: GetPostUseCase) :
                 )
 
             is ResultOf.Failure -> LoadResult.Error(Throwable(result.throwable.message))
-
         }
     }
 
