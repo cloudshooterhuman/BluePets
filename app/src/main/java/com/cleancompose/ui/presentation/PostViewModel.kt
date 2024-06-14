@@ -1,9 +1,11 @@
 package com.cleancompose.ui.presentation
 
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import androidx.paging.Pager
 import androidx.paging.PagingConfig
 import androidx.paging.PagingData
+import androidx.paging.cachedIn
 import com.cleancompose.data.repositories.paging.PostPagingSource
 import com.cleancompose.domain.models.PostModel
 import com.cleancompose.domain.usecases.GetPostUseCase
@@ -24,5 +26,5 @@ class PostViewModel @Inject constructor(
                 enablePlaceholders = true
             ),
             pagingSourceFactory = { PostPagingSource(postUseCase) }
-        ).flow
+        ).flow.cachedIn(viewModelScope)
 }
