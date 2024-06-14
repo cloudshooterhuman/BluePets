@@ -2,16 +2,16 @@
 
 **Clean Archi** : couches presentation, domain et data et injection de dépendance.
 
-**tests unitaires** : avec Junit et Mockito.
+**Tests unitaires** : avec Junit et Mockito.
 
-**gestion des flux de données** : Coroutine, Flow et Paging.
+**Gestion des flux de données** : Coroutine, Flow et Paging.
 
-**gestion de la vue** : Jetpack Compose (Dark/Night).
+**Gestion de la vue** : Jetpack Compose (Dark/Night).
 
-**gestion de la navigation** : Jetpack Navigation.
+**Gestion de la navigation** : Jetpack Navigation.
 
 
-## Decoupage de l implementation
+## Decoupage de l'implementation
 
 # Partie 1. Dev de la couche domaine
 
@@ -34,8 +34,8 @@ Le rôle de l'UI est d'afficher les données de l'application à l'écran et de 
 
 # Point d'amélioration :
 - Avoir un modue pour chaque couche.
-- TU pour le viewModel/paging.
-- Test d'interface utilisateur.
+- TUs pour le viewModel/paging.
+- Tests d'interface utilisateur.
 - Gestion du scroll.
 - Ajout le pull to refresh/Enrichire l'UI/UX
 - Ajouter un buildSrc module pour la gestion des versions (Android/Apk)
