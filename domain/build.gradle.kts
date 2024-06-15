@@ -7,10 +7,10 @@ plugins {
 
 android {
     namespace = "com.cleancompose.domain"
-    compileSdk = 34
+    compileSdk = AndroidOptions.COMPILE_SDK
 
     defaultConfig {
-        minSdk = 24
+        minSdk = AndroidOptions.MIN_SDK
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles("consumer-rules.pro")

@@ -6,7 +6,7 @@ plugins {
 }
 android {
     namespace = "com.cleancompose"
-    compileSdk = 34
+    compileSdk = AndroidOptions.COMPILE_SDK
 
     defaultConfig {
         applicationId = "com.cleancompose"
@@ -78,8 +78,6 @@ dependencies {
     implementation(libs.androidx.hilt.navigation.compose)
     implementation(project(":domain"))
     implementation(project(":data"))
-    testImplementation(project(":api"))
-    testImplementation(project(":domain"))
     kapt(libs.dagger.hilt.android.compiler)
 
     // UI
