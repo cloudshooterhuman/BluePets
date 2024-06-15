@@ -36,7 +36,7 @@ Le rôle de l'UI est d'afficher les données de l'application à l'écran et de 
 </p>
 
 
-# Point d'amélioration :
+# Points d'amélioration :
 - Avoir un modue pour chaque couche.
 - TUs pour le viewModel/paging.
 - Tests d'interface utilisateur.
