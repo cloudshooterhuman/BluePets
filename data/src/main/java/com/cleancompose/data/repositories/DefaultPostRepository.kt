@@ -17,21 +17,21 @@ class DefaultPostRepository @Inject constructor(
     private val postService: PostService, private val postMapper: PostMapper,
 ) : PostsRepository {
     @RequiresExtension(extension = Build.VERSION_CODES.S, version = 7)
-    override suspend fun getPosts(page: Int): com.cleancompose.domain.ResultOf<List<com.cleancompose.domain.models.PostModel>> {
+    override suspend fun getPosts(page: Int): ResultOf<List<PostModel>> {
         return try {
             postService.getPosts(page).let {
                 if (it.isSuccessful && it.body() != null) {
                     val fromListDto =
                         postMapper.fromListDto(postService.getPosts(page).body()!!.data)
-                    com.cleancompose.domain.ResultOf.Success(fromListDto)
+                    ResultOf.Success(fromListDto)
                 } else {
-                    com.cleancompose.domain.ResultOf.Failure(it.errorBody().toString(), Throwable(it.message()))
+                    ResultOf.Failure(it.errorBody().toString(), Throwable(it.message()))
                 }
             }
         } catch (e: IOException) {
-            com.cleancompose.domain.ResultOf.Failure("[IO] error please retry", e)
+            ResultOf.Failure("[IO] error please retry", e)
         } catch (e: HttpException) {
-            com.cleancompose.domain.ResultOf.Failure("[HTTP] error please retry", e)
+            ResultOf.Failure("[HTTP] error please retry", e)
         }
     }
 }

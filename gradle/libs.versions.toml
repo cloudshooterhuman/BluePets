@@ -27,6 +27,7 @@ pagingCompose = "3.3.0"
 retrofit = "2.9.0"
 appcompat = "1.7.0"
 runtime = "1.6.8"
+pagingTestingJvm = "3.3.0"
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
@@ -65,6 +66,7 @@ navigation-runtime-ktx = { module = "androidx.navigation:navigation-runtime-ktx"
 retrofit = { module = "com.squareup.retrofit2:retrofit", version.ref = "retrofit" }
 ui = { module = "androidx.compose.ui:ui" }
 androidx-appcompat = { group = "androidx.appcompat", name = "appcompat", version.ref = "appcompat" }
+androidx-paging-testing-jvm = { group = "androidx.paging", name = "paging-testing-jvm", version.ref = "pagingTestingJvm" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }
