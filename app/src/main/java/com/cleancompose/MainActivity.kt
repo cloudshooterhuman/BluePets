@@ -9,9 +9,9 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
@@ -20,23 +20,17 @@ import androidx.compose.foundation.lazy.grid.GridItemSpan
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.ExperimentalMaterialApi
-import androidx.compose.material.LinearProgressIndicator
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Refresh
-import androidx.compose.material.pullrefresh.PullRefreshState
+import androidx.compose.material.pullrefresh.PullRefreshIndicator
 import androidx.compose.material.pullrefresh.pullRefresh
 import androidx.compose.material.pullrefresh.rememberPullRefreshState
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.ExperimentalMaterial3Api
-import androidx.compose.material3.Icon
-import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
@@ -55,11 +49,11 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import androidx.paging.LoadState
-import androidx.paging.compose.LazyPagingItems
 import androidx.paging.compose.collectAsLazyPagingItems
 import androidx.paging.compose.itemKey
 import coil.compose.AsyncImage
 import coil.request.ImageRequest
+import com.cleancompose.domain.models.PostModel
 import com.cleancompose.ui.navigation.PostAppNavHost
 import com.cleancompose.ui.navigation.Screen
 import com.cleancompose.ui.presentation.PostViewModel
@@ -72,55 +66,19 @@ import java.nio.charset.StandardCharsets
 
 @AndroidEntryPoint
 class MainActivity : ComponentActivity() {
-    @OptIn(ExperimentalMaterial3Api::class, ExperimentalMaterialApi::class)
+    @OptIn(ExperimentalMaterial3Api::class)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
-
-            val viewModel: PostViewModel = hiltViewModel()
-            val lazyPagingPosts = viewModel.uiState.collectAsLazyPagingItems()
-
             val navController = rememberNavController()
-
-            var itemCount by remember { mutableIntStateOf(15) }
-            var isRefreshing by remember { mutableStateOf(false) }
-            val state = rememberPullRefreshState(refreshing = isRefreshing, onRefresh = {
-                lazyPagingPosts.refresh()
-            })
-            val coroutineScope = rememberCoroutineScope()
-
-
-            val onRefresh: () -> Unit = {
-                isRefreshing = true
-                coroutineScope.launch {
-                    // fetch something
-                    delay(1500)
-                    itemCount += 5
-                    isRefreshing = false
-                }
-            }
-
             MyApplicationTheme {
-                Scaffold(
-                    topBar = {
-                        TopAppBar(title = { Text(stringResource(R.string.tolbar_title)) },
-                            // Provide an accessible alternative to trigger refresh.
-                            actions = {
-                                IconButton(onClick = onRefresh) {
-                                    Icon(Icons.Filled.Refresh, "Trigger Refresh")
-                                }
-                            }
-                        )
-                    }, modifier = Modifier.pullRefresh(
-                        state = state,
-                        enabled = isRefreshing
-                    )
-                ) { innerPadding ->
+                Scaffold(topBar = {
+                    TopAppBar(title = { Text(stringResource(R.string.tolbar_title)) })
+                }, modifier = Modifier.fillMaxSize()) { innerPadding ->
                     PostAppNavHost(
                         navController = navController,
                         modifier = Modifier
-                            .padding(innerPadding),
-                        lazyPagingPosts, state, isRefreshing
+                            .padding(innerPadding)
                     )
                 }
             }
@@ -128,20 +86,34 @@ class MainActivity : ComponentActivity() {
     }
 }
 
-
-@OptIn(ExperimentalMaterial3Api::class, ExperimentalMaterialApi::class)
+@OptIn(ExperimentalMaterialApi::class)
 @Composable
 fun PostScreen(
     navController: NavController,
     modifier: Modifier = Modifier,
-    pullRefreshState: PullRefreshState,
-    lazyPagingPosts: LazyPagingItems<com.cleancompose.domain.models.PostModel>,
-    isRefreshing: Boolean,
+    viewModel: PostViewModel = hiltViewModel(),
 ) {
 
+    val refreshScope = rememberCoroutineScope()
+    var refreshing by remember { mutableStateOf(false) }
 
-    Box {
+    fun refresh() = refreshScope.launch {
+        refreshing = true
+        delay(1500)
+        refreshing = false
+    }
 
+    val pullToRefreshState = rememberPullRefreshState(refreshing, ::refresh)
+
+    val lazyPagingPosts = viewModel.uiState.collectAsLazyPagingItems()
+
+
+    Box(
+        Modifier
+            .pullRefresh(pullToRefreshState)
+            .fillMaxSize(),
+        contentAlignment = Alignment.TopCenter
+    ) {
         LazyVerticalGrid(
             columns = GridCells.Adaptive(100.dp),
             horizontalArrangement = Arrangement.spacedBy(8.dp),
@@ -157,7 +129,6 @@ fun PostScreen(
                     item(span = { GridItemSpan(maxLineSpan) }) {
                         LoadingIndicator(modifier)
                     }
-
                 }
 
                 is LoadState.Error -> {
@@ -171,11 +142,11 @@ fun PostScreen(
 
             when (val state = lazyPagingPosts.loadState.refresh) {
                 is LoadState.NotLoading -> Unit
+
                 is LoadState.Loading -> {
                     item(span = { GridItemSpan(maxLineSpan) }) {
                         LoadingIndicator(modifier)
                     }
-
                 }
 
                 is LoadState.Error -> {
@@ -206,39 +177,26 @@ fun PostScreen(
                 }
             }
 
-
-                if (!isRefreshing && lazyPagingPosts.itemCount > 0) {
+            if (!refreshing) {
+                if (lazyPagingPosts.itemCount > 0) {
                     items(
                         lazyPagingPosts.itemCount,
                         key = lazyPagingPosts.itemKey { it.id }) { index ->
                         lazyPagingPosts[index]?.let { PostImage(it, navController) }
-                        if (isRefreshing) {
-                            LinearProgressIndicator(modifier = Modifier.fillMaxWidth())
-                        } else {
-                            androidx.compose.material3.LinearProgressIndicator(
-                                modifier = Modifier.fillMaxWidth(),
-                                progress = { pullRefreshState.progress }
-                            )
-                        }
                     }
-
-
 
                     item(span = { GridItemSpan(maxLineSpan) }) {
                         Spacer(Modifier.height(16.dp))
                     }
-
-
                 }
-
             }
 
-
-
         }
+
+        PullRefreshIndicator(refreshing, pullToRefreshState)
+
     }
-
-
+}
 
 @Composable
 private fun NetworkErrorIndicator(message: String) {
@@ -278,7 +236,7 @@ private fun LoadingIndicator(modifier: Modifier) {
 }
 
 @Composable
-fun PostImage(post: com.cleancompose.domain.models.PostModel, navController: NavController) {
+fun PostImage(post: PostModel, navController: NavController) {
     AsyncImage(
         model = ImageRequest.Builder(LocalContext.current)
             .data(post.imageUrl)

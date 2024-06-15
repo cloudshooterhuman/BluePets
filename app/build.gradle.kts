@@ -61,6 +61,9 @@ dependencies {
     implementation(libs.androidx.material)
     implementation(libs.androidx.runtime)
 
+    implementation(libs.androidx.compose.material3.material3)
+
+
 
     // Lifecycle utilities for Compose
     implementation(libs.lifecycle.runtime.compose)
@@ -93,7 +96,6 @@ dependencies {
     testImplementation(libs.junit)
     testImplementation(libs.mockk)
     testImplementation(libs.kotlinx.coroutines.test)
-
 
     //Compose images loader
     implementation(libs.coil.compose)

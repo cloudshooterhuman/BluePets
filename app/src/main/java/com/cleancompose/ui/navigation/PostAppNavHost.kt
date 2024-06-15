@@ -17,10 +17,7 @@ import com.cleancompose.domain.models.PostModel
 @Composable
 fun PostAppNavHost(
     navController: NavHostController,
-    modifier: Modifier,
-    lazyPagingPosts: LazyPagingItems<PostModel>,
-    state: PullRefreshState,
-    isRefreshing: Boolean
+    modifier: Modifier
 ) {
     NavHost(
         navController = navController,
@@ -29,7 +26,7 @@ fun PostAppNavHost(
     ) {
 
         composable(Screen.Home.route) {
-            PostScreen(navController, modifier, state, lazyPagingPosts, isRefreshing)
+            PostScreen(navController, modifier)
         }
 
         composable(Screen.Picture.route) {
