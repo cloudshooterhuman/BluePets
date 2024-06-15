@@ -42,8 +42,9 @@ Le rôle de l'UI est d'afficher les données de l'application à l'écran et de 
 - TUs viewModel.
 - Tests d'interface utilisateur.
 - Gestion du scroll. (fixed)
-- Ajout le pull to refresh ((pull-to-refresh branch - WIP)
+- Ajouter le pull to refresh ((pull-to-refresh branch - WIP)
 - Enrichire l'UI/UX.
+- Ajouter la navigattion dans l'AppBar.
 - Ajouter un buildSrc module pour la gestion des versions (Android/rellease) (pull-to-refresh branch) 
 
 
