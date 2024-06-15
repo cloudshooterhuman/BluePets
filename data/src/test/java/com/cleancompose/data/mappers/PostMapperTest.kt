@@ -1,8 +1,8 @@
 package com.cleancompose.data.mappers
 
-import com.cleancompose.data.mappers.ModelDataFactory.getPostDTO
 import com.cleancompose.domain.models.DomainModelFactory.getDefaultOwnerPreviewModel
 import com.cleancompose.domain.models.DomainModelFactory.getDefaultPostModel
+import com.cleancompose.domain.models.ModelDataFactory.getPostDTO
 import io.mockk.every
 import io.mockk.mockk
 import org.junit.Assert.assertEquals
@@ -10,6 +10,7 @@ import org.junit.Test
 
 class PostMapperTest {
     private val ownerPreviewMapper: OwnerPreviewMapper = mockk()
+
     private val postMapper = PostMapper(ownerPreviewMapper)
 
     @Test

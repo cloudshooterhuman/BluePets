@@ -5,7 +5,7 @@ import com.cleancompose.domain.models.PostModel
 
 @Immutable
 sealed interface PostUiState {
-    data class Success(val posts: PostModel) : PostUiState
+    data class Success(val posts: com.cleancompose.domain.models.PostModel) : PostUiState
     object Error : PostUiState
     object Loading : PostUiState
 }

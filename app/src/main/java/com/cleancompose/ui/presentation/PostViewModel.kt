@@ -25,6 +25,10 @@ class PostViewModel @Inject constructor(
                 pageSize = ITEMS_PER_PAGE,
                 enablePlaceholders = true
             ),
-            pagingSourceFactory = { PostPagingSource(postUseCase) }
+            pagingSourceFactory = {
+                PostPagingSource(
+                    postUseCase
+                )
+            }
         ).flow.cachedIn(viewModelScope)
 }

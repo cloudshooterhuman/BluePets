@@ -58,8 +58,8 @@ dependencies {
     implementation(platform(libs.androidx.compose.bom))
     implementation(libs.ui)
     implementation(libs.material3)
-    implementation("androidx.compose.material:material:1.6.8")
-    implementation("androidx.compose.runtime:runtime:1.6.8")
+    implementation(libs.androidx.material)
+    implementation(libs.androidx.runtime)
 
 
     // Lifecycle utilities for Compose
@@ -76,11 +76,16 @@ dependencies {
     // Hilt
     implementation(libs.hilt.android)
     implementation(libs.androidx.hilt.navigation.compose)
+    implementation(project(":domain"))
+    implementation(project(":data"))
+    testImplementation(project(":api"))
+    testImplementation(project(":domain"))
     kapt(libs.dagger.hilt.android.compiler)
 
     // UI
     implementation(libs.androidx.core.ktx)
     implementation(libs.material)
+
     // Navigation
     implementation(libs.androidx.navigation.compose)
     implementation(libs.navigation.runtime.ktx)

@@ -2,15 +2,13 @@ package com.cleancompose.data.repositories
 
 import com.cleancompose.api.models.Page
 import com.cleancompose.api.services.PostService
-import com.cleancompose.data.mappers.ModelDataFactory.getPostDTO
-import com.cleancompose.data.mappers.PostMapper
-import com.cleancompose.domain.ResultOf
 import com.cleancompose.domain.models.DomainModelFactory.getDefaultPostModel
+import com.cleancompose.domain.models.ModelDataFactory.getPostDTO
 import io.mockk.coEvery
 import io.mockk.mockk
 import kotlinx.coroutines.test.runTest
-import okhttp3.MediaType.Companion.toMediaType
-import okhttp3.ResponseBody.Companion.toResponseBody
+import okhttp3.MediaType
+import okhttp3.ResponseBody
 import org.junit.Assert.assertEquals
 import org.junit.Assert.assertTrue
 import org.junit.Test
@@ -19,8 +17,9 @@ import java.util.UUID
 
 class DefaultPostRepositoryTest {
     private val postService: PostService = mockk()
-    private val postMapper: PostMapper = mockk()
-    private val postRepository = DefaultPostRepository(postService, postMapper)
+    private val postMapper: com.cleancompose.data.mappers.PostMapper = mockk()
+    private val postRepository =
+        DefaultPostRepository(postService, postMapper)
 
     @Test
     fun `Given a successful response with posts on page 23, When getting posts through repository, Then returns list of Post`() =
@@ -39,7 +38,7 @@ class DefaultPostRepositoryTest {
             coEvery { postMapper.fromListDto(postDTOs) } returns expectedPost
 
             // When
-            val actualPost = postRepository.getPosts(page) as ResultOf.Success
+            val actualPost = postRepository.getPosts(page) as com.cleancompose.domain.ResultOf.Success
 
             // Then
             assertEquals(expectedPost, actualPost.value)
@@ -59,7 +58,7 @@ class DefaultPostRepositoryTest {
             coEvery { postMapper.fromListDto(emptyList()) } returns emptyList()
 
             // When
-            val post = postRepository.getPosts(page) as ResultOf.Success
+            val post = postRepository.getPosts(page) as com.cleancompose.domain.ResultOf.Success
 
             // Then
             assertTrue(post.value.isEmpty())
@@ -72,11 +71,11 @@ class DefaultPostRepositoryTest {
             val page = 0
             coEvery { postService.getPosts(page) } returns Response.error(
                 404,
-                "HTTP NOT FOUND".toResponseBody("application/json".toMediaType())
+                ResponseBody.create(MediaType.get("application/json"),"HTTP NOT FOUND")
             )
 
             // When
-            val failure = postRepository.getPosts(page) as ResultOf.Failure
+            val failure = postRepository.getPosts(page) as com.cleancompose.domain.ResultOf.Failure
 
             // Then
             assertEquals(failure.throwable.message, "Response.error()")

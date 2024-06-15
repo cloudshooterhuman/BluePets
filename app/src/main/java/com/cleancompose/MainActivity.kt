@@ -60,7 +60,6 @@ import androidx.paging.compose.collectAsLazyPagingItems
 import androidx.paging.compose.itemKey
 import coil.compose.AsyncImage
 import coil.request.ImageRequest
-import com.cleancompose.domain.models.PostModel
 import com.cleancompose.ui.navigation.PostAppNavHost
 import com.cleancompose.ui.navigation.Screen
 import com.cleancompose.ui.presentation.PostViewModel
@@ -105,7 +104,6 @@ class MainActivity : ComponentActivity() {
                 Scaffold(
                     topBar = {
                         TopAppBar(title = { Text(stringResource(R.string.tolbar_title)) },
-
                             // Provide an accessible alternative to trigger refresh.
                             actions = {
                                 IconButton(onClick = onRefresh) {
@@ -137,7 +135,7 @@ fun PostScreen(
     navController: NavController,
     modifier: Modifier = Modifier,
     pullRefreshState: PullRefreshState,
-    lazyPagingPosts: LazyPagingItems<PostModel>,
+    lazyPagingPosts: LazyPagingItems<com.cleancompose.domain.models.PostModel>,
     isRefreshing: Boolean,
 ) {
 
@@ -280,7 +278,7 @@ private fun LoadingIndicator(modifier: Modifier) {
 }
 
 @Composable
-fun PostImage(post: PostModel, navController: NavController) {
+fun PostImage(post: com.cleancompose.domain.models.PostModel, navController: NavController) {
     AsyncImage(
         model = ImageRequest.Builder(LocalContext.current)
             .data(post.imageUrl)
