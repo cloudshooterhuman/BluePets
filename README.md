@@ -6,7 +6,7 @@
 
 **Clean Archi** : couches presentation, domain et data et injection de dépendance.
 
-**Tests unitaires** : avec Junit et Mockito.
+**Tests unitaires** : avec Junit et Mokk.
 
 **Gestion des flux de données** : Coroutine, Flow et Paging.
 
