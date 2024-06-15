@@ -1,26 +1,35 @@
 package com.cleancompose.ui.navigation
 
+import androidx.compose.material.ExperimentalMaterialApi
+import androidx.compose.material.pullrefresh.PullRefreshState
+import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
+import androidx.paging.compose.LazyPagingItems
 import com.cleancompose.PictureScreen
 import com.cleancompose.PostScreen
+import com.cleancompose.domain.models.PostModel
 
+@OptIn(ExperimentalMaterialApi::class, ExperimentalMaterial3Api::class)
 @Composable
 fun PostAppNavHost(
     navController: NavHostController,
     modifier: Modifier,
+    lazyPagingPosts: LazyPagingItems<PostModel>,
+    state: PullRefreshState,
+    isRefreshing: Boolean
 ) {
     NavHost(
         navController = navController,
         startDestination = Screen.Home.route,
-        modifier = modifier
+        modifier = modifier,
     ) {
 
         composable(Screen.Home.route) {
-            PostScreen(navController, modifier)
+            PostScreen(navController, modifier, state, lazyPagingPosts, isRefreshing)
         }
 
         composable(Screen.Picture.route) {

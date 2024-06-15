@@ -58,6 +58,8 @@ dependencies {
     implementation(platform(libs.androidx.compose.bom))
     implementation(libs.ui)
     implementation(libs.material3)
+    implementation("androidx.compose.material:material:1.6.8")
+    implementation("androidx.compose.runtime:runtime:1.6.8")
 
 
     // Lifecycle utilities for Compose
