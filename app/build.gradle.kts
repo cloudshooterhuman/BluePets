@@ -62,7 +62,6 @@ dependencies {
     implementation(libs.material3)
     implementation(libs.androidx.material)
     implementation(libs.androidx.runtime)
-
     implementation(libs.androidx.compose.material3.material3)
 
 
@@ -99,5 +98,4 @@ dependencies {
 
     //Compose images loader
     implementation(libs.coil.compose)
-
 }
