@@ -12,8 +12,8 @@ android {
         applicationId = "com.cleancompose"
         minSdk = 24
         targetSdk = 34
-        versionCode = 1
-        versionName = "1.0"
+        versionCode = AppVersions.VERSION_CODE
+        versionName = AppVersions.VERSION_NAME
 
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
@@ -51,10 +51,12 @@ android {
 
 dependencies {
 
+    implementation(project(":domain"))
+    implementation(project(":data"))
 
-    implementation(libs.androidx.activity.compose)
 
     //Compose
+    implementation(libs.androidx.activity.compose)
     implementation(platform(libs.androidx.compose.bom))
     implementation(libs.ui)
     implementation(libs.material3)
@@ -79,8 +81,6 @@ dependencies {
     // Hilt
     implementation(libs.hilt.android)
     implementation(libs.androidx.hilt.navigation.compose)
-    implementation(project(":domain"))
-    implementation(project(":data"))
     kapt(libs.dagger.hilt.android.compiler)
 
     // UI
