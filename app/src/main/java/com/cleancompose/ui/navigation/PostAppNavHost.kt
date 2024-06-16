@@ -1,22 +1,14 @@
 package com.cleancompose.ui.navigation
 
-import androidx.annotation.StringRes
-import androidx.compose.material.ExperimentalMaterialApi
-import androidx.compose.material.pullrefresh.PullRefreshState
-import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
-import androidx.paging.compose.LazyPagingItems
 import com.cleancompose.PictureScreen
 import com.cleancompose.PostScreen
 import com.cleancompose.R
-import com.cleancompose.domain.models.PostModel
-import com.cleancompose.ui.navigation.Screen.Home.route
 
-@OptIn(ExperimentalMaterialApi::class, ExperimentalMaterial3Api::class)
 @Composable
 fun PostAppNavHost(
     navController: NavHostController,
@@ -45,6 +37,9 @@ sealed class Screen(val route: String,   val title : Int ) {
     object Picture : Screen("picture/{imageUrl}", title = R.string.pit_picture) {
         fun createRoute(pictureUri: String) = "picture/$pictureUri"
     }
+
+    object InvalidScreen : Screen("invalidScreen", title = R.string.tolbar_title)
+
 
     companion object {
         fun valueOf(route :String): Screen {

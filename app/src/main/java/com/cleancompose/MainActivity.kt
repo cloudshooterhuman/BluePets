@@ -163,11 +163,7 @@ fun PostScreen(
         LazyVerticalGrid(
             columns = GridCells.Adaptive(100.dp),
             horizontalArrangement = Arrangement.spacedBy(8.dp),
-            verticalArrangement = Arrangement.spacedBy(8.dp),
-            contentPadding = PaddingValues(
-                top = 16.dp,
-                bottom = 16.dp
-            )
+            verticalArrangement = Arrangement.spacedBy(8.dp)
         ) {
             when (val state = lazyPagingPosts.loadState.prepend) {
                 is LoadState.NotLoading -> Unit
