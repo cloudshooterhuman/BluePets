@@ -48,3 +48,4 @@ Le rôle de l'UI est d'afficher les données de l'application à l'écran et de 
 - Enrichire l'UI/UX.
 - Ajouter la navigation dans l'AppBar. ✅
 - Ajouter un buildSrc module pour la gestion des versions (Android/rellease). ✅
+- Corriger le pull to refresh après une erreur de chargement.
