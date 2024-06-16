@@ -47,6 +47,7 @@ fun PostScreen(
     modifier: Modifier = Modifier,
     viewModel: PostViewModel = hiltViewModel(),
 ) {
+    val lazyPagingPosts = viewModel.uiState.collectAsLazyPagingItems()
 
     val refreshScope = rememberCoroutineScope()
     var refreshing by remember { mutableStateOf(false) }
@@ -54,13 +55,11 @@ fun PostScreen(
     fun refresh() = refreshScope.launch {
         refreshing = true
         delay(1500)
+        lazyPagingPosts.refresh()
         refreshing = false
     }
 
     val pullToRefreshState = rememberPullRefreshState(refreshing, ::refresh)
-
-    val lazyPagingPosts = viewModel.uiState.collectAsLazyPagingItems()
-
 
     Box(
         modifier = Modifier
