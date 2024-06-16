@@ -2,6 +2,7 @@ package com.cleancompose.data.repositories
 
 import com.cleancompose.api.models.Page
 import com.cleancompose.api.services.PostService
+import com.cleancompose.data.mappers.PostMapper
 import com.cleancompose.domain.models.DomainModelFactory.getDefaultPostModel
 import com.cleancompose.domain.models.ModelDataFactory.getPostDTO
 import io.mockk.coEvery
@@ -17,7 +18,7 @@ import java.util.UUID
 
 class DefaultPostRepositoryTest {
     private val postService: PostService = mockk()
-    private val postMapper: com.cleancompose.data.mappers.PostMapper = mockk()
+    private val postMapper: PostMapper = mockk()
     private val postRepository =
         DefaultPostRepository(postService, postMapper)
 

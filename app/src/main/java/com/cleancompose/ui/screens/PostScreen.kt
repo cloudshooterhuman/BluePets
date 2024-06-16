@@ -1,5 +1,6 @@
 package com.cleancompose.ui.screens
 
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Spacer
@@ -9,6 +10,7 @@ import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.GridItemSpan
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
 import androidx.compose.material.ExperimentalMaterialApi
+import androidx.compose.material.MaterialTheme
 import androidx.compose.material.pullrefresh.PullRefreshIndicator
 import androidx.compose.material.pullrefresh.pullRefresh
 import androidx.compose.material.pullrefresh.rememberPullRefreshState
@@ -31,9 +33,12 @@ import com.cleancompose.R
 import com.cleancompose.ui.components.LoadingIndicator
 import com.cleancompose.ui.components.NetworkErrorIndicator
 import com.cleancompose.ui.components.PostImage
+import com.cleancompose.ui.navigation.Screen
 import com.cleancompose.ui.presentation.PostViewModel
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
+import java.net.URLEncoder
+import java.nio.charset.StandardCharsets
 
 @OptIn(ExperimentalMaterialApi::class)
 @Composable
@@ -60,7 +65,8 @@ fun PostScreen(
     Box(
         Modifier
             .pullRefresh(pullToRefreshState)
-            .fillMaxSize(),
+            .fillMaxSize()
+            .background(MaterialTheme.colors.background),
         contentAlignment = Alignment.TopCenter
     ) {
         LazyVerticalGrid(
@@ -88,13 +94,19 @@ fun PostScreen(
             }
 
 
-
             if (!refreshing) {
                 if (lazyPagingPosts.itemCount > 0) {
                     items(
                         lazyPagingPosts.itemCount,
                         key = lazyPagingPosts.itemKey { it.id }) { index ->
-                        lazyPagingPosts[index]?.let { PostImage(it, navController) }
+                        lazyPagingPosts[index]?.let {
+                            PostImage(it) {
+                                val imageUrl = it.imageUrl
+                                val encodedUrl =
+                                    URLEncoder.encode(imageUrl, StandardCharsets.UTF_8.toString())
+                                navController.navigate(Screen.Picture.createRoute(encodedUrl))
+                            }
+                        }
                     }
 
                     item(span = { GridItemSpan(maxLineSpan) }) {
@@ -106,6 +118,5 @@ fun PostScreen(
         }
 
         PullRefreshIndicator(refreshing, pullToRefreshState)
-
     }
 }

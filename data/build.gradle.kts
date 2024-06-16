@@ -37,7 +37,6 @@ dependencies {
     // Hilt
     implementation(libs.hilt.android)
     implementation(libs.androidx.hilt.navigation.compose)
-    implementation(libs.androidx.paging.testing.jvm)
     testImplementation(project(":domain"))
     kapt(libs.dagger.hilt.android.compiler)
 
@@ -55,6 +54,7 @@ dependencies {
     testImplementation(libs.junit)
     testImplementation(libs.mockk)
     testImplementation(libs.kotlinx.coroutines.test)
+    testImplementation(libs.androidx.paging.testing)
 
     // Retrofit
     api(libs.retrofit)

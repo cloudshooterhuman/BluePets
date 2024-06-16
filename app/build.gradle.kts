@@ -20,6 +20,10 @@ android {
         vectorDrawables {
             useSupportLibrary = true
         }
+
+        testOptions {
+            unitTests.isReturnDefaultValues = true
+        }
     }
 
     buildTypes {
@@ -63,12 +67,16 @@ dependencies {
     implementation(libs.androidx.material)
     implementation(libs.androidx.runtime)
     implementation(libs.androidx.compose.material3.material3)
+    implementation(libs.ui.tooling.preview)
+    debugImplementation(libs.ui.tooling)
 
 
 
     // Lifecycle utilities for Compose
     implementation(libs.lifecycle.runtime.compose)
 
+
+    // Paging
     implementation(libs.androidx.paging.runtime)
     implementation(libs.androidx.paging.compose)
 
@@ -80,6 +88,7 @@ dependencies {
     // Hilt
     implementation(libs.hilt.android)
     implementation(libs.androidx.hilt.navigation.compose)
+    implementation(libs.androidx.ui.tooling.preview.android)
     kapt(libs.dagger.hilt.android.compiler)
 
     // UI
@@ -91,11 +100,18 @@ dependencies {
     implementation(libs.navigation.runtime.ktx)
     implementation(libs.navigation.fragment.ktx)
 
+    //Compose images loader
+    implementation(libs.coil.compose)
+
     // Testing
     testImplementation(libs.junit)
     testImplementation(libs.mockk)
     testImplementation(libs.kotlinx.coroutines.test)
+    testImplementation(libs.androidx.paging.testing)
 
-    //Compose images loader
-    implementation(libs.coil.compose)
+    // UI Testing
+    //implementation(libs.androidx.paging.testing)
+
+
+
 }
