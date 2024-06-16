@@ -163,22 +163,6 @@ fun PostScreen(
             horizontalArrangement = Arrangement.spacedBy(8.dp),
             verticalArrangement = Arrangement.spacedBy(8.dp)
         ) {
-            when (val state = lazyPagingPosts.loadState.prepend) {
-                is LoadState.NotLoading -> Unit
-                is LoadState.Loading -> {
-                    item(span = { GridItemSpan(maxLineSpan) }) {
-                        LoadingIndicator(modifier)
-                    }
-                }
-
-                is LoadState.Error -> {
-                    item(span = { GridItemSpan(maxLineSpan) }) {
-                        NetworkErrorIndicator(
-                            state.error.message ?: stringResource(R.string.unknwon_error)
-                        )
-                    }
-                }
-            }
 
             when (val state = lazyPagingPosts.loadState.refresh) {
                 is LoadState.NotLoading -> Unit
@@ -199,23 +183,6 @@ fun PostScreen(
             }
 
 
-            when (val state = lazyPagingPosts.loadState.append) {
-                is LoadState.NotLoading -> Unit
-                is LoadState.Loading -> {
-                    item(span = { GridItemSpan(maxLineSpan) }) {
-                        LoadingIndicator(modifier)
-                    }
-
-                }
-
-                is LoadState.Error -> {
-                    item(span = { GridItemSpan(maxLineSpan) }) {
-                        NetworkErrorIndicator(
-                            state.error.message ?: stringResource(R.string.unknwon_error)
-                        )
-                    }
-                }
-            }
 
             if (!refreshing) {
                 if (lazyPagingPosts.itemCount > 0) {
