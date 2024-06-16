@@ -55,7 +55,6 @@ fun PostScreen(
     fun refresh() = refreshScope.launch {
         refreshing = true
         delay(1500)
-        //lazyPagingPosts.refresh()
         refreshing = false
     }
 
