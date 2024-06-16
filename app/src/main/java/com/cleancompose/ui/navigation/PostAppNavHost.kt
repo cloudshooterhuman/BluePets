@@ -5,9 +5,9 @@ import androidx.compose.ui.Modifier
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
-import com.cleancompose.PictureScreen
-import com.cleancompose.PostScreen
 import com.cleancompose.R
+import com.cleancompose.ui.screens.PictureScreen
+import com.cleancompose.ui.screens.PostScreen
 
 @Composable
 fun PostAppNavHost(
@@ -38,7 +38,7 @@ sealed class Screen(val route: String,   val title : Int ) {
         fun createRoute(pictureUri: String) = "picture/$pictureUri"
     }
 
-    object InvalidScreen : Screen("invalidScreen", title = R.string.tolbar_title)
+    object InvalidScreen : Screen("invalidScreen", title = R.string.invalid_screen)
 
 
     companion object {
@@ -46,7 +46,7 @@ sealed class Screen(val route: String,   val title : Int ) {
             return when(route) {
                 Home.route -> Home
                 Picture.route -> Picture
-                else -> Home
+                else -> InvalidScreen
             }
         }
     }
