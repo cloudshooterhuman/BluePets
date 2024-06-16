@@ -37,12 +37,12 @@ Le rôle de l'UI est d'afficher les données de l'application à l'écran et de 
 
 
 # Points d'amélioration :
-- Avoir un modue pour chaque couche. (pull-to-refresh branch)
-- TUs pour le pagingSource. (pull-to-refresh branch)
+- Avoir un modue pour chaque couche. ✅
+- TUs pour le pagingSource. ✅
 - TUs viewModel.
 - Tests d'interface utilisateur.
-- Gestion du scroll. (fixed)
-- Ajouter le pull to refresh ((pull-to-refresh branch - WIP)
+- Gestion du scroll. ✅
+- Ajouter le pull to refresh. ✅
 - Enrichire l'UI/UX.
-- Ajouter la navigation dans l'AppBar.
-- Ajouter un buildSrc module pour la gestion des versions (Android/rellease) (pull-to-refresh branch) 
+- Ajouter la navigation dans l'AppBar. ✅
+- Ajouter un buildSrc module pour la gestion des versions (Android/rellease). ✅
