@@ -42,6 +42,7 @@ Le rôle de l'UI est d'afficher les données de l'application à l'écran et de 
 - TUs pour le pagingSource. ✅
 - TUs viewModel.
 - Tests d'interface utilisateur.
+- Supporter le mode "offline first".
 - Gestion du scroll. ✅
 - Ajouter le pull to refresh. ✅
 - Enrichire l'UI/UX.
