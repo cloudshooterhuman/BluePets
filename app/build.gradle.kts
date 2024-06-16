@@ -6,7 +6,7 @@ plugins {
 }
 android {
     namespace = "com.cleancompose"
-    compileSdk = 34
+    compileSdk = AndroidOptions.COMPILE_SDK
 
     defaultConfig {
         applicationId = "com.cleancompose"
@@ -58,6 +58,11 @@ dependencies {
     implementation(platform(libs.androidx.compose.bom))
     implementation(libs.ui)
     implementation(libs.material3)
+    implementation(libs.androidx.material)
+    implementation(libs.androidx.runtime)
+
+    implementation(libs.androidx.compose.material3.material3)
+
 
 
     // Lifecycle utilities for Compose
@@ -74,11 +79,14 @@ dependencies {
     // Hilt
     implementation(libs.hilt.android)
     implementation(libs.androidx.hilt.navigation.compose)
+    implementation(project(":domain"))
+    implementation(project(":data"))
     kapt(libs.dagger.hilt.android.compiler)
 
     // UI
     implementation(libs.androidx.core.ktx)
     implementation(libs.material)
+
     // Navigation
     implementation(libs.androidx.navigation.compose)
     implementation(libs.navigation.runtime.ktx)
@@ -88,7 +96,6 @@ dependencies {
     testImplementation(libs.junit)
     testImplementation(libs.mockk)
     testImplementation(libs.kotlinx.coroutines.test)
-
 
     //Compose images loader
     implementation(libs.coil.compose)

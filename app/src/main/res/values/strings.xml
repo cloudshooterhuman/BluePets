@@ -2,7 +2,9 @@
     <string name="app_name">Blue Pets</string>
     <string name="section_error_action">Error fetching posts</string>
     <string name="content_desc_error">error fetching data</string>
-    <string name="tolbar_title">Pets</string>
+    <string name="tolbar_title">Home</string>
     <string name="unknwon_error">Unknwon error</string>
-    <string name="post_text">post.text</string>
+    <string name="post_text">post text</string>
+    <string name="pit_picture">Pet picture</string>
+    <string name="back_button">back button</string>
 </resources>
