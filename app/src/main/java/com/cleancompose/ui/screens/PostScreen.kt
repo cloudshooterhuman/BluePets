@@ -10,7 +10,7 @@ import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.GridItemSpan
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
 import androidx.compose.material.ExperimentalMaterialApi
-import androidx.compose.material.MaterialTheme
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material.pullrefresh.PullRefreshIndicator
 import androidx.compose.material.pullrefresh.pullRefresh
 import androidx.compose.material.pullrefresh.rememberPullRefreshState
@@ -63,10 +63,10 @@ fun PostScreen(
 
 
     Box(
-        Modifier
+        modifier = Modifier
             .pullRefresh(pullToRefreshState)
             .fillMaxSize()
-            .background(MaterialTheme.colors.background),
+            .background(MaterialTheme.colorScheme.background),
         contentAlignment = Alignment.TopCenter
     ) {
         LazyVerticalGrid(
@@ -87,7 +87,7 @@ fun PostScreen(
                 is LoadState.Error -> {
                     item(span = { GridItemSpan(maxLineSpan) }) {
                         NetworkErrorIndicator(
-                            state.error.message ?: stringResource(R.string.unknwon_error)
+                            state.error.message ?: stringResource(R.string.unknwon_error), modifier
                         )
                     }
                 }
