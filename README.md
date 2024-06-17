@@ -4,7 +4,7 @@
 
 ## Objectifs
 
-**Clean Archi** : couches presentation, domain et data et injection de dépendance.
+**Clean Architecture** : couches presentation, domain et data et injection de dépendance. [ref](https://fernandocejas.com/2018/05/07/architecting-android-reloaded/)
 
 **Tests unitaires** : avec Junit et Mokk.
 
