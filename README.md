@@ -38,7 +38,7 @@ Le rôle de l'UI est d'afficher les données de l'application à l'écran et de 
 
 
 # Points d'amélioration :
-- Corriger le pull to refresh après une erreur de chargement.
+- Ajouter un bouton "retry" après une erreur de chargement de données.
 - Avoir un modue pour chaque couche. ✅
 - TUs pour le pagingSource. ✅
 - TUs viewModel.
