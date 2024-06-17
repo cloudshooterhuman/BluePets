@@ -1,7 +1,7 @@
 package com.cleancompose.data.mappers
 
+import com.cleancompose.ModelDataFactory.getUserPreviewDTO
 import com.cleancompose.domain.models.DomainModelFactory.getDefaultOwnerPreviewModel
-import com.cleancompose.domain.models.ModelDataFactory.getUserPreviewDTO
 import org.junit.Assert.assertEquals
 import org.junit.Test
 

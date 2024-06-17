@@ -1,10 +1,10 @@
 package com.cleancompose.data.repositories
 
+import com.cleancompose.ModelDataFactory.getPostDTO
 import com.cleancompose.api.models.Page
 import com.cleancompose.api.services.PostService
 import com.cleancompose.data.mappers.PostMapper
 import com.cleancompose.domain.models.DomainModelFactory.getDefaultPostModel
-import com.cleancompose.domain.models.ModelDataFactory.getPostDTO
 import io.mockk.coEvery
 import io.mockk.mockk
 import kotlinx.coroutines.test.runTest

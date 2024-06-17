@@ -1,10 +1,9 @@
-package com.cleancompose.domain.models
-
-
+package com.cleancompose
 
 
 import com.cleancompose.api.models.PostDTO
 import com.cleancompose.api.models.UserPreviewDTO
+import com.cleancompose.domain.models.DomainModelFactory
 import com.cleancompose.domain.models.DomainModelFactory.OWNER_FIRST_NAME
 import com.cleancompose.domain.models.DomainModelFactory.OWNER_ID
 import com.cleancompose.domain.models.DomainModelFactory.OWNER_LAST_NAME
