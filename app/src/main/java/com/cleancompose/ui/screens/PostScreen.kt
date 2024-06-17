@@ -85,8 +85,9 @@ fun PostScreen(
                 is LoadState.Error -> {
                     item(span = { GridItemSpan(maxLineSpan) }) {
                         NetworkErrorIndicator(
-                            state.error.message ?: stringResource(R.string.unknwon_error), modifier
-                        )
+                            state.error.message ?: stringResource(R.string.unknwon_error),
+                            modifier
+                        ) { lazyPagingPosts.retry() }
                     }
                 }
             }

@@ -5,9 +5,10 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.width
+import androidx.compose.material3.ElevatedButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -25,9 +26,12 @@ import com.cleancompose.ui.theme.BluePetsApplicationTheme
 import com.cleancompose.ui.tools.DevicePreviews
 
 @Composable
-fun NetworkErrorIndicator(message: String, modifier: Modifier) {
+fun NetworkErrorIndicator(message: String, modifier: Modifier, retry: () -> Unit) {
     Box(modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
-        Column(horizontalAlignment = Alignment.CenterHorizontally) {
+        Column(
+            modifier.fillMaxSize(),
+            horizontalAlignment = Alignment.CenterHorizontally,
+        ) {
             Image(
                 painter = painterResource(R.drawable.wifi_off_icon),
                 contentDescription = stringResource(
@@ -45,6 +49,20 @@ fun NetworkErrorIndicator(message: String, modifier: Modifier) {
                 style = MaterialTheme.typography.bodyLarge,
                 textAlign = TextAlign.Center
             )
+
+            Spacer(modifier.height(24.dp))
+
+            ElevatedButton(
+                onClick = { retry() },
+                modifier = Modifier
+                    .width(150.dp)
+            )
+            {
+                Text(
+                    stringResource(R.string.retry_text),
+                    style = MaterialTheme.typography.bodyLarge
+                )
+            }
         }
 
     }
@@ -57,10 +75,7 @@ fun NetworkErrorIndicator(message: String, modifier: Modifier) {
 fun NetworkErrorIndicatorPreview(message: String = "Error network") {
     BluePetsApplicationTheme {
         Box(Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
-            Column(
-                Modifier
-                    .fillMaxWidth(), horizontalAlignment = Alignment.CenterHorizontally
-            ) {
+            Column(Modifier.fillMaxSize(), horizontalAlignment = Alignment.CenterHorizontally) {
                 Image(
                     painter = painterResource(R.drawable.wifi_off_icon),
                     contentDescription = stringResource(
@@ -78,6 +93,19 @@ fun NetworkErrorIndicatorPreview(message: String = "Error network") {
                     style = MaterialTheme.typography.bodyLarge,
                     textAlign = TextAlign.Center
                 )
+
+                Spacer(Modifier.height(24.dp))
+
+                ElevatedButton(
+                    onClick = { },
+                    modifier = Modifier
+                        .width(150.dp)
+                ) {
+                    Text(
+                        stringResource(R.string.retry_text),
+                        style = MaterialTheme.typography.bodyLarge
+                    )
+                }
             }
 
         }
