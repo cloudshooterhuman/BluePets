@@ -51,10 +51,15 @@ dependencies {
     implementation(project(":api"))
     implementation(project(":domain"))
 
+    // Unit test
     testImplementation(libs.junit)
     testImplementation(libs.mockk)
     testImplementation(libs.kotlinx.coroutines.test)
     testImplementation(libs.androidx.paging.testing)
+
+    // Date time
+    implementation(libs.kotlinx.datetime)
+
 
     // Retrofit
     api(libs.retrofit)

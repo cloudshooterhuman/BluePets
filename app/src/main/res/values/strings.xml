@@ -9,4 +9,7 @@
     <string name="back_button">back button</string>
     <string name="invalid_screen">invalide screen</string>
     <string name="retry_text">Retry</string>
+    <string name="camera">camera</string>
+    <string name="by">"By "</string>
+    <string name="publication_date">publish date\n</string>
 </resources>
