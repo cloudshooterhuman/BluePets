@@ -30,12 +30,13 @@ Le rôle de l'UI est d'afficher les données de l'application à l'écran et de 
 ![image](https://github.com/selmanon/composeCleanArch/assets/2206036/6d5d69e3-8a1b-4ff0-ac7d-ccd5e1df9fad)
 
 ## Rendu de l'application
-  <img src="https://github.com/selmanon/composeCleanArch/blob/master/screenshoots/pet_home.png" width="300" title="Home screen">
+<p>
+  <img src="https://github.com/selmanon/composeCleanArch/blob/master/screenshoots/pet_home.png" width="250" title="Home screen">
   &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-  <img src="https://github.com/selmanon/composeCleanArch/blob/master/screenshoots/pet_details.png" width="300" alt="Pets screen">
+  <img src="https://github.com/selmanon/composeCleanArch/blob/master/screenshoots/pet_details.png" width="250" alt="Pets screen">
  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-  <img src="https://github.com/selmanon/composeCleanArch/blob/master/screenshoots/error_screen.png" width="300" alt="Error screen">
-
+  <img src="https://github.com/selmanon/composeCleanArch/blob/master/screenshoots/error_screen.png" width="250" alt="Error screen">
+</p>
 
 
 # Points d'amélioration :
