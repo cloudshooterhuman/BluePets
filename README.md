@@ -32,9 +32,9 @@ Le rôle de l'UI est d'afficher les données de l'application à l'écran et de 
 ## Rendu de l'application
 <p>
   <img src="https://github.com/selmanon/composeCleanArch/blob/master/screenshoots/pet_home.png" width="250" title="Home screen">
-  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+  &nbsp; &nbsp; &nbsp; 
   <img src="https://github.com/selmanon/composeCleanArch/blob/master/screenshoots/pet_details.png" width="250" alt="Pets screen">
- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+ &nbsp; &nbsp; &nbsp; 
   <img src="https://github.com/selmanon/composeCleanArch/blob/master/screenshoots/error_screen.png" width="250" alt="Error screen">
 </p>
 
