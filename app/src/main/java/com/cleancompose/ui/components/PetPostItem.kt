@@ -27,7 +27,6 @@ import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.TextStyle
-import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
@@ -40,7 +39,7 @@ import com.cleancompose.ui.theme.BluePetsApplicationTheme
 import com.cleancompose.ui.tools.DevicePreviews
 
 @Composable
-fun PetPostListItem(
+fun PetPostItem(
     post: PostModel,
     onClick: () -> Unit,
     elevation: Dp = 8.dp,
@@ -147,7 +146,7 @@ fun PetPostListItem(
 @Composable
 private fun PostListItemPreview(darkTheme: Boolean) {
     BluePetsApplicationTheme(darkTheme) {
-        PetPostListItem(
+        PetPostItem(
             post = PostModel(
                 "1",
                 "Dogma Item",

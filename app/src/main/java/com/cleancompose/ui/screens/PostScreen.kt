@@ -26,7 +26,7 @@ import androidx.paging.compose.itemKey
 import com.cleancompose.R
 import com.cleancompose.ui.components.LoadingIndicator
 import com.cleancompose.ui.components.NetworkErrorIndicator
-import com.cleancompose.ui.components.PetPostListItem
+import com.cleancompose.ui.components.PetPostItem
 import com.cleancompose.ui.navigation.Screen
 import com.cleancompose.ui.presentation.PostViewModel
 import kotlinx.coroutines.delay
@@ -88,15 +88,13 @@ fun PostScreen(
                         lazyPagingPosts.itemCount,
                         key = lazyPagingPosts.itemKey { it.id }) { index ->
                         lazyPagingPosts[index]?.let {
-                            PetPostListItem(it, {
+                            PetPostItem(it, {
                                 val imageUrl = it.imageUrl
                                 val encodedUrl = URLEncoder.encode(imageUrl, StandardCharsets.UTF_8.toString())
                                 navController.navigate(Screen.Picture.createRoute(encodedUrl))
                             })
                         }
                     }
-
-
                 }
             }
 

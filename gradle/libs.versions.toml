@@ -30,6 +30,7 @@ retrofit = "2.9.0"
 appcompat = "1.7.0"
 runtime = "1.6.8"
 pagingTestingJvm = "3.3.0"
+threetenabp = "1.4.7"
 uiTooling = "1.6.8"
 uiToolingPreview = "1.6.8"
 uiToolingPreviewAndroid = "1.6.8"
@@ -73,6 +74,7 @@ mockk = { module = "io.mockk:mockk", version.ref = "mockk" }
 navigation-fragment-ktx = { module = "androidx.navigation:navigation-fragment-ktx", version.ref = "navigationFragmentKtx" }
 navigation-runtime-ktx = { module = "androidx.navigation:navigation-runtime-ktx", version.ref = "navigationRuntimeKtx" }
 retrofit = { module = "com.squareup.retrofit2:retrofit", version.ref = "retrofit" }
+threetenabp = { module = "com.jakewharton.threetenabp:threetenabp", version.ref = "threetenabp" }
 ui = { module = "androidx.compose.ui:ui" }
 androidx-appcompat = { group = "androidx.appcompat", name = "appcompat", version.ref = "appcompat" }
 androidx-paging-testing-jvm = { group = "androidx.paging", name = "paging-testing-jvm", version.ref = "pagingTestingJvm" }

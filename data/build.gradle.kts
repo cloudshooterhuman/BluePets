@@ -58,7 +58,7 @@ dependencies {
     testImplementation(libs.androidx.paging.testing)
 
     // Date time
-    implementation(libs.kotlinx.datetime)
+    implementation(libs.threetenabp)
 
 
     // Retrofit
