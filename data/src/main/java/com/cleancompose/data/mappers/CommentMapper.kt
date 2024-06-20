@@ -20,11 +20,18 @@ class CommentMapper @Inject constructor(
         message = comment.message,
         post = comment.post,
         owner = ownerPreviewMapper.fromDto(comment.owner),
-        publishDate = calculatePeriod(comment.publishDate, now)
+        publishDate = period(calculatePeriod(comment.publishDate, now))
     )
 
-    fun calculatePeriod(publishDate: String, now: Instant): Duration {
+    private fun calculatePeriod(publishDate: String, now: Instant): Duration {
         val ins = Instant.parse(publishDate)
         return Duration.between(ins, now)
     }
+
+    private fun period(duration: Duration): String {
+        return if (duration.toDays() / 365 > 1) return " ${duration.toDays().div(365)} An"
+        else if (duration.toDays() / 30 > 1) return "${duration.toDays().div(30)} mois"
+        else "${duration.toDays()} Jours"
+    }
+
 }
