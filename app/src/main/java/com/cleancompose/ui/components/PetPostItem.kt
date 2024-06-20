@@ -48,7 +48,6 @@ fun PetPostItem(
 ) {
     Card(
         shape = RoundedCornerShape(4),
-        backgroundColor = MaterialTheme.colorScheme.surfaceVariant,
         modifier = Modifier
             .clickable(onClick = onClick)
             .fillMaxWidth()
