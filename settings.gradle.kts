@@ -19,7 +19,7 @@ dependencyResolutionManagement {
     }
 }
 
-rootProject.name = "My Application"
+rootProject.name = "Blue Pets"
 include(":app")
 include(":api")
 include(":domain")
