@@ -35,7 +35,7 @@ fun PostAppNavHost(
 
 sealed class Screen(val route: String, val title: Int) {
     object Home : Screen("home", title = R.string.tolbar_title)
-    object Picture : Screen("picture/{imageUrl}/{postId}", title = R.string.pit_picture) {
+    object Picture : Screen("picture/{imageUrl}/{postId}", title = R.string.post_details) {
         fun createRoute(pictureUri: String, postId: String) = "picture/$pictureUri/$postId"
     }
 

@@ -10,7 +10,8 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.CircleShape
-import androidx.compose.material3.Card
+import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material.Card
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -76,11 +77,11 @@ fun PictureScreen(
                     is Success -> {
                         LazyColumn(modifier = Modifier.fillMaxSize()) {
                             items(it.data) {
-                                Card(
-                                    Modifier
+                                Card(shape = RoundedCornerShape(4),
+                                    elevation = 6.dp,
+                                    modifier = Modifier
                                         .height(100.dp)
                                         .fillMaxWidth()
-                                        //.verticalScroll(rememberScrollState())
                                         .padding(dimensionResource(id = R.dimen.spacing_small))
                                 ) {
                                     Column {
