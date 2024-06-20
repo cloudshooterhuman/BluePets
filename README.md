@@ -41,7 +41,7 @@ principal d'interaction utilisateur. Le pattern utilisé est MVVM (Model - View 
 <p>
   <img src="https://github.com/selmanon/composeCleanArch/blob/master/screenshoots/pet_home.png" width="250" title="Home screen">
   &nbsp; &nbsp; &nbsp; 
-  <img src="https://github.com/selmanon/composeCleanArch/blob/master/screenshoots/pet_details.png" width="250" alt="Pets screen">
+  <img src="https://github.com/selmanon/composeCleanArch/blob/master/screenshoots/post_screen.png" width="250" alt="Pets screen">
  &nbsp; &nbsp; &nbsp; 
   <img src="https://github.com/selmanon/composeCleanArch/blob/master/screenshoots/error_screen.png" width="250" alt="Error screen">
 </p>
