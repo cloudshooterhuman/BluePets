@@ -9,7 +9,7 @@ import org.threeten.bp.ZoneOffset
 import org.threeten.bp.format.DateTimeFormatter
 import javax.inject.Inject
 
-private val  DATE_TIME_FORMATTER : String = "d MMMM yyyy HH:mm:ss"
+private val DATE_TIME_FORMATTER: String = "d MMMM yyyy HH:mm:ss"
 
 class PostMapper @Inject constructor(
     private val ownerPreviewMapper: OwnerPreviewMapper,

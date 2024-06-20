@@ -72,7 +72,6 @@ dependencies {
     debugImplementation(libs.ui.tooling)
 
 
-
     // Lifecycle utilities for Compose
     implementation(libs.lifecycle.runtime.compose)
 
@@ -112,7 +111,6 @@ dependencies {
 
     // UI Testing
     //implementation(libs.androidx.paging.testing)
-
 
 
 }

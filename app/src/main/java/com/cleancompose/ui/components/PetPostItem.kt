@@ -76,7 +76,7 @@ fun PetPostItem(
                     bottom = 8.dp
                 )
             ) {
-                
+
                 Row(verticalAlignment = Alignment.CenterVertically) {
                     Icon(
                         imageVector = Icons.Rounded.PhotoCamera,

@@ -5,10 +5,10 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.material.ExperimentalMaterialApi
-import androidx.compose.material3.MaterialTheme
 import androidx.compose.material.pullrefresh.PullRefreshIndicator
 import androidx.compose.material.pullrefresh.pullRefresh
 import androidx.compose.material.pullrefresh.rememberPullRefreshState
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -89,9 +89,16 @@ fun PostScreen(
                         key = lazyPagingPosts.itemKey { it.id }) { index ->
                         lazyPagingPosts[index]?.let {
                             PetPostItem(it, {
+
                                 val imageUrl = it.imageUrl
-                                val encodedUrl = URLEncoder.encode(imageUrl, StandardCharsets.UTF_8.toString())
-                                navController.navigate(Screen.Picture.createRoute(encodedUrl))
+                                val encodedUrl =
+                                    URLEncoder.encode(imageUrl, StandardCharsets.UTF_8.toString())
+                                navController.navigate(
+                                    Screen.Picture.createRoute(
+                                        encodedUrl,
+                                        it.id
+                                    )
+                                )
                             })
                         }
                     }

@@ -44,6 +44,9 @@ dependencies {
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
 
+    // Date time
+    implementation(libs.threetenabp)
+
     // Testing
     testImplementation(libs.mockk)
     testImplementation(libs.kotlinx.coroutines.test)

@@ -39,7 +39,8 @@ class DefaultPostRepositoryTest {
             coEvery { postMapper.fromListDto(postDTOs) } returns expectedPost
 
             // When
-            val actualPost = postRepository.getPosts(page) as com.cleancompose.domain.ResultOf.Success
+            val actualPost =
+                postRepository.getPosts(page) as com.cleancompose.domain.ResultOf.Success
 
             // Then
             assertEquals(expectedPost, actualPost.value)
@@ -72,7 +73,7 @@ class DefaultPostRepositoryTest {
             val page = 0
             coEvery { postService.getPosts(page) } returns Response.error(
                 404,
-                ResponseBody.create(MediaType.get("application/json"),"HTTP NOT FOUND")
+                ResponseBody.create(MediaType.get("application/json"), "HTTP NOT FOUND")
             )
 
             // When

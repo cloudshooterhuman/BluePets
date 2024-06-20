@@ -12,7 +12,7 @@ import com.cleancompose.ui.screens.PostScreen
 @Composable
 fun PostAppNavHost(
     navController: NavHostController,
-    modifier: Modifier
+    modifier: Modifier,
 ) {
     NavHost(
         navController = navController,
@@ -26,24 +26,25 @@ fun PostAppNavHost(
 
         composable(Screen.Picture.route) {
             val imageUrl = it.arguments?.getString("imageUrl")
-            PictureScreen(imageUrl)
+            val postId = it.arguments?.getString("postId")
+            PictureScreen(imageUrl, postId ?: "")
         }
 
     }
 }
 
-sealed class Screen(val route: String,   val title : Int ) {
+sealed class Screen(val route: String, val title: Int) {
     object Home : Screen("home", title = R.string.tolbar_title)
-    object Picture : Screen("picture/{imageUrl}", title = R.string.pit_picture) {
-        fun createRoute(pictureUri: String) = "picture/$pictureUri"
+    object Picture : Screen("picture/{imageUrl}/{postId}", title = R.string.pit_picture) {
+        fun createRoute(pictureUri: String, postId: String) = "picture/$pictureUri/$postId"
     }
 
     object InvalidScreen : Screen("invalidScreen", title = R.string.invalid_screen)
 
 
     companion object {
-        fun valueOf(route :String): Screen {
-            return when(route) {
+        fun valueOf(route: String): Screen {
+            return when (route) {
                 Home.route -> Home
                 Picture.route -> Picture
                 else -> InvalidScreen
