@@ -39,7 +39,7 @@ principal d'interaction utilisateur. Le pattern utilisé est MVVM (Model - View 
 ## Rendu de l'application
 
 <p>
-  <img src="https://github.com/selmanon/composeCleanArch/blob/master/screenshoots/pet_home.png" width="250" title="Home screen">
+  <img src="https://github.com/selmanon/composeCleanArch/blob/master/screenshoots/home.png" width="250" title="Home screen">
   &nbsp; &nbsp; &nbsp; 
   <img src="https://github.com/selmanon/composeCleanArch/blob/master/screenshoots/post.png" width="250" alt="Pets screen">
  &nbsp; &nbsp; &nbsp; 
@@ -48,15 +48,17 @@ principal d'interaction utilisateur. Le pattern utilisé est MVVM (Model - View 
 
 # Points d'amélioration :
 
+- TUs viewModel.
+- Supporter le mode "offline first".
 - Ajouter un bouton "retry" sur l'écran d'erreur de chargement de données. ✅
 - Avoir un modue pour chaque couche. ✅
+- Enlever la dépendance "material". (car elle est utilisée que pour le "pull-to-refrsh")  
 - TUs pour le pagingSource. ✅
-- TUs viewModel.
 - Tests d'interface utilisateur.
-- Supporter le mode "offline first".
 - Gestion du scroll. ✅
 - Ajouter le pull to refresh. ✅
 - Enrichire l'UI/UX. _WIP_
 - Enrichir la gestion des erreurs.
 - Ajouter la navigation dans l'AppBar. ✅
-- Ajouter un buildSrc module pour la gestion des versions (Android/rellease). ✅
+- Ajouter un buildSrc module pour la gestion des versions (Android/release). ✅
+- Configurer la CI.
