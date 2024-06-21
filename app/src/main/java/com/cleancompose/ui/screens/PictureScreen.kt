@@ -55,10 +55,10 @@ fun PictureScreen(
         if (loadingState.value) {
             LoadingIndicator(modifier = Modifier)
         } else {
-            commentState.value.let {
-                when (it) {
+            commentState.value.let { comment ->
+                when (comment) {
                     is Error -> NetworkErrorIndicator(
-                        message = it.error.message ?: stringResource(id = R.string.unknwon_error),
+                        message = comment.error.message ?: stringResource(id = R.string.unknwon_error),
                         modifier = Modifier
                     ) {
                         Unit
@@ -67,7 +67,7 @@ fun PictureScreen(
                     is Loading -> LoadingIndicator(modifier = Modifier)
                     is Success -> {
                         LazyColumn(modifier = Modifier.fillMaxSize()) {
-                            items(it.data) {
+                            items(comment.data) {
                                 CommentItem(it)
                             }
                         }
