@@ -41,7 +41,7 @@ principal d'interaction utilisateur. Le pattern utilisé est MVVM (Model - View 
 <p>
   <img src="https://github.com/selmanon/composeCleanArch/blob/master/screenshoots/home.png" width="250" title="Home screen">
   &nbsp; &nbsp; &nbsp; 
-  <img src="https://github.com/selmanon/composeCleanArch/blob/master/screenshoots/post.png" width="250" alt="Pets screen">
+  <img src="https://github.com/selmanon/composeCleanArch/blob/master/screenshoots/post_screen.png" width="250" alt="Pets screen">
  &nbsp; &nbsp; &nbsp; 
   <img src="https://github.com/selmanon/composeCleanArch/blob/master/screenshoots/error_screen.png" width="250" alt="Error screen">
 </p>
@@ -52,7 +52,7 @@ principal d'interaction utilisateur. Le pattern utilisé est MVVM (Model - View 
 - Supporter le mode "offline first".
 - Ajouter un bouton "retry" sur l'écran d'erreur de chargement de données. ✅
 - Avoir un modue pour chaque couche. ✅
-- Enlever la dépendance "material". (car elle est utilisée que pour le "pull-to-refrsh")  
+- Enlever la dépendance "material". (car n'elle est utilisée que pour le "pull-to-refrsh")  
 - TUs pour le pagingSource. ✅
 - Tests d'interface utilisateur.
 - Gestion du scroll. ✅
