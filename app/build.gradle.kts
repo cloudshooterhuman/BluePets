@@ -65,7 +65,6 @@ dependencies {
     implementation(libs.ui)
     implementation(libs.material3)
     implementation(libs.androidx.material.icons.extended)
-    implementation(libs.androidx.material)
     implementation(libs.androidx.runtime)
     implementation(libs.androidx.compose.material3.material3)
     implementation(libs.ui.tooling.preview)
@@ -76,7 +75,7 @@ dependencies {
     implementation(libs.lifecycle.runtime.compose)
 
 
-    // Paging
+    // Paging 3
     implementation(libs.androidx.paging.runtime)
     implementation(libs.androidx.paging.compose)
 

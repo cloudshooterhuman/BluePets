@@ -1,7 +1,5 @@
 package com.cleancompose.domain.models
 
-import org.threeten.bp.Duration
-
 data class CommentModel(
     val id: String,
     val message: String,

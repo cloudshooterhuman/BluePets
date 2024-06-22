@@ -10,10 +10,11 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.wrapContentWidth
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material.Card
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.rounded.AccessTime
 import androidx.compose.material.icons.rounded.PhotoCamera
+import androidx.compose.material3.Card
+import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
@@ -52,8 +53,11 @@ fun PetPostItem(
             .clickable(onClick = onClick)
             .fillMaxWidth()
             .height(180.dp)
-            .padding(start = 3.dp, end = 3.dp, top = 3.dp),
-        elevation = elevation
+            .padding(start = 4.dp, end = 4.dp, top = 4.dp),
+        elevation = CardDefaults.cardElevation(
+            defaultElevation = elevation
+        )
+
     ) {
         Row {
             AsyncImage(

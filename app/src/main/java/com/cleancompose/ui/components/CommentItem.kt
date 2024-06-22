@@ -10,7 +10,8 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material.Card
+import androidx.compose.material3.Card
+import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -28,7 +29,6 @@ import coil.request.ImageRequest
 import com.cleancompose.R
 import com.cleancompose.domain.models.CommentModel
 import com.cleancompose.domain.models.OwnerPreviewModel
-import com.cleancompose.domain.models.PostModel
 import com.cleancompose.ui.theme.BluePetsApplicationTheme
 import com.cleancompose.ui.tools.DevicePreviews
 
@@ -36,7 +36,9 @@ import com.cleancompose.ui.tools.DevicePreviews
 fun CommentItem(comment: CommentModel) {
     Card(
         shape = RoundedCornerShape(4),
-        elevation = 6.dp,
+        elevation = CardDefaults.cardElevation(
+            defaultElevation = 6.dp
+        ),
         modifier = Modifier
             .height(100.dp)
             .fillMaxWidth()
@@ -84,7 +86,13 @@ fun CommentItem(comment: CommentModel) {
 private fun PostListItemPreview(darkTheme: Boolean) {
     BluePetsApplicationTheme(darkTheme) {
         CommentItem(
-            comment = CommentModel(id = "1","messahe", "1", OwnerPreviewModel("1","name","picture"), "1 an")
+            comment = CommentModel(
+                id = "1",
+                "messahe",
+                "1",
+                OwnerPreviewModel("1", "name", "picture"),
+                "1 an"
+            )
         )
     }
 }

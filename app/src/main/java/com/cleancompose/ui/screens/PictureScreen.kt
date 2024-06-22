@@ -58,7 +58,8 @@ fun PictureScreen(
             commentState.value.let { comment ->
                 when (comment) {
                     is Error -> NetworkErrorIndicator(
-                        message = comment.error.message ?: stringResource(id = R.string.unknwon_error),
+                        message = comment.error.message
+                            ?: stringResource(id = R.string.unknwon_error),
                         modifier = Modifier
                     ) {
                         Unit
@@ -82,7 +83,6 @@ fun PictureScreen(
 
 
 }
-
 
 
 @Composable
