@@ -17,6 +17,7 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.dimensionResource
@@ -42,7 +43,10 @@ fun CommentItem(comment: CommentModel) {
         modifier = Modifier
             .height(100.dp)
             .fillMaxWidth()
-            .padding(dimensionResource(id = R.dimen.spacing_small))
+            .padding(dimensionResource(id = R.dimen.spacing_small)),
+        colors = CardDefaults.cardColors(
+            containerColor = Color.White,
+        ),
     ) {
         Column {
             Row(Modifier.padding(dimensionResource(id = R.dimen.spacing_regular))) {
