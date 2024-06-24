@@ -10,8 +10,8 @@ android {
 
     defaultConfig {
         applicationId = "com.cleancompose"
-        minSdk = 24
-        targetSdk = 34
+        minSdk = AndroidOptions.MIN_SDK
+        targetSdk = AndroidOptions.COMPILE_SDK
         versionCode = AppVersions.VERSION_CODE
         versionName = AppVersions.VERSION_NAME
 
