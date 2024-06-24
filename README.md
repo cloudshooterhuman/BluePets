@@ -55,7 +55,7 @@ principal d'interaction utilisateur. Le pattern utilisé est MVVM (Model - View 
 
 [Archi]
 - Supporter le mode "offline first".
-- Avoir un modue pour chaque couche. ✅
+- Avoir un module pour chaque couche. ✅
 
 [UI]
 - Ajouter un bouton "retry" sur l'écran d'erreur de chargement de données. ✅
