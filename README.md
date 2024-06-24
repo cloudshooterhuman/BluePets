@@ -63,7 +63,7 @@ principal d'interaction utilisateur. Le pattern utilisé est MVVM (Model - View 
 - Gestion du scroll. ✅
 - Enrichire l'UI/UX. _WIP_
 - Ajouter la navigation dans l'AppBar. ✅
-- Ajouter un boutton "up" pour remonter au début de la list.
+- Ajouter un boutton "up" pour remonter au début de la list. ✅
 
 
 [Refacto]
