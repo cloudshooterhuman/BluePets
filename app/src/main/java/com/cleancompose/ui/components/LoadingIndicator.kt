@@ -28,12 +28,6 @@ fun LoadingIndicator(modifier: Modifier) {
 @Composable
 fun LoadingIndicatorPreview() {
     BluePetsApplicationTheme {
-        Box(
-            modifier = Modifier
-                .fillMaxSize(),
-            contentAlignment = Alignment.Center
-        ) {
-            CircularProgressIndicator(color = MaterialTheme.colorScheme.primary)
-        }
+        LoadingIndicator(Modifier)
     }
 }

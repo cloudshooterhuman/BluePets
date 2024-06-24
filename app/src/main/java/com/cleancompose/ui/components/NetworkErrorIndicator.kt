@@ -74,40 +74,6 @@ fun NetworkErrorIndicator(message: String, modifier: Modifier, retry: () -> Unit
 @Composable
 fun NetworkErrorIndicatorPreview(message: String = "Error network") {
     BluePetsApplicationTheme {
-        Box(Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
-            Column(Modifier.fillMaxSize(), horizontalAlignment = Alignment.CenterHorizontally) {
-                Image(
-                    painter = painterResource(R.drawable.wifi_off_icon),
-                    contentDescription = stringResource(
-                        id = R.string.content_desc_error
-                    ),
-                    contentScale = ContentScale.Fit,
-                    modifier = Modifier
-                        .size(dimensionResource(id = R.dimen.icon_size))
-                )
-
-                Spacer(Modifier.height(4.dp))
-
-                Text(
-                    text = message,
-                    style = MaterialTheme.typography.bodyLarge,
-                    textAlign = TextAlign.Center
-                )
-
-                Spacer(Modifier.height(24.dp))
-
-                ElevatedButton(
-                    onClick = { },
-                    modifier = Modifier
-                        .width(150.dp)
-                ) {
-                    Text(
-                        stringResource(R.string.retry_text),
-                        style = MaterialTheme.typography.bodyLarge
-                    )
-                }
-            }
-
-        }
+        NetworkErrorIndicator(message = message, Modifier, {})
     }
 }
