@@ -1,3 +1,10 @@
+name: Push
+
+on:
+  push:
+    branches: [ "develop", "master" ]
+  workflow_dispatch:
+
 jobs:
   build:
     name: Build
@@ -5,7 +12,7 @@ jobs:
     steps:
         - run: echo "The job was automatically triggered by a ${{ github.event_name }} event."
         - run: echo "This job is running on a ${{ runner.os }} server hosted by GitHub!"
-    - uses: actions/checkout@v3
+    - uses: actions/checkout@v4
     - run: echo "The ${{ github.repository }} repository has been cloned."
     - run: echo "Setting up JDK" 
     - name: set up JDK 11
