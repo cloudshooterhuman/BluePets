@@ -34,4 +34,22 @@ class DefaultPostRepository @Inject constructor(
             ResultOf.Failure("[HTTP] error please retry", e)
         }
     }
+
+    override suspend fun getPostsByTag(tagId: String, page: Int): ResultOf<List<PostModel>> {
+        return try {
+            postService.getPostsByTag(tagId, page).let {
+                if (it.isSuccessful && it.body() != null) {
+                    val fromListDto =
+                        postMapper.fromListDto(postService.getPostsByTag(tagId, page).body()!!.data)
+                    ResultOf.Success(fromListDto)
+                } else {
+                    ResultOf.Failure(it.errorBody().toString(), Throwable(it.message()))
+                }
+            }
+        } catch (e: IOException) {
+            ResultOf.Failure("[IO] error please retry", e)
+        } catch (e: HttpException) {
+            ResultOf.Failure("[HTTP] error please retry", e)
+        }
+    }
 }

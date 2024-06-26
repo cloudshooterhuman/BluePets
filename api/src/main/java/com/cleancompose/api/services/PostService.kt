@@ -18,4 +18,11 @@ interface PostService {
     @GET("post/{id}/comment")
     @Headers("app-id: ${DummyApi.APP_ID}")
     suspend fun getComment(@Path("id") id: String): Response<Page<CommentDTO>>
+
+    @GET("tag/{id}/post?limit=23")
+    @Headers("app-id: ${DummyApi.APP_ID}")
+    suspend fun getPostsByTag(
+        @Path("id") id: String,
+        @Query("page") page: Int,
+    ): Response<Page<PostDTO>>
 }

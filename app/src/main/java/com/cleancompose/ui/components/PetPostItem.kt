@@ -49,7 +49,7 @@ fun PetPostItem(
     titleStyle: TextStyle = MaterialTheme.typography.titleMedium,
     iconSize: Dp = 16.dp,
 ) {
-    Card (
+    Card(
         shape = RoundedCornerShape(4),
         modifier = Modifier
             .clickable(onClick = onClick)
@@ -61,7 +61,7 @@ fun PetPostItem(
         )
 
     ) {
-        Row (Modifier.background(Color.White)){
+        Row(Modifier.background(Color.White)) {
             AsyncImage(
                 model = ImageRequest.Builder(LocalContext.current)
                     .data(post.imageUrl)

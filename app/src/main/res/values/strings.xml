@@ -12,4 +12,5 @@
     <string name="camera">camera</string>
     <string name="by">"By "</string>
     <string name="publication_date">publish date\n</string>
+    <string name="choose_tag">Choose tag</string>
 </resources>

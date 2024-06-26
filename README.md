@@ -39,9 +39,9 @@ principal d'interaction utilisateur. Le pattern utilisé est MVVM (Model - View 
 ## Rendu de l'application
 
 <p align="center">
-  <img src="https://github.com/selmanon/composeCleanArch/blob/master/screenshoots/home.png" width="250" title="Home screen">
+  <img src="https://github.com/selmanon/composeCleanArch/blob/master/screenshoots/home_screen.png" width="250" title="Home screen">
   &nbsp; &nbsp; &nbsp; 
-  <img src="https://github.com/selmanon/composeCleanArch/blob/master/screenshoots/post_screen.png" width="250" alt="Pets screen">
+  <img src="https://github.com/selmanon/composeCleanArch/blob/master/screenshoots/post.png" width="250" alt="Pets screen">
  &nbsp; &nbsp; &nbsp; 
   <img src="https://github.com/selmanon/composeCleanArch/blob/master/screenshoots/error_screen.png" width="250" alt="Error screen">
 </p>
@@ -49,28 +49,32 @@ principal d'interaction utilisateur. Le pattern utilisé est MVVM (Model - View 
 # Points d'amélioration :
 
 [Testing]
+
 - TUs viewModel.
 - TUs pour le pagingSource. ✅
 - Tests d'interface utilisateur.
 
 [Archi]
+
 - Supporter le mode "offline first".
 - Avoir un module pour chaque couche. ✅
 
 [UI]
+
 - Ajouter un bouton "retry" sur l'écran d'erreur de chargement de données. ✅
 - Ajouter le pull to refresh. ✅
 - Gestion du scroll. ✅
 - Enrichire l'UI/UX. _WIP_
 - Ajouter la navigation dans l'AppBar. ✅
 - Ajouter un boutton "up" pour remonter au début de la list. ✅
-- Filtrer la liste des postes à base d'un tag.
-
+- Filtrer la liste des postes à base d'un tag. ✅
 
 [Refacto]
+
 - Enlever la dépendance "material". (car n'elle est utilisée que pour le "pull-to-refrsh") ✅
 - Enrichir la gestion des erreurs.
 - Ajouter un buildSrc module pour la gestion des versions (Android/release). ✅
 
 [CI/CD]
+
 - Configurer la CI via GitHub action.
