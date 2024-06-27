@@ -51,6 +51,7 @@ principal d'interaction utilisateur. Le pattern utilisé est MVVM (Model - View 
 [Testing]
 
 - TUs viewModel.
+- Injecter le scope et le dispather.
 - TUs pour le pagingSource. ✅
 - Tests d'interface utilisateur.
 
