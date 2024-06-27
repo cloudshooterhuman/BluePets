@@ -1,5 +1,3 @@
-@file:Suppress("UNUSED_EXPRESSION")
-
 package com.cleancompose.ui.screens
 
 import androidx.compose.foundation.background
@@ -44,8 +42,8 @@ import com.cleancompose.R
 import com.cleancompose.ui.components.LoadingIndicator
 import com.cleancompose.ui.components.NetworkErrorIndicator
 import com.cleancompose.ui.components.PetPostItem
-import com.cleancompose.ui.components.base.TagEditableUserInput
 import com.cleancompose.ui.components.base.EditableUserInputState
+import com.cleancompose.ui.components.base.TagEditableUserInput
 import com.cleancompose.ui.components.base.remeberEditableUserInputState
 import com.cleancompose.ui.navigation.Screen
 import com.cleancompose.ui.presentation.PostViewModel

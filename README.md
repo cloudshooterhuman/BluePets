@@ -50,8 +50,8 @@ principal d'interaction utilisateur. Le pattern utilisé est MVVM (Model - View 
 
 [Testing]
 
-- TUs viewModel.
-- Injecter le scope et le dispather.
+- TUs viewModel. (apparement un `viewModel` qui utilisé du paging ne peut être testé que coté UI)
+- Injecter le scope et le dispather pour faciliter les testes. ✅
 - TUs pour le pagingSource. ✅
 - Tests d'interface utilisateur.
 
@@ -65,6 +65,7 @@ principal d'interaction utilisateur. Le pattern utilisé est MVVM (Model - View 
 - Ajouter un bouton "retry" sur l'écran d'erreur de chargement de données. ✅
 - Ajouter le pull to refresh. ✅
 - Gestion du scroll. ✅
+- Remplacer le message d'erreur `text` par un _snack bar_ 
 - Enrichire l'UI/UX. _WIP_
 - Ajouter la navigation dans l'AppBar. ✅
 - Ajouter un boutton "up" pour remonter au début de la list. ✅
@@ -74,6 +75,7 @@ principal d'interaction utilisateur. Le pattern utilisé est MVVM (Model - View 
 
 - Enlever la dépendance "material". (car n'elle est utilisée que pour le "pull-to-refrsh") ✅
 - Améliorer la gestion des erreurs (via Retrofit CallAdapter).
+- Utiliser une `sealed classe` qui fait la différence entre une _exception_ et une _erreur_.
 - Ajouter un buildSrc module pour la gestion des versions (Android/release). ✅
 
 [CI/CD]

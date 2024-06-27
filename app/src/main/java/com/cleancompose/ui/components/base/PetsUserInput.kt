@@ -11,7 +11,6 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.Icon
-import androidx.compose.material3.LocalContentColor
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
@@ -25,7 +24,6 @@ import androidx.compose.ui.unit.dp
 import com.cleancompose.R
 import com.cleancompose.ui.theme.BluePetsApplicationTheme
 import com.cleancompose.ui.theme.captionTextStyle
-
 
 
 @Composable
@@ -46,10 +44,12 @@ fun PetsBaseUserInput(
         ),
         modifier = Modifier
             .fillMaxWidth()
-            .padding(start = 6.dp,
+            .padding(
+                start = 6.dp,
                 top = 1.dp,
                 end = 6.dp,
-                bottom = 6.dp)
+                bottom = 6.dp
+            )
     ) {
         Surface(
             modifier = modifier,

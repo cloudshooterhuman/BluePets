@@ -16,15 +16,15 @@ class EditableUserInputState(val hint: String, initialText: String) {
     var previousText by mutableStateOf("")
         private set
 
-    fun updateText(newText : String) {
+    fun updateText(newText: String) {
         text = newText
     }
 
-    fun updatePreviousText(newText : String) {
+    fun updatePreviousText(newText: String) {
         previousText = newText
     }
 
-    val isHint : Boolean
+    val isHint: Boolean
         get() = text == hint
 
     companion object {
@@ -42,7 +42,7 @@ class EditableUserInputState(val hint: String, initialText: String) {
 }
 
 @Composable
-fun remeberEditableUserInputState(hint : String, previousText: String = "") : EditableUserInputState =
-    rememberSaveable (hint, saver = EditableUserInputState.Saver) {
+fun remeberEditableUserInputState(hint: String, previousText: String = ""): EditableUserInputState =
+    rememberSaveable(hint, saver = EditableUserInputState.Saver) {
         EditableUserInputState(hint, hint)
     }

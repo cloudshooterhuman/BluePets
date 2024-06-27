@@ -13,7 +13,7 @@
         </DropdownSelection>
         <DialogSelection />
       </SelectionState>
-      <SelectionState runConfigName="All Tests">
+      <SelectionState runConfigName="test_items_contain_one_to_ten()">
         <option name="selectionMode" value="DROPDOWN" />
       </SelectionState>
     </selectionStates>

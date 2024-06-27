@@ -1,26 +1,34 @@
 package com.cleancompose.ui.presentation
 
 import androidx.lifecycle.ViewModel
-import androidx.lifecycle.viewModelScope
 import androidx.paging.Pager
 import androidx.paging.PagingConfig
 import androidx.paging.PagingData
 import androidx.paging.cachedIn
 import com.cleancompose.data.repositories.paging.PostByTagPagingSource
 import com.cleancompose.data.repositories.paging.PostPagingSource
+import com.cleancompose.di.ApplicationScope
+import com.cleancompose.di.MainDispatcher
 import com.cleancompose.domain.models.PostModel
 import com.cleancompose.domain.usecases.GetPostByTagUseCase
 import com.cleancompose.domain.usecases.GetPostUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.CoroutineDispatcher
+import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.flowOn
 import javax.inject.Inject
 
 private const val ITEMS_PER_PAGE = 20
 
 @HiltViewModel
 class PostViewModel @Inject constructor(
-    private val postUseCase: GetPostUseCase, private val postByTagUseCase: GetPostByTagUseCase,
+    @ApplicationScope val coroutineScope: CoroutineScope,
+    private val postUseCase: GetPostUseCase,
+    private val postByTagUseCase: GetPostByTagUseCase,
+    @MainDispatcher val mainDispatcher: CoroutineDispatcher,
 ) : ViewModel() {
+
     var uiState: Flow<PagingData<PostModel>> =
         Pager(
             config = PagingConfig(
@@ -32,8 +40,9 @@ class PostViewModel @Inject constructor(
                     postUseCase
                 )
             }
-        ).flow.cachedIn(viewModelScope)
-
+        ).flow
+            .cachedIn(coroutineScope)
+            .flowOn(mainDispatcher)
 
     fun getAllPosts() {
         uiState = Pager(
@@ -46,7 +55,9 @@ class PostViewModel @Inject constructor(
                     postUseCase
                 )
             }
-        ).flow.cachedIn(viewModelScope)
+        ).flow
+            .cachedIn(coroutineScope)
+            .flowOn(mainDispatcher)
     }
 
     fun getPostByTag(tagId: String) {
@@ -58,7 +69,9 @@ class PostViewModel @Inject constructor(
             pagingSourceFactory = {
                 PostByTagPagingSource(postByTagUseCase, tagId)
             }
-        ).flow.cachedIn(viewModelScope)
+        ).flow
+            .cachedIn(coroutineScope)
+            .flowOn(mainDispatcher)
     }
 
 

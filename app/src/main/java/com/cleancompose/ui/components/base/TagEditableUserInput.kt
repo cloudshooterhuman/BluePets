@@ -12,7 +12,7 @@ import com.cleancompose.ui.theme.captionTextStyle
 fun TagEditableUserInput(
     state: EditableUserInputState = remeberEditableUserInputState(hint = ""),
     caption: String? = null,
-    @DrawableRes vectorImageId: Int? = null
+    @DrawableRes vectorImageId: Int? = null,
 ) {
 
 
