@@ -50,8 +50,8 @@ principal d'interaction utilisateur. Le pattern utilisé est MVVM (Model - View 
 
 [Testing]
 
-- TUs viewModel. (apparement un `viewModel` qui utilisé du paging ne peut être testé que coté UI)
-- Injecter le scope et le dispather pour faciliter les testes. ✅
+- TUs viewModel. [apparement un `viewModel` qui utilise du _paging_ ne peut être testé que coté UI](https://developer.android.com/topic/libraries/architecture/paging/test)
+- Injecter le scope et le dispather pour faciliter les tests (unit/ui). ✅
 - TUs pour le pagingSource. ✅
 - Tests d'interface utilisateur.
 
