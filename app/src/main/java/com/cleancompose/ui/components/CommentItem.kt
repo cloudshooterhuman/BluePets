@@ -65,11 +65,9 @@ fun CommentItem(comment: CommentModel) {
                 Column(Modifier.padding(start = dimensionResource(id = R.dimen.spacing_regular))) {
                     Text(
                         text = comment.owner.name,
-                        style = MaterialTheme.typography.bodyLarge
                     )
                     Text(
                         text = comment.message,
-                        style = MaterialTheme.typography.bodyMedium
                     )
 
                 }

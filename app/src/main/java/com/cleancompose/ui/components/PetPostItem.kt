@@ -92,7 +92,6 @@ fun PetPostItem(
                     Text(
                         text = post.owner.name,
                         color = MaterialTheme.colorScheme.primary,
-                        style = MaterialTheme.typography.labelMedium,
                         modifier = Modifier
                             .padding(start = 8.dp)
                             .weight(1f)
@@ -133,7 +132,6 @@ fun PetPostItem(
 
                 Text(
                     text = post.text,
-                    style = MaterialTheme.typography.bodyMedium,
                     //maxLines = 2,
                     //overflow = TextOverflow.Ellipsis,
                     modifier = Modifier

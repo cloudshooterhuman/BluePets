@@ -200,7 +200,6 @@ private fun onTagChanged(
     pullToRefreshState: PullToRefreshState,
 ) {
 
-
     viewModel.refresh(editableUserInputState, pullToRefreshState)
 }
 
