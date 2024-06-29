@@ -72,7 +72,7 @@ principal d'interaction utilisateur. Le pattern utilisé est MVVM (Model - View 
 
 [Refacto]
 
-- Enlever la dépendance "material". (car n'elle est utilisée que pour le "pull-to-refrsh") ✅
+- Enlever la dépendance "material". (car elle n'est utilisée que pour le "pull-to-refrsh") ✅
 - Améliorer la gestion des erreurs (via Retrofit CallAdapter).
 - Utiliser une `sealed classe` qui fait la différence entre une _exception_ et une _erreur_.
 - Ajouter un buildSrc module pour la gestion des versions (Android/release). ✅
