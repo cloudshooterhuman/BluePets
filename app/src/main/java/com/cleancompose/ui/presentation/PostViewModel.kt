@@ -30,7 +30,8 @@ class PostViewModel @Inject constructor(
     @ApplicationScope val coroutineScope: CoroutineScope,
     private val postUseCase: GetPostUseCase,
     private val postByTagUseCase: GetPostByTagUseCase,
-    @MainDispatcher val mainDispatcher: CoroutineDispatcher) : ViewModel() {
+    @MainDispatcher val mainDispatcher: CoroutineDispatcher,
+) : ViewModel() {
     var uiState: Flow<PagingData<PostModel>> =
         Pager(
             config = PagingConfig(
@@ -82,7 +83,7 @@ class PostViewModel @Inject constructor(
     @OptIn(ExperimentalMaterial3Api::class)
     fun refresh(
         editableUserInputState: EditableUserInputState,
-        pullToRefreshState: PullToRefreshState
+        pullToRefreshState: PullToRefreshState,
     ) {
         currentTag = editableUserInputState.text
 

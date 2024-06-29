@@ -50,7 +50,8 @@ principal d'interaction utilisateur. Le pattern utilisé est MVVM (Model - View 
 
 [Testing]
 
-- TUs viewModel. [apparement un `viewModel` qui utilise du _paging_ ne peut être testé que coté UI](https://developer.android.com/topic/libraries/architecture/paging/test)
+- TUs viewModel. [apparement un `viewModel` qui utilise du
+  _paging_ ne peut être testé que coté UI](https://developer.android.com/topic/libraries/architecture/paging/test)
 - Injecter le scope et le dispather pour faciliter les tests (unit/ui). ✅
 - TUs pour le pagingSource. ✅
 - Tests d'interface utilisateur.
@@ -65,7 +66,7 @@ principal d'interaction utilisateur. Le pattern utilisé est MVVM (Model - View 
 - Ajouter un bouton "retry" sur l'écran d'erreur de chargement de données. ✅
 - Ajouter le pull to refresh. ✅
 - Gestion du scroll. ✅
-- Remplacer le message d'erreur _text_ par un _snack bar_ 
+- Remplacer le message d'erreur _text_ par un _snack bar_
 - Ajouter la navigation dans l'AppBar. ✅
 - Ajouter un boutton "up" pour remonter au début de la list. ✅
 - Filtrer la liste des postes à base d'un tag. ✅
