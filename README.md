@@ -80,4 +80,5 @@ principal d'interaction utilisateur. Le pattern utilisé est MVVM (Model - View 
 
 [CI/CD]
 
-- Configurer la CI via GitHub action.
+- Configurer la CI via GitHub action (formatage du code avec Spotless, tests unitaires, génération de release).
+
