@@ -179,7 +179,6 @@ fun PostScreen(
                     }) {
                     Icon(
                         imageVector = Icons.Rounded.SwipeUp,
-                        tint = MaterialTheme.colorScheme.primary,
                         contentDescription = stringResource(id = R.string.publication_date),
                         modifier = Modifier.size(32.dp)
                     )
