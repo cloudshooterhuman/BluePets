@@ -199,19 +199,8 @@ private fun onTagChanged(
     viewModel: PostViewModel,
     pullToRefreshState: PullToRefreshState,
 ) {
-    val currentTag = editableUserInputState.text
 
-    if (editableUserInputState.isHint || (editableUserInputState.previousText == currentTag)) return
 
-    if (editableUserInputState.text.isNotEmpty()) {
-        viewModel.getPostByTag(editableUserInputState.text)
-        pullToRefreshState.startRefresh() // fixme ?
-        editableUserInputState.updatePreviousText(editableUserInputState.text)
-    } else {
-        viewModel.getAllPosts()
-        editableUserInputState.updatePreviousText("")
-        pullToRefreshState.startRefresh() // fixme ? https://stackoverflow.com/questions/78673510/updating-flow-when-using-two-paging-source-with-compose
-    }
-
+    viewModel.refresh(editableUserInputState, pullToRefreshState)
 }
 
