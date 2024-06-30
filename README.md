@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="https://github.com/selmanon/BluePets/assets/2206036/3289251a-5ec3-45b1-b9a4-f4b36c97c1e6" width="50" title="Home screen">
+  <img src="https://github.com/selmanon/composeCleanArch/blob/master/screenshoots/ic_launcher.png" width="50" title="Home screen">
 </p>
 
 ## Objectifs
