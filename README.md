@@ -83,4 +83,4 @@ principal d'interaction utilisateur. Le pattern utilisé est MVVM (Model - View 
 - Configurer la CI via GitHub action
    - formatage du code avec Spotless/Klint ✅
    - Couverture des tests unitaires via Jacoco.
-   - Génération de release.
+   - Génération de la release.
