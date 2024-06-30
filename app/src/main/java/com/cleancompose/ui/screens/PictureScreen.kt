@@ -1,3 +1,18 @@
+/*
+ * Copyright 2024 Abdellah Selassi
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
 package com.cleancompose.ui.screens
 
 import androidx.compose.foundation.layout.Column
@@ -34,7 +49,6 @@ fun PictureScreen(
     postId: String,
     commentsViewModel: CommentViewModel = hiltViewModel(),
 ) {
-
     val commentState = commentsViewModel.comments(postId).collectAsStateWithLifecycle()
     val loadingState = commentsViewModel.loading
 
@@ -49,7 +63,7 @@ fun PictureScreen(
                 .build(),
             contentDescription = stringResource(R.string.post_text),
             contentScale = ContentScale.Crop,
-            placeholder = painterResource(id = R.drawable.ic_launcher_background)
+            placeholder = painterResource(id = R.drawable.ic_launcher_background),
         )
 
         if (loadingState.value) {
@@ -60,7 +74,7 @@ fun PictureScreen(
                     is Error -> NetworkErrorIndicator(
                         message = comment.error.message
                             ?: stringResource(id = R.string.unknwon_error),
-                        modifier = Modifier
+                        modifier = Modifier,
                     ) {
                         Unit
                     }
@@ -73,17 +87,11 @@ fun PictureScreen(
                             }
                         }
                     }
-
                 }
             }
         }
-
-
     }
-
-
 }
-
 
 @Composable
 @Preview
@@ -92,4 +100,3 @@ fun CommentStateProfilePreview() {
         PictureScreen("10", "1")
     }
 }
-

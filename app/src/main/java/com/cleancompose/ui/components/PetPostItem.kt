@@ -1,3 +1,18 @@
+/*
+ * Copyright 2024 Abdellah Selassi
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
 package com.cleancompose.ui.components
 
 import androidx.compose.foundation.background
@@ -57,8 +72,8 @@ fun PetPostItem(
             .height(180.dp)
             .padding(start = 4.dp, end = 4.dp, top = 4.dp),
         elevation = CardDefaults.cardElevation(
-            defaultElevation = elevation
-        )
+            defaultElevation = elevation,
+        ),
 
     ) {
         Row(Modifier.background(Color.White)) {
@@ -71,23 +86,22 @@ fun PetPostItem(
                 contentScale = ContentScale.Crop,
                 placeholder = painterResource(id = R.drawable.ic_launcher_background),
                 modifier = Modifier
-                    .size(dimensionResource(id = R.dimen.avatar_size))
+                    .size(dimensionResource(id = R.dimen.avatar_size)),
             )
             Column(
                 modifier = Modifier.padding(
                     start = 16.dp,
                     top = 16.dp,
                     end = 16.dp,
-                    bottom = 8.dp
-                )
+                    bottom = 8.dp,
+                ),
             ) {
-
                 Row(verticalAlignment = Alignment.CenterVertically) {
                     Icon(
                         imageVector = Icons.Rounded.PhotoCamera,
                         tint = MaterialTheme.colorScheme.primary,
                         contentDescription = stringResource(id = R.string.camera),
-                        modifier = Modifier.size(iconSize)
+                        modifier = Modifier.size(iconSize),
                     )
                     Text(
                         text = post.owner.name,
@@ -95,7 +109,7 @@ fun PetPostItem(
                         modifier = Modifier
                             .padding(start = 8.dp)
                             .weight(1f)
-                            .wrapContentWidth(Alignment.Start)
+                            .wrapContentWidth(Alignment.Start),
                     )
                     AsyncImage(
                         model = ImageRequest.Builder(LocalContext.current)
@@ -107,9 +121,8 @@ fun PetPostItem(
                         placeholder = painterResource(id = R.drawable.ic_launcher_background),
                         modifier = Modifier
                             .size(36.dp)
-                            .clip(CircleShape)
+                            .clip(CircleShape),
                     )
-
                 }
 
                 Row(verticalAlignment = Alignment.CenterVertically) {
@@ -117,7 +130,7 @@ fun PetPostItem(
                         imageVector = Icons.Rounded.AccessTime,
                         tint = MaterialTheme.colorScheme.primary,
                         contentDescription = stringResource(id = R.string.publication_date),
-                        modifier = Modifier.size(iconSize)
+                        modifier = Modifier.size(iconSize),
                     )
                     Text(
                         text = post.publishDate,
@@ -126,23 +139,22 @@ fun PetPostItem(
                         modifier = Modifier
                             .padding(start = 8.dp)
                             .weight(1f)
-                            .wrapContentWidth(Alignment.Start)
+                            .wrapContentWidth(Alignment.Start),
                     )
                 }
 
                 Text(
                     text = post.text,
-                    //maxLines = 2,
-                    //overflow = TextOverflow.Ellipsis,
+                    // maxLines = 2,
+                    // overflow = TextOverflow.Ellipsis,
                     modifier = Modifier
                         .weight(1f)
-                        .padding(top = 8.dp, bottom = 4.dp)
+                        .padding(top = 8.dp, bottom = 4.dp),
                 )
             }
         }
     }
 }
-
 
 @DevicePreviews
 @Preview
@@ -155,9 +167,9 @@ private fun PostListItemPreview(darkTheme: Boolean) {
                 "Dogma Item",
                 "http",
                 "24 mai 2020 14:30",
-                OwnerPreviewModel("1", "Abdel", "http")
+                OwnerPreviewModel("1", "Abdel", "http"),
             ),
-            onClick = {}
+            onClick = {},
         )
     }
 }

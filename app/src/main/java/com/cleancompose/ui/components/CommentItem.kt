@@ -1,5 +1,19 @@
+/*
+ * Copyright 2024 Abdellah Selassi
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
 package com.cleancompose.ui.components
-
 
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -37,7 +51,7 @@ fun CommentItem(comment: CommentModel) {
     Card(
         shape = RoundedCornerShape(4),
         elevation = CardDefaults.cardElevation(
-            defaultElevation = 6.dp
+            defaultElevation = 6.dp,
         ),
         modifier = Modifier
             .height(100.dp)
@@ -59,7 +73,7 @@ fun CommentItem(comment: CommentModel) {
                     placeholder = painterResource(id = R.drawable.ic_launcher_background),
                     modifier = Modifier
                         .size(36.dp)
-                        .clip(CircleShape)
+                        .clip(CircleShape),
                 )
                 Column(Modifier.padding(start = dimensionResource(id = R.dimen.spacing_regular))) {
                     Text(
@@ -68,15 +82,12 @@ fun CommentItem(comment: CommentModel) {
                     Text(
                         text = comment.message,
                     )
-
                 }
 
                 Spacer(modifier = Modifier.weight(1f))
 
                 Text(text = comment.publishDate)
             }
-
-
         }
     }
 }
@@ -92,8 +103,8 @@ private fun PostListItemPreview(darkTheme: Boolean) {
                 "messahe",
                 "1",
                 OwnerPreviewModel("1", "name", "picture"),
-                "1 an"
-            )
+                "1 an",
+            ),
         )
     }
 }

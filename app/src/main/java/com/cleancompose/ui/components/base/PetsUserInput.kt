@@ -1,3 +1,18 @@
+/*
+ * Copyright 2024 Abdellah Selassi
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
 package com.cleancompose.ui.components.base
 
 import androidx.annotation.DrawableRes
@@ -25,7 +40,6 @@ import com.cleancompose.R
 import com.cleancompose.ui.theme.BluePetsApplicationTheme
 import com.cleancompose.ui.theme.captionTextStyle
 
-
 @Composable
 fun PetsBaseUserInput(
     modifier: Modifier = Modifier,
@@ -40,7 +54,7 @@ fun PetsBaseUserInput(
     Card(
         shape = RoundedCornerShape(8),
         elevation = CardDefaults.cardElevation(
-            defaultElevation = 6.dp
+            defaultElevation = 6.dp,
         ),
         modifier = Modifier
             .fillMaxWidth()
@@ -48,13 +62,13 @@ fun PetsBaseUserInput(
                 start = 6.dp,
                 top = 1.dp,
                 end = 6.dp,
-                bottom = 6.dp
-            )
+                bottom = 6.dp,
+            ),
     ) {
         Surface(
             modifier = modifier,
             onClick = onClick,
-            color = MaterialTheme.colorScheme.onPrimary
+            color = MaterialTheme.colorScheme.onPrimary,
         ) {
             Row(Modifier.padding(all = 12.dp)) {
                 if (vectorImageId != null) {
@@ -62,7 +76,7 @@ fun PetsBaseUserInput(
                         modifier = Modifier.size(24.dp, 24.dp),
                         painter = painterResource(id = vectorImageId),
                         tint = if (tintIcon()) tint else Color.Black,
-                        contentDescription = null
+                        contentDescription = null,
                     )
                     Spacer(Modifier.width(8.dp))
                 }
@@ -70,14 +84,14 @@ fun PetsBaseUserInput(
                     Text(
                         modifier = Modifier.align(Alignment.CenterVertically),
                         text = caption,
-                        style = (captionTextStyle).copy(color = tint)
+                        style = (captionTextStyle).copy(color = tint),
                     )
                     Spacer(Modifier.width(8.dp))
                 }
                 Row(
                     Modifier
                         .weight(1f)
-                        .align(Alignment.CenterVertically)
+                        .align(Alignment.CenterVertically),
                 ) {
                     content()
                 }
@@ -95,7 +109,7 @@ fun PreviewInput() {
                 tintIcon = { true },
                 vectorImageId = R.drawable.ic_search,
                 caption = "Caption",
-                showCaption = { true }
+                showCaption = { true },
             ) {
                 Text(text = "text", style = MaterialTheme.typography.bodyMedium)
             }

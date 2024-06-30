@@ -1,3 +1,18 @@
+/*
+ * Copyright 2024 Abdellah Selassi
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
 package com.cleancompose
 
 import android.os.Bundle
@@ -42,15 +57,13 @@ class MainActivity : ComponentActivity() {
                     IconButton(onClick = navigateUp) {
                         Icon(
                             imageVector = Icons.Filled.ArrowBack,
-                            contentDescription = stringResource(R.string.back_button)
+                            contentDescription = stringResource(R.string.back_button),
                         )
                     }
                 }
-            }
+            },
         )
-
     }
-
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -64,13 +77,13 @@ class MainActivity : ComponentActivity() {
                         val backStackEntry by navController.currentBackStackEntryAsState()
                         // Get the name of the current screen
                         val currentScreen = Screen.valueOf(
-                            backStackEntry?.destination?.route ?: Screen.Home.route
+                            backStackEntry?.destination?.route ?: Screen.Home.route,
                         )
 
                         BluePetsAppBar(
                             currentScreen = currentScreen,
                             canNavigateBack = navController.previousBackStackEntry != null,
-                            navigateUp = { navController.navigateUp() }
+                            navigateUp = { navController.navigateUp() },
                         )
                     },
                     modifier = Modifier.fillMaxSize(),
@@ -78,14 +91,10 @@ class MainActivity : ComponentActivity() {
                     PostAppNavHost(
                         navController = navController,
                         modifier = Modifier
-                            .padding(innerPadding)
+                            .padding(innerPadding),
                     )
                 }
             }
         }
     }
 }
-
-
-
-

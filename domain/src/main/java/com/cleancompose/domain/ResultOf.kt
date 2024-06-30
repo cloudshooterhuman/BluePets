@@ -13,11 +13,12 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.cleancompose.domain.repositories
+package com.cleancompose.domain
 
-import com.cleancompose.domain.ResultOf
-import com.cleancompose.domain.models.CommentModel
-
-interface CommentsRepository {
-    suspend fun getComments(postId: String): ResultOf<List<CommentModel>>
+sealed class ResultOf<out T> {
+    data class Success<out R>(val value: R) : ResultOf<R>()
+    data class Failure(
+        val message: String,
+        val throwable: Throwable,
+    ) : ResultOf<Nothing>()
 }

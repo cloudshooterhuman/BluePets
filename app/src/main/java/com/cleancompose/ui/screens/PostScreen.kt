@@ -1,3 +1,18 @@
+/*
+ * Copyright 2024 Abdellah Selassi
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
 package com.cleancompose.ui.screens
 
 import androidx.compose.foundation.background
@@ -53,7 +68,6 @@ import kotlinx.coroutines.launch
 import java.net.URLEncoder
 import java.nio.charset.StandardCharsets
 
-
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun PostScreen(
@@ -83,7 +97,7 @@ fun PostScreen(
         modifier = Modifier
             .nestedScroll(pullToRefreshState.nestedScrollConnection)
             .fillMaxSize()
-            .background(MaterialTheme.colorScheme.background)
+            .background(MaterialTheme.colorScheme.background),
     ) {
         Box(contentAlignment = Alignment.TopCenter) {
             val editableUserInputState = remeberEditableUserInputState(hint = "Choose tag")
@@ -91,15 +105,15 @@ fun PostScreen(
             TagEditableUserInput(
                 state = editableUserInputState,
                 caption = "To",
-                vectorImageId = R.drawable.ic_search
+                vectorImageId = R.drawable.ic_search,
             )
 
             val currentOnTagChanged by rememberUpdatedState(
                 onTagChanged(
                     editableUserInputState,
                     viewModel,
-                    pullToRefreshState
-                )
+                    pullToRefreshState,
+                ),
             )
 
             LaunchedEffect(editableUserInputState.text) {
@@ -109,8 +123,6 @@ fun PostScreen(
                         currentOnTagChanged
                     }
             }
-
-
 
             PullToRefreshContainer(
                 modifier = Modifier.align(Alignment.TopCenter),
@@ -133,7 +145,7 @@ fun PostScreen(
                         item {
                             NetworkErrorIndicator(
                                 state.error.message ?: stringResource(R.string.unknwon_error),
-                                modifier
+                                modifier,
                             ) { lazyPagingPosts.retry() }
                         }
                     }
@@ -143,21 +155,21 @@ fun PostScreen(
                     if (lazyPagingPosts.itemCount > 0) {
                         items(
                             lazyPagingPosts.itemCount,
-                            key = lazyPagingPosts.itemKey { it.id }) { index ->
+                            key = lazyPagingPosts.itemKey { it.id },
+                        ) { index ->
                             lazyPagingPosts[index]?.let {
                                 PetPostItem(it, {
-
                                     val imageUrl = it.imageUrl
                                     val encodedUrl =
                                         URLEncoder.encode(
                                             imageUrl,
-                                            StandardCharsets.UTF_8.toString()
+                                            StandardCharsets.UTF_8.toString(),
                                         )
                                     navController.navigate(
                                         Screen.Picture.createRoute(
                                             encodedUrl,
-                                            it.id
-                                        )
+                                            it.id,
+                                        ),
                                     )
                                 })
                             }
@@ -176,20 +188,18 @@ fun PostScreen(
                         scope.launch {
                             listState.animateScrollToItem(index = 0)
                         }
-                    }) {
+                    },
+                ) {
                     Icon(
                         imageVector = Icons.Rounded.SwipeUp,
                         contentDescription = stringResource(id = R.string.publication_date),
-                        modifier = Modifier.size(32.dp)
+                        modifier = Modifier.size(32.dp),
                     )
                 }
             }
         }
-
-
     }
 }
-
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -198,7 +208,5 @@ private fun onTagChanged(
     viewModel: PostViewModel,
     pullToRefreshState: PullToRefreshState,
 ) {
-
     viewModel.refresh(editableUserInputState, pullToRefreshState)
 }
-

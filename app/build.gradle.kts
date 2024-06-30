@@ -15,7 +15,6 @@ android {
         versionCode = AppVersions.VERSION_CODE
         versionName = AppVersions.VERSION_NAME
 
-
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         vectorDrawables {
             useSupportLibrary = true
@@ -31,7 +30,7 @@ android {
             isMinifyEnabled = true
             proguardFiles(
                 getDefaultProguardFile("proguard-android-optimize.txt"),
-                "proguard-rules.pro"
+                "proguard-rules.pro",
             )
         }
     }
@@ -50,7 +49,6 @@ android {
     composeOptions {
         kotlinCompilerExtensionVersion = "1.4.2"
     }
-
 }
 
 dependencies {
@@ -58,8 +56,7 @@ dependencies {
     implementation(project(":domain"))
     implementation(project(":data"))
 
-
-    //Compose
+    // Compose
     implementation(libs.androidx.activity.compose)
     implementation(platform(libs.androidx.compose.bom))
     implementation(libs.ui)
@@ -70,15 +67,12 @@ dependencies {
     implementation(libs.ui.tooling.preview)
     debugImplementation(libs.ui.tooling)
 
-
     // Lifecycle utilities for Compose
     implementation(libs.lifecycle.runtime.compose)
-
 
     // Paging 3
     implementation(libs.androidx.paging.runtime)
     implementation(libs.androidx.paging.compose)
-
 
     // Retrofit
     api(libs.retrofit)
@@ -99,7 +93,7 @@ dependencies {
     implementation(libs.navigation.runtime.ktx)
     implementation(libs.navigation.fragment.ktx)
 
-    //Compose images loader
+    // Compose images loader
     implementation(libs.coil.compose)
 
     // Testing
@@ -109,7 +103,5 @@ dependencies {
     testImplementation(libs.androidx.paging.testing)
 
     // UI Testing
-    //implementation(libs.androidx.paging.testing)
-
-
+    // implementation(libs.androidx.paging.testing)
 }
