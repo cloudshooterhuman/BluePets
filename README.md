@@ -84,3 +84,7 @@ principal d'interaction utilisateur. Le pattern utilisé est MVVM (Model - View 
    - Formatage du code avec Spotless/Klint. ✅
    - Couverture des tests unitaires via Jacoco.
    - Générer la release.
+ 
+[Bugs]
+- Erreur de _threading_.
+
