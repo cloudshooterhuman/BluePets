@@ -2,91 +2,84 @@
   <img src="https://github.com/selmanon/composeCleanArch/blob/master/screenshoots/ic_launcher.png" width="50" title="Home screen">
 </p>
 
-## Objectifs
+## Objectives
 
-**Clean Architecture** : couches presentation, domain et data et injection de
-dépendance. [ref](https://fernandocejas.com/2018/05/07/architecting-android-reloaded/)
+**Clean Architecture**: presentation, domain, data layers, and dependency injection. [ref](https://fernandocejas.com/2018/05/07/architecting-android-reloaded/)
 
-**Tests unitaires** : avec Junit et Mokk.
+**Unit Testing**: with JUnit and MockK.
 
-**Gestion des flux de données** : Coroutine, Flow et Paging.
+**Data Flow Management**: Coroutine, Flow, and Paging.
 
-**Gestion de la vue** : Jetpack Compose (Dark/Night).
+**View Management**: Jetpack Compose (Dark/Night).
 
-**Gestion de la navigation** : Jetpack Navigation.
+**Navigation Management**: Jetpack Navigation.
 
-## Decoupage de l'implementation
+## Implementation Breakdown
 
-# Partie 1. Dev de la couche domaine
+### Part 1. Development of the Domain Layer
 
-Le domaine est le coeur de l'application qui contient la logique et les règles métier. Il est donc
-important que le domaine soit indépendant des autres modules et d'autres bibliothèques liées à l'UI,
-à Android, ... Mais aussi que toutes les classes (sauf les modèles) et les méthodes publiques soient
-testées.
+The domain is the application's core containing the business logic and rules. The domain needs to be independent of other modules and libraries related to the UI, Android, etc. All classes (except models) and public methods should be tested.
 
-# Partie 2. Dev de la couche donnees
+### Part 2. Development of the Data Layer
 
-La couche de données va permettre de récupérer et persister les données de l'application aux travers
-de Repositories et des Data Sources qui peuvent être locales avec un BDD ou distantes avec une API.
-* En pratique "le repository pattern" doit être utilisé pour gérer différents source de données (DB, API, Cache), sinon il est mis en place car il y a une _feature_ pour supporter le "mode offline".
+The data layer allows retrieving and persisting application data through Repositories and Data Sources, which can be local with a database or remote with an API.
+* In practice, the "repository pattern" should be used to manage different data sources (DB, API, Cache), otherwise it is implemented to support "offline mode".
 
-# Partie 3. Dev de la couche presentation
+### Part 3. Development of the Presentation Layer
 
-Le rôle de l'UI est d'afficher les données de l'application à l'écran et de servir de point
-principal d'interaction utilisateur. Le pattern utilisé est MVVM (Model - View - ViewModel)/UDF.
+The UI's role is to display the application's data on the screen and serve as the main point of user interaction. The used pattern is MVVM (Model - View - ViewModel) / UDF.
 
 ![image](https://github.com/selmanon/composeCleanArch/assets/2206036/6d5d69e3-8a1b-4ff0-ac7d-ccd5e1df9fad)
 
-## Rendu de l'application
+## Application Rendering
 
 <p align="center">
   <img src="https://github.com/selmanon/composeCleanArch/blob/master/screenshoots/home.png" width="250" title="Home screen">
   &nbsp; &nbsp; &nbsp; 
-  <img src="https://github.com/selmanon/composeCleanArch/blob/master/screenshoots/post_screen.png" width="250" alt="Pets screen">
- &nbsp; &nbsp; &nbsp; 
+  <img src="https://github.com/selmanon/composeCleanArch/blob/master/screenshoots/post_screen.png" width="250" alt="Post screen">
+  &nbsp; &nbsp; &nbsp; 
   <img src="https://github.com/selmanon/composeCleanArch/blob/master/screenshoots/error.png" width="250" alt="Error screen">
 </p>
 
-# Points d'amélioration :
+## Areas for Improvement:
 
-[Testing]
+### [Testing]
 
-- TUs viewModel. [apparement un `viewModel` qui utilise du
-  _paging_ ne peut être testé que coté UI](https://developer.android.com/topic/libraries/architecture/paging/test)
-- Injecter le scope et le dispather pour faciliter les tests (unit/ui). ✅
-- TUs pour le pagingSource. ✅
-- Tests d'interface utilisateur.
+- Unit tests for ViewModel. [apparently a `ViewModel` using _paging_ can only be tested on the UI side](https://developer.android.com/topic/libraries/architecture/paging/test)
+- Inject scope and dispatcher to facilitate testing (unit/UI). ✅
+- Unit tests for PagingSource. ✅
+- User interface tests.
 
-[Archi]
+### [Architecture]
 
-- Supporter le mode "offline first".
-- Avoir un module pour chaque couche. ✅
+- Support "offline first" mode.
+- Have a module for each layer. ✅
 
-[UI]
+### [UI]
 
-- Ajouter un bouton "retry" sur l'écran d'erreur de chargement de données. ✅
-- Ajouter le pull to refresh. ✅
-- Gestion du scroll. ✅
-- Remplacer le message d'erreur _text_ par un _snack bar_
-- Ajouter la navigation dans l'AppBar. ✅
-- Ajouter un boutton "up" pour remonter au début de la list. ✅
-- Filtrer la liste des postes à base d'un tag. ✅
+- Add a "retry" button on the data loading error screen. ✅
+- Add pull-to-refresh. ✅
+- Scroll management. ✅
+- Replace error message _text_ with a _snack bar_.
+- Add navigation in the AppBar. ✅
+- Add an "up" button to scroll to the top of the list. ✅
+- Filter the list of posts based on a tag. ✅
 
-[Refacto]
+### [Refactoring]
 
-- Enlever la dépendance "material". (car elle n'est utilisée que pour le "pull-to-refrsh" et utilisé celle de material3) ✅
-- Améliorer la gestion des erreurs (via Retrofit CallAdapter). ✅
-    - Utiliser une `sealed classe` qui fait la différence entre une _exception_ et une _erreur_. ✅
-- Ajouter un buildSrc module pour la gestion des versions (Android/release). ✅
-- Ajouter de la documentation.
+- Remove the "material" dependency (as it is only used for "pull-to-refresh") and use _Material3_. ✅
+- Improve error handling (via _Retrofit_ `CallAdapter`). ✅
+    - Use a `sealed class` to distinguish between an _exception_ and an _error_. ✅
+- Add a buildSrc module for version management (Android/release). ✅
+- Add documentation.
 
-[CI/CD]
+### [CI/CD]
 
-- Configurer la CI via GitHub action
-   - Formatage du code avec Spotless/Klint. ✅
-   - Couverture des tests unitaires via Jacoco.
-   - Générer la release.
- 
-[Bugs]
-- Erreur de _threading_. <code>(Skipped 78 frames!)</code>  ✅
+- Configure CI via GitHub Actions:
+   - Code formatting with Spotless/Ktlint. ✅
+   - Unit test coverage via Jacoco.
+   - Generate the release.
 
+### [Bugs]
+
+- _Threading_ error: <code>(Skipped 78 frames!)</code> ✅
