@@ -67,6 +67,7 @@ principal d'interaction utilisateur. Le pattern utilisé est MVVM (Model - View 
 - Ajouter le pull to refresh. ✅
 - Gestion du scroll. ✅
 - Remplacer le message d'erreur _text_ par un _snack bar_
+- Avoir un écran pour les erreurs (WS) différent de celle d'une exception.
 - Ajouter la navigation dans l'AppBar. ✅
 - Ajouter un boutton "up" pour remonter au début de la list. ✅
 - Filtrer la liste des postes à base d'un tag. ✅
