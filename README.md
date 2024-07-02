@@ -87,5 +87,5 @@ principal d'interaction utilisateur. Le pattern utilisé est MVVM (Model - View 
    - Générer la release.
  
 [Bugs]
-- Erreur de _threading_.
+- Erreur de _threading_. <code>(Skipped 78 frames!)</code>  ✅
 
