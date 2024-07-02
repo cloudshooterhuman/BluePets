@@ -16,17 +16,17 @@
 
 ## Implementation Breakdown
 
-### Part 1. Development of the Domain Layer
+### Development of the Domain Layer
 
 The domain is the application's core containing the business logic and rules. The domain needs to be independent of other modules and libraries related to the UI, Android, etc. All classes (except models) and public methods should be tested.
 
-### Part 2. Development of the Data Layer
+### Development of the Data Layer
 
 The data layer allows retrieving and persisting application data through Repositories* and Data Sources, which can be local with a database or remote with an API.
 
 *In practice, the "repository pattern" should be used to manage different data sources (DB, API, Cache), otherwise it is implemented to support "offline mode".
 
-### Part 3. Development of the Presentation Layer
+### Development of the Presentation Layer
 
 The UI's role is to display the application's data on the screen and serve as the main point of user interaction. The used pattern is MVVM (Model - View - ViewModel) / UDF.
 
