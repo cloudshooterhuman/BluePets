@@ -19,7 +19,7 @@ import com.cleancompose.api.DummyApi
 import com.cleancompose.api.models.CommentDTO
 import com.cleancompose.api.models.Page
 import com.cleancompose.api.models.PostDTO
-import retrofit2.Response
+import com.cleancompose.domain.models.NetworkResult
 import retrofit2.http.GET
 import retrofit2.http.Headers
 import retrofit2.http.Path
@@ -28,16 +28,16 @@ import retrofit2.http.Query
 interface PostService {
     @GET("post?limit=23")
     @Headers("app-id: ${DummyApi.APP_ID}")
-    suspend fun getPosts(@Query("page") page: Int): Response<Page<PostDTO>>
+    suspend fun getPosts(@Query("page") page: Int): NetworkResult<Page<PostDTO>>
 
-    @GET("post/{id}/comment")
+    @GET("post/{id}/commenttt")
     @Headers("app-id: ${DummyApi.APP_ID}")
-    suspend fun getComment(@Path("id") id: String): Response<Page<CommentDTO>>
+    suspend fun getComment(@Path("id") id: String): NetworkResult<Page<CommentDTO>>
 
     @GET("tag/{id}/post?limit=23")
     @Headers("app-id: ${DummyApi.APP_ID}")
     suspend fun getPostsByTag(
         @Path("id") id: String,
         @Query("page") page: Int,
-    ): Response<Page<PostDTO>>
+    ): NetworkResult<Page<PostDTO>>
 }

@@ -18,8 +18,9 @@ package com.cleancompose.data.repositories.paging
 import androidx.paging.PagingConfig
 import androidx.paging.PagingSource
 import androidx.paging.testing.TestPager
-import com.cleancompose.domain.ResultOf
 import com.cleancompose.domain.models.DomainModelFactory
+import com.cleancompose.domain.models.NetworkException
+import com.cleancompose.domain.models.NetworkSuccess
 import com.cleancompose.domain.usecases.GetPostUseCase
 import io.mockk.coEvery
 import io.mockk.mockk
@@ -44,7 +45,7 @@ class PostPagingSourceTest {
                 DomainModelFactory.getDefaultPostModel(UUID.randomUUID().toString())
             }
 
-            coEvery { getPostUseCase.invoke(0) } returns ResultOf.Success(expectedPostsList)
+            coEvery { getPostUseCase.invoke(0) } returns NetworkSuccess(expectedPostsList)
 
             val pager = TestPager(
                 config = PagingConfig(
@@ -64,7 +65,7 @@ class PostPagingSourceTest {
     fun `Refresh return error`() =
         runTest {
             // Given
-            coEvery { getPostUseCase.invoke(0) } returns ResultOf.Failure("", Throwable())
+            coEvery { getPostUseCase.invoke(0) } returns NetworkException(Throwable())
 
             val pager = TestPager(
                 config = PagingConfig(

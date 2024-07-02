@@ -18,11 +18,14 @@ package com.cleancompose.ui.presentation.comments
 import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.cleancompose.domain.ResultOf
 import com.cleancompose.domain.models.CommentModel
+import com.cleancompose.domain.models.NetworkError
+import com.cleancompose.domain.models.NetworkException
+import com.cleancompose.domain.models.NetworkSuccess
 import com.cleancompose.domain.usecases.GetCommentsUseCase
-import com.cleancompose.ui.presentation.Error
-import com.cleancompose.ui.presentation.Success
+import com.cleancompose.ui.presentation.ErrorState
+import com.cleancompose.ui.presentation.ExceptionState
+import com.cleancompose.ui.presentation.SuccessState
 import com.cleancompose.ui.presentation.ViewState
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -30,24 +33,29 @@ import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
+private const val UNKNOWN_ERROR = "Unknown error"
+
 @HiltViewModel
 class CommentViewModel @Inject constructor(
     private val getCommentUseCase: GetCommentsUseCase,
 ) : ViewModel() {
-    private var viewState = MutableStateFlow<ViewState<List<CommentModel>>>(Success(emptyList()))
+    private var viewState = MutableStateFlow<ViewState<List<CommentModel>>>(SuccessState(emptyList()))
 
     var loading = mutableStateOf(true)
 
     fun comments(postId: String): StateFlow<ViewState<List<CommentModel>>> {
         viewModelScope.launch {
             when (val state = getCommentUseCase.invoke(postId)) {
-                is ResultOf.Success -> {
-                    viewState.value = Success(state.value)
+                is NetworkSuccess -> {
+                    viewState.value = SuccessState(state.data)
                     loading.value = false
                 }
-
-                is ResultOf.Failure -> {
-                    viewState.value = Error(state.throwable)
+                is NetworkError -> {
+                    viewState.value = ErrorState(state.message ?: UNKNOWN_ERROR)
+                    loading.value = false
+                }
+                is NetworkException -> {
+                    viewState.value = ExceptionState(state.e)
                     loading.value = false
                 }
             }

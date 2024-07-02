@@ -25,16 +25,15 @@ import androidx.paging.cachedIn
 import com.cleancompose.data.repositories.paging.PostByTagPagingSource
 import com.cleancompose.data.repositories.paging.PostPagingSource
 import com.cleancompose.di.ApplicationScope
-import com.cleancompose.di.MainDispatcher
 import com.cleancompose.domain.models.PostModel
 import com.cleancompose.domain.usecases.GetPostByTagUseCase
 import com.cleancompose.domain.usecases.GetPostUseCase
 import com.cleancompose.ui.components.base.EditableUserInputState
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.flowOn
+import kotlinx.coroutines.flow.onEach
+import timber.log.Timber
 import javax.inject.Inject
 
 private const val ITEMS_PER_PAGE = 20
@@ -45,7 +44,6 @@ class PostViewModel @Inject constructor(
     @ApplicationScope val coroutineScope: CoroutineScope,
     private val postUseCase: GetPostUseCase,
     private val postByTagUseCase: GetPostByTagUseCase,
-    @MainDispatcher val mainDispatcher: CoroutineDispatcher,
 ) : ViewModel() {
     var uiState: Flow<PagingData<PostModel>> =
         Pager(
@@ -60,9 +58,11 @@ class PostViewModel @Inject constructor(
             },
         ).flow
             .cachedIn(coroutineScope)
-            .flowOn(mainDispatcher)
+            .onEach {
+                Timber.d("myapp", it.toString())
+            }
 
-    fun getAllPosts() {
+    private fun getAllPosts() {
         uiState = Pager(
             config = PagingConfig(
                 pageSize = ITEMS_PER_PAGE,
@@ -75,10 +75,9 @@ class PostViewModel @Inject constructor(
             },
         ).flow
             .cachedIn(coroutineScope)
-            .flowOn(mainDispatcher)
     }
 
-    fun getPostByTag(tagId: String) {
+    private fun getPostByTag(tagId: String) {
         uiState = Pager(
             config = PagingConfig(
                 pageSize = ITEMS_PER_PAGE,
@@ -89,7 +88,6 @@ class PostViewModel @Inject constructor(
             },
         ).flow
             .cachedIn(coroutineScope)
-            .flowOn(mainDispatcher)
     }
 
     private var currentTag = EMPTY_STRING

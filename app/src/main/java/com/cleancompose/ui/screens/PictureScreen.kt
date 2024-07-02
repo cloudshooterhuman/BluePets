@@ -37,9 +37,10 @@ import com.cleancompose.R
 import com.cleancompose.ui.components.CommentItem
 import com.cleancompose.ui.components.LoadingIndicator
 import com.cleancompose.ui.components.NetworkErrorIndicator
-import com.cleancompose.ui.presentation.Error
-import com.cleancompose.ui.presentation.Loading
-import com.cleancompose.ui.presentation.Success
+import com.cleancompose.ui.presentation.ErrorState
+import com.cleancompose.ui.presentation.ExceptionState
+import com.cleancompose.ui.presentation.LoadingState
+import com.cleancompose.ui.presentation.SuccessState
 import com.cleancompose.ui.presentation.comments.CommentViewModel
 import com.cleancompose.ui.theme.BluePetsApplicationTheme
 
@@ -71,21 +72,29 @@ fun PictureScreen(
         } else {
             commentState.value.let { comment ->
                 when (comment) {
-                    is Error -> NetworkErrorIndicator(
-                        message = comment.error.message
+                    is ErrorState -> NetworkErrorIndicator(
+                        message = comment.message
                             ?: stringResource(id = R.string.unknwon_error),
                         modifier = Modifier,
                     ) {
                         Unit
                     }
 
-                    is Loading -> LoadingIndicator(modifier = Modifier)
-                    is Success -> {
+                    is LoadingState -> LoadingIndicator(modifier = Modifier)
+                    is SuccessState -> {
                         LazyColumn(modifier = Modifier.fillMaxSize()) {
                             items(comment.data) {
                                 CommentItem(it)
                             }
                         }
+                    }
+
+                    is ExceptionState -> NetworkErrorIndicator(
+                        message = comment.error.message
+                            ?: stringResource(id = R.string.unknwon_error),
+                        modifier = Modifier,
+                    ) {
+                        Unit
                     }
                 }
             }

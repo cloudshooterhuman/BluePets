@@ -15,9 +15,9 @@
  */
 package com.cleancompose.domain.repositories
 
-import com.cleancompose.domain.ResultOf
 import com.cleancompose.domain.models.CommentModel
+import com.cleancompose.domain.models.NetworkResult
 
 interface CommentsRepository {
-    suspend fun getComments(postId: String): ResultOf<List<CommentModel>>
+    suspend fun getComments(postId: String): NetworkResult<List<CommentModel>>
 }

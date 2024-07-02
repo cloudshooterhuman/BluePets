@@ -41,7 +41,7 @@ class PostMapper @Inject constructor(
     )
 
     // fixme need to be moved to th mapper of View Object once created.
-    fun formatForHuman(publishDate: String): String {
+    private fun formatForHuman(publishDate: String): String {
         val instant = Instant.parse(publishDate)
         return DateTimeFormatter.ofPattern(DATE_TIME_FORMATTER)
             .format(

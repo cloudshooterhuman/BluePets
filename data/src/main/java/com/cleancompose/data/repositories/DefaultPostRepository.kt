@@ -15,15 +15,17 @@
  */
 package com.cleancompose.data.repositories
 
-import android.net.http.HttpException
 import android.os.Build
+import android.util.Log
 import androidx.annotation.RequiresExtension
 import com.cleancompose.api.services.PostService
 import com.cleancompose.data.mappers.PostMapper
-import com.cleancompose.domain.ResultOf
+import com.cleancompose.domain.models.NetworkError
+import com.cleancompose.domain.models.NetworkException
+import com.cleancompose.domain.models.NetworkResult
+import com.cleancompose.domain.models.NetworkSuccess
 import com.cleancompose.domain.models.PostModel
 import com.cleancompose.domain.repositories.PostsRepository
-import java.io.IOException
 import javax.inject.Inject
 import javax.inject.Singleton
 
@@ -33,39 +35,36 @@ class DefaultPostRepository @Inject constructor(
     private val postMapper: PostMapper,
 ) : PostsRepository {
     @RequiresExtension(extension = Build.VERSION_CODES.S, version = 7)
-    override suspend fun getPosts(page: Int): ResultOf<List<PostModel>> {
-        return try {
-            postService.getPosts(page).let {
-                if (it.isSuccessful && it.body() != null) {
-                    val fromListDto =
-                        postMapper.fromListDto(postService.getPosts(page).body()!!.data)
-                    ResultOf.Success(fromListDto)
-                } else {
-                    ResultOf.Failure(it.errorBody().toString(), Throwable(it.message()))
-                }
+    override suspend fun getPosts(page: Int): NetworkResult<List<PostModel>> {
+        return when (val postsResponse = postService.getPosts(page)) {
+            is NetworkError -> {
+                NetworkError(postsResponse.code, postsResponse.message)
             }
-        } catch (e: IOException) {
-            ResultOf.Failure("[IO] error please retry", e)
-        } catch (e: HttpException) {
-            ResultOf.Failure("[HTTP] error please retry", e)
+
+            is NetworkException -> {
+                NetworkException(postsResponse.e)
+            }
+
+            is NetworkSuccess -> {
+                Log.e("myapp", "DefaultPostRepository ${Thread.currentThread().name}")
+                NetworkSuccess(postMapper.fromListDto(postsResponse.data.data))
+            }
         }
     }
 
-    override suspend fun getPostsByTag(tagId: String, page: Int): ResultOf<List<PostModel>> {
-        return try {
-            postService.getPostsByTag(tagId, page).let {
-                if (it.isSuccessful && it.body() != null) {
-                    val fromListDto =
-                        postMapper.fromListDto(postService.getPostsByTag(tagId, page).body()!!.data)
-                    ResultOf.Success(fromListDto)
-                } else {
-                    ResultOf.Failure(it.errorBody().toString(), Throwable(it.message()))
-                }
+    override suspend fun getPostsByTag(tagId: String, page: Int): NetworkResult<List<PostModel>> {
+        return when (val postsByTagResponse = postService.getPostsByTag(tagId, page)) {
+            is NetworkError -> {
+                NetworkError(postsByTagResponse.code, postsByTagResponse.message)
             }
-        } catch (e: IOException) {
-            ResultOf.Failure("[IO] error please retry", e)
-        } catch (e: HttpException) {
-            ResultOf.Failure("[HTTP] error please retry", e)
+
+            is NetworkException -> {
+                NetworkException(postsByTagResponse.e)
+            }
+
+            is NetworkSuccess -> {
+                NetworkSuccess(postMapper.fromListDto(postsByTagResponse.data.data))
+            }
         }
     }
 }

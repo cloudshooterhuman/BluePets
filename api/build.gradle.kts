@@ -34,9 +34,13 @@ android {
 }
 
 dependencies {
+
+    implementation(project(":domain"))
+
     // Retrofit
     api(libs.retrofit)
     implementation(libs.converter.gson)
+    implementation(libs.logging.interceptor)
 
     // Hilt
     implementation(libs.hilt.android)

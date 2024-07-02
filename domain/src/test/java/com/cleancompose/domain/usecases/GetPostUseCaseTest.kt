@@ -15,8 +15,8 @@
  */
 package com.cleancompose.domain.usecases
 
-import com.cleancompose.domain.ResultOf
 import com.cleancompose.domain.models.DomainModelFactory.getDefaultPostModel
+import com.cleancompose.domain.models.NetworkSuccess
 import com.cleancompose.domain.repositories.PostsRepository
 import io.mockk.coEvery
 import io.mockk.mockk
@@ -38,25 +38,25 @@ class GetPostUseCaseTest {
                 getDefaultPostModel(UUID.randomUUID().toString())
             }
 
-            coEvery { postRepository.getPosts(0) } returns ResultOf.Success(expectedPostsList)
+            coEvery { postRepository.getPosts(0) } returns NetworkSuccess(expectedPostsList)
 
             // When
-            val actualPostsList = getPostUseCase.invoke(0) as ResultOf.Success
+            val actualPostsList = getPostUseCase.invoke(0) as NetworkSuccess
 
             // Then
-            assertEquals(expectedPostsList, actualPostsList.value)
+            assertEquals(expectedPostsList, actualPostsList.data)
         }
 
     @Test
     fun `Given repository returns empty list, When GetPostUseCase is invoked, Then returns empty list`() =
         runTest {
             // Given
-            coEvery { postRepository.getPosts(0) } returns ResultOf.Success(emptyList())
+            coEvery { postRepository.getPosts(0) } returns NetworkSuccess(emptyList())
 
             // When
-            val postsList = getPostUseCase.invoke(0) as ResultOf.Success
+            val postsList = getPostUseCase.invoke(0) as NetworkSuccess
 
             // Then
-            assertTrue(postsList.value.isEmpty())
+            assertTrue(postsList.data.isEmpty())
         }
 }

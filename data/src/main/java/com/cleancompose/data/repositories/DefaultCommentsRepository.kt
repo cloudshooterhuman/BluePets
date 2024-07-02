@@ -17,12 +17,13 @@ package com.cleancompose.data.repositories
 
 import com.cleancompose.api.services.PostService
 import com.cleancompose.data.mappers.CommentMapper
-import com.cleancompose.domain.ResultOf
 import com.cleancompose.domain.models.CommentModel
+import com.cleancompose.domain.models.NetworkError
+import com.cleancompose.domain.models.NetworkException
+import com.cleancompose.domain.models.NetworkResult
+import com.cleancompose.domain.models.NetworkSuccess
 import com.cleancompose.domain.repositories.CommentsRepository
 import org.threeten.bp.Instant
-import retrofit2.HttpException
-import java.io.IOException
 import javax.inject.Inject
 import javax.inject.Singleton
 
@@ -32,27 +33,19 @@ class DefaultCommentsRepository @Inject constructor(
     private val commentMapper: CommentMapper,
 ) : CommentsRepository {
 
-    override suspend fun getComments(postId: String): ResultOf<List<CommentModel>> {
-        return try {
-            postService.getComment(postId).let { response ->
-                if (response.isSuccessful && response.body() != null) {
-                    return ResultOf.Success(
-                        commentMapper.fromListDto(
-                            response.body()!!.data,
-                            Instant.now(),
-                        ),
-                    )
-                } else {
-                    return ResultOf.Failure(
-                        response.errorBody().toString(),
-                        Throwable(response.message()),
-                    )
-                }
+    override suspend fun getComments(postId: String): NetworkResult<List<CommentModel>> {
+        return when (val commentsResponse = postService.getComment(postId)) {
+            is NetworkError -> {
+                NetworkError(commentsResponse.code, commentsResponse.message)
             }
-        } catch (e: IOException) {
-            ResultOf.Failure("[IO] error please retry", e)
-        } catch (e: HttpException) {
-            ResultOf.Failure("[HTTP] error please retry", e)
+
+            is NetworkException -> {
+                NetworkException(commentsResponse.e)
+            }
+
+            is NetworkSuccess -> {
+                NetworkSuccess(commentMapper.fromListDto(commentsResponse.data.data, Instant.now()))
+            }
         }
     }
 }

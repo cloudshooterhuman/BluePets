@@ -20,16 +20,17 @@ import com.cleancompose.api.models.Page
 import com.cleancompose.api.services.PostService
 import com.cleancompose.data.mappers.PostMapper
 import com.cleancompose.domain.models.DomainModelFactory.getDefaultPostModel
+import com.cleancompose.domain.models.NetworkError
+import com.cleancompose.domain.models.NetworkSuccess
 import io.mockk.coEvery
 import io.mockk.mockk
 import kotlinx.coroutines.test.runTest
-import okhttp3.MediaType
-import okhttp3.ResponseBody
 import org.junit.Assert.assertEquals
 import org.junit.Assert.assertTrue
 import org.junit.Test
-import retrofit2.Response
 import java.util.UUID
+
+private const val HTTP_404_MESSAGE = "HTTP NOT FOUND"
 
 class DefaultPostRepositoryTest {
     private val postService: PostService = mockk()
@@ -45,7 +46,7 @@ class DefaultPostRepositoryTest {
             val randomUuids = List(50) { UUID.randomUUID().toString() }
             val postDTOs = randomUuids.map { getPostDTO(it) }
             val expectedPost = randomUuids.map { getDefaultPostModel(it) }
-            coEvery { postService.getPosts(page) } returns Response.success(
+            coEvery { postService.getPosts(page) } returns NetworkSuccess(
                 Page(
                     data = postDTOs,
                     total = 0u,
@@ -55,10 +56,10 @@ class DefaultPostRepositoryTest {
 
             // When
             val actualPost =
-                postRepository.getPosts(page) as com.cleancompose.domain.ResultOf.Success
+                postRepository.getPosts(page) as NetworkSuccess
 
             // Then
-            assertEquals(expectedPost, actualPost.value)
+            assertEquals(expectedPost, actualPost.data)
         }
 
     @Test
@@ -66,7 +67,7 @@ class DefaultPostRepositoryTest {
         runTest {
             // Given
             val page = 0
-            coEvery { postService.getPosts(page) } returns Response.success(
+            coEvery { postService.getPosts(page) } returns NetworkSuccess(
                 Page(
                     data = emptyList(),
                     total = 0u,
@@ -75,10 +76,10 @@ class DefaultPostRepositoryTest {
             coEvery { postMapper.fromListDto(emptyList()) } returns emptyList()
 
             // When
-            val post = postRepository.getPosts(page) as com.cleancompose.domain.ResultOf.Success
+            val post = postRepository.getPosts(page) as NetworkSuccess
 
             // Then
-            assertTrue(post.value.isEmpty())
+            assertTrue(post.data.isEmpty())
         }
 
     @Test
@@ -86,15 +87,16 @@ class DefaultPostRepositoryTest {
         runTest {
             // Given
             val page = 0
-            coEvery { postService.getPosts(page) } returns Response.error(
+            coEvery { postService.getPosts(page) } returns NetworkError(
                 404,
-                ResponseBody.create(MediaType.get("application/json"), "HTTP NOT FOUND"),
+                HTTP_404_MESSAGE,
             )
 
             // When
-            val failure = postRepository.getPosts(page) as com.cleancompose.domain.ResultOf.Failure
+            val failure = postRepository.getPosts(page) as NetworkError
 
             // Then
-            assertEquals(failure.throwable.message, "Response.error()")
+            assertEquals(failure.message, HTTP_404_MESSAGE)
+            assertEquals(failure.code, 404)
         }
 }

@@ -96,6 +96,9 @@ dependencies {
     // Compose images loader
     implementation(libs.coil.compose)
 
+    // Logging
+    implementation(libs.timber)
+
     // Testing
     testImplementation(libs.junit)
     testImplementation(libs.mockk)

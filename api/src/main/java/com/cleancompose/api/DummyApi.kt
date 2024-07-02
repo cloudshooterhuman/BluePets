@@ -15,8 +15,10 @@
  */
 package com.cleancompose.api
 
+import com.cleancompose.api.adapters.NetworkResultCallAdapterFactory
 import com.cleancompose.api.services.PostService
 import okhttp3.OkHttpClient
+import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import javax.inject.Inject
@@ -28,13 +30,16 @@ class DummyApi @Inject constructor() {
     }
 
     val postService: PostService
+    private val interceptor = HttpLoggingInterceptor()
 
     init {
+        interceptor.setLevel(HttpLoggingInterceptor.Level.BODY)
 
         val retrofit = Retrofit.Builder()
             .baseUrl(API_URL)
-            .client(OkHttpClient.Builder().build())
+            .client(OkHttpClient.Builder().addInterceptor(interceptor).build())
             .addConverterFactory(GsonConverterFactory.create())
+            .addCallAdapterFactory(NetworkResultCallAdapterFactory.create())
             .build()
 
         postService = retrofit.create(PostService::class.java)

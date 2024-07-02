@@ -13,12 +13,20 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.cleancompose.domain
+package com.cleancompose.api.adapters
 
-sealed class ResultOf<out T> {
-    data class Success<out R>(val value: R) : ResultOf<R>()
-    data class Failure(
-        val message: String,
-        val throwable: Throwable,
-    ) : ResultOf<Nothing>()
+import com.cleancompose.domain.models.NetworkResult
+import retrofit2.Call
+import retrofit2.CallAdapter
+import java.lang.reflect.Type
+
+class NetworkResultCallAdapter(
+    private val resultType: Type,
+) : CallAdapter<Type, Call<NetworkResult<Type>>> {
+
+    override fun responseType(): Type = resultType
+
+    override fun adapt(call: Call<Type>): Call<NetworkResult<Type>> {
+        return NetworkResultCall(call)
+    }
 }
