@@ -28,6 +28,7 @@ testées.
 
 La couche de données va permettre de récupérer et persister les données de l'application aux travers
 de Repositories et des Data Sources qui peuvent être locales avec un BDD ou distantes avec une API.
+* En pratique "le repository pattern" doit être utilisé pour gérer différents source de données (DB, API, Cache), sinon il est mis en place car il y a une _feature_ pour supporter le "mode offline".
 
 # Partie 3. Dev de la couche presentation
 
