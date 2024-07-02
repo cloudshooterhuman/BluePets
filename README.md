@@ -47,7 +47,7 @@ The UI's role is to display the application's data on the screen and serve as th
 ### [Testing]
 
 - Unit tests for ViewModel. [apparently a `ViewModel` using _paging_ can only be tested on the UI side](https://developer.android.com/topic/libraries/architecture/paging/test)
-- Inject scope and dispatcher to facilitate testing (unit/UI). ✅
+- Inject scope and dispatcher to facilitate testing. ✅
 - Unit tests for PagingSource. ✅
 - User interface tests.
 
