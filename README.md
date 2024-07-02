@@ -22,8 +22,9 @@ The domain is the application's core containing the business logic and rules. Th
 
 ### Part 2. Development of the Data Layer
 
-The data layer allows retrieving and persisting application data through Repositories and Data Sources, which can be local with a database or remote with an API.
-* In practice, the "repository pattern" should be used to manage different data sources (DB, API, Cache), otherwise it is implemented to support "offline mode".
+The data layer allows retrieving and persisting application data through Repositories* and Data Sources, which can be local with a database or remote with an API.
+
+*In practice, the "repository pattern" should be used to manage different data sources (DB, API, Cache), otherwise it is implemented to support "offline mode".
 
 ### Part 3. Development of the Presentation Layer
 
