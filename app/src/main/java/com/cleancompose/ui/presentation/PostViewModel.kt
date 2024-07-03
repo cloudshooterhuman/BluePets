@@ -18,6 +18,7 @@ package com.cleancompose.ui.presentation
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.pulltorefresh.PullToRefreshState
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import androidx.paging.Pager
 import androidx.paging.PagingConfig
 import androidx.paging.PagingData
@@ -41,7 +42,6 @@ private const val EMPTY_STRING = ""
 
 @HiltViewModel
 class PostViewModel @Inject constructor(
-    @ApplicationScope val coroutineScope: CoroutineScope,
     private val postUseCase: GetPostUseCase,
     private val postByTagUseCase: GetPostByTagUseCase,
 ) : ViewModel() {
@@ -57,7 +57,7 @@ class PostViewModel @Inject constructor(
                 )
             },
         ).flow
-            .cachedIn(coroutineScope)
+            .cachedIn(viewModelScope)
             .onEach {
                 Timber.d("myapp", it.toString())
             }
@@ -74,7 +74,7 @@ class PostViewModel @Inject constructor(
                 )
             },
         ).flow
-            .cachedIn(coroutineScope)
+            .cachedIn(viewModelScope)
     }
 
     private fun getPostByTag(tagId: String) {
@@ -87,7 +87,7 @@ class PostViewModel @Inject constructor(
                 PostByTagPagingSource(postByTagUseCase, tagId)
             },
         ).flow
-            .cachedIn(coroutineScope)
+            .cachedIn(viewModelScope)
     }
 
     private var currentTag = EMPTY_STRING

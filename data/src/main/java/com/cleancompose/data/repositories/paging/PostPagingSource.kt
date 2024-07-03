@@ -42,7 +42,7 @@ class PostPagingSource(private val getPostUseCase: GetPostUseCase) :
 
     override suspend fun load(params: LoadParams<Int>): LoadResult<Int, PostModel> {
         val nextPage: Int = params.key ?: STARTING_PAGE_INDEX
-        Log.e("myapp", "PostPagingSource ${Thread.currentThread().name}")
+//        Log.e("myapp", "PostPagingSource ${Thread.currentThread().name}")
         return when (val result = getPostUseCase.invoke(nextPage)) {
             is NetworkSuccess ->
                 LoadResult.Page(

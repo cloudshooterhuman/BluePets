@@ -46,7 +46,7 @@ class DefaultPostRepository @Inject constructor(
             }
 
             is NetworkSuccess -> {
-                Log.e("myapp", "DefaultPostRepository ${Thread.currentThread().name}")
+                //Log.e("myapp", "DefaultPostRepository ${Thread.currentThread().name}")
                 NetworkSuccess(postMapper.fromListDto(postsResponse.data.data))
             }
         }
