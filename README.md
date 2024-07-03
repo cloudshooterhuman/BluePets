@@ -44,19 +44,19 @@ The UI's role is to display the application's data on the screen and serve as th
 
 ## Areas for Improvement:
 
-### [Testing]
+### Testing
 
 - Unit tests for ViewModel. [apparently a `ViewModel` using _paging_ can only be tested on the UI side](https://developer.android.com/topic/libraries/architecture/paging/test)
 - Inject scope and dispatcher to facilitate testing. ✅
 - Unit tests for PagingSource. ✅
 - User interface tests.
 
-### [Architecture]
+### Architecture
 
 - Support "offline first" mode.
 - Have a module for each layer. ✅
 
-### [UI]
+### UI
 
 - Add a "retry" button on the data loading error screen. ✅
 - Add pull-to-refresh. ✅
@@ -66,7 +66,7 @@ The UI's role is to display the application's data on the screen and serve as th
 - Add an "up" button to scroll to the top of the list. ✅
 - Filter the list of posts based on a tag. ✅
 
-### [Refactoring]
+### Refactoring
 
 - Remove the "material" dependency (as it is only used for "pull-to-refresh") and use _Material3_. ✅
 - Improve error handling (via _Retrofit_ `CallAdapter`). ✅
@@ -74,7 +74,7 @@ The UI's role is to display the application's data on the screen and serve as th
 - Add a buildSrc module for version management (Android/release). ✅
 - Add documentation.
 
-### [CI/CD]
+### CI/CD
 
 - Configure CI via GitHub Actions:
    - Code formatting with Spotless/Ktlint. ✅
