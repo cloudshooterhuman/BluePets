@@ -54,6 +54,8 @@ The UI's role is to display the application's data on the screen and serve as th
 ### Architecture
 
 - Support "offline first" mode.
+   -  Add Room persistence library.
+   -  Implement RemoteMediator.
 - Have a module for each layer. ✅
 
 ### UI
