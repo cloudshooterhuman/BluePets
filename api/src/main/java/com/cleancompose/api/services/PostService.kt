@@ -30,7 +30,7 @@ interface PostService {
     @Headers("app-id: ${DummyApi.APP_ID}")
     suspend fun getPosts(@Query("page") page: Int): NetworkResult<Page<PostDTO>>
 
-    @GET("post/{id}/commenttt")
+    @GET("post/{id}/comment")
     @Headers("app-id: ${DummyApi.APP_ID}")
     suspend fun getComment(@Path("id") id: String): NetworkResult<Page<CommentDTO>>
 

@@ -25,13 +25,11 @@ import androidx.paging.PagingData
 import androidx.paging.cachedIn
 import com.cleancompose.data.repositories.paging.PostByTagPagingSource
 import com.cleancompose.data.repositories.paging.PostPagingSource
-import com.cleancompose.di.ApplicationScope
 import com.cleancompose.domain.models.PostModel
 import com.cleancompose.domain.usecases.GetPostByTagUseCase
 import com.cleancompose.domain.usecases.GetPostUseCase
 import com.cleancompose.ui.components.base.EditableUserInputState
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.onEach
 import timber.log.Timber

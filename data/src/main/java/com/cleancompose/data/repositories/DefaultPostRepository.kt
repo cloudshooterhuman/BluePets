@@ -16,7 +16,6 @@
 package com.cleancompose.data.repositories
 
 import android.os.Build
-import android.util.Log
 import androidx.annotation.RequiresExtension
 import com.cleancompose.api.services.PostService
 import com.cleancompose.data.mappers.PostMapper
@@ -46,7 +45,7 @@ class DefaultPostRepository @Inject constructor(
             }
 
             is NetworkSuccess -> {
-                //Log.e("myapp", "DefaultPostRepository ${Thread.currentThread().name}")
+                // Log.e("myapp", "DefaultPostRepository ${Thread.currentThread().name}")
                 NetworkSuccess(postMapper.fromListDto(postsResponse.data.data))
             }
         }

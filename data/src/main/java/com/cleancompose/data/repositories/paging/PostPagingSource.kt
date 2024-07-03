@@ -15,7 +15,6 @@
  */
 package com.cleancompose.data.repositories.paging
 
-import android.util.Log
 import androidx.paging.PagingSource
 import androidx.paging.PagingState
 import com.cleancompose.domain.models.NetworkError
