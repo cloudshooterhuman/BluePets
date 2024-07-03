@@ -6,6 +6,14 @@
 
 **Clean Architecture**: presentation, domain, data layers, and dependency injection. [ref](https://fernandocejas.com/2018/05/07/architecting-android-reloaded/)
 
+<p align="center">
+<img src="https://github.com/selmanon/BluePets/assets/2206036/896dd709-0d63-41b1-a060-475225b6e4bc" alt="drawing" width="700"/>
+</p>
+<p align="center">
+ Dependencies between Layers
+</p> 
+
+
 **Unit Testing**: with JUnit and MockK.
 
 **Data Flow Management**: Coroutine, Flow, and Paging.
