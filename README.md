@@ -83,6 +83,7 @@ The UI's role is to display the application's data on the screen and serve as th
    - Unit test coverage via Jacoco.
    - Generate the release.
 
-### [Bugs]
+### [Bugs/Regression]
 
 - _Threading_ error: <code>(Skipped 78 frames!)</code> ✅
+- Scroll position is reset to the top when navigating back from "Post" screen to "Home" screen (hint: after adding the search by tag feature).
