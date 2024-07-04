@@ -24,21 +24,23 @@
 
 ## Implementation Breakdown
 
-### Development of the Domain Layer
+### The Domain Layer
 
-The domain is the application's core containing the business logic and rules. The domain needs to be independent of other modules and libraries related to the UI, Android, etc. All classes (except models) and public methods should be tested.
+>The domain is the application's core containing the business logic and rules. The domain needs to be independent of other modules and libraries related to the UI, Android, etc. All classes (except models) and public >methods should be tested.
 
-### Development of the Data Layer
+### The Data Layer
 
-The data layer allows retrieving and persisting application data through Repositories* and Data Sources, which can be local with a database or remote with an API.
+>The data layer allows retrieving and persisting application data through Repositories* and Data Sources, which can be local with a database or remote with an API.
 
-*In practice, the "repository pattern" should be used to manage different data sources (DB, API, Cache), otherwise it is implemented to support "offline mode".
+>*In practice, the "repository pattern" should be used to manage different data sources (DB, API, Cache), otherwise it is implemented to support "offline mode".
 
-### Development of the Presentation Layer
+### The Presentation Layer
 
-The UI's role is to display the application's data on the screen and serve as the main point of user interaction. The used pattern is MVVM (Model - View - ViewModel) / UDF.
+>The UI's role is to display the application's data on the screen and serve as the main point of user interaction. The used pattern is MVVM (Model - View - ViewModel) / UDF.
 
-![image](https://github.com/selmanon/composeCleanArch/assets/2206036/6d5d69e3-8a1b-4ff0-ac7d-ccd5e1df9fad)
+<p align="center">
+<img src="https://github.com/selmanon/composeCleanArch/assets/2206036/6d5d69e3-8a1b-4ff0-ac7d-ccd5e1df9fad" alt="drawing" width="700"/>
+</p>
 
 ## Application Rendering
 
