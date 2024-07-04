@@ -4,7 +4,7 @@
 
 ## Objectives
 
-**Clean Architecture**: presentation, domain, data layers, and dependency injection. [ref](https://fernandocejas.com/2018/05/07/architecting-android-reloaded/)
+- **Clean Architecture**: presentation, domain (agostic), data layers, and dependency injection (Hilt). [ref](https://fernandocejas.com/2018/05/07/architecting-android-reloaded/)
 
 <p align="center">
 <img src="https://github.com/selmanon/BluePets/assets/2206036/896dd709-0d63-41b1-a060-475225b6e4bc" alt="drawing" width="700"/>
@@ -14,13 +14,13 @@
 </p> 
 
 
-**Unit Testing**: with JUnit and MockK.
+- **Unit Testing**: with JUnit and MockK.
 
-**Data Flow Management**: Coroutine, Flow, and Paging.
+- **Data Flow Management**: Coroutine, Flow, and Paging.
 
-**View Management**: Jetpack Compose (Dark/Night).
+- **View Management**: Jetpack Compose (Dark/Night).
 
-**Navigation Management**: Jetpack Navigation.
+- **Navigation Management**: Jetpack Navigation.
 
 ## Implementation Breakdown
 
