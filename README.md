@@ -16,7 +16,7 @@
 
 - **Unit Testing**: with JUnit and MockK.
 
-- **Data Flow Management**: Coroutine, Flow, and Paging.
+- **Data Flow Management**: Coroutine, Flow, and Paging3.
 
 - **View Management**: Jetpack Compose (Dark/Night).
 
