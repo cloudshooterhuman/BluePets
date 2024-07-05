@@ -74,16 +74,18 @@
 - Add pull-to-refresh. ✅
 - Scroll management. ✅
 - Replace error message _text_ with a _snack bar_.
+- Add/handle empty screen case.
 - Add navigation in the AppBar. ✅
 - Add an "up" button to scroll to the top of the list. ✅
 - Filter the list of posts based on a tag. ✅
 
-### Refactoring
+### Refactoring / Improvement
 
 - Remove the "material" dependency (as it is only used for "pull-to-refresh") and use _Material3_. ✅
 - Improve error handling (via _Retrofit_ `CallAdapter`). ✅
     - Use a `sealed class` to distinguish between an _exception_ and an _error_. ✅
 - Add a buildSrc module for version management (Android/release). ✅
+- Add Type-Safe Navigation for compose navigation.
 - Add documentation.
 
 ### CI/CD
