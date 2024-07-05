@@ -45,11 +45,11 @@
 ## Application Rendering
 
 <p align="center">
-  <img src="https://github.com/selmanon/composeCleanArch/blob/master/screenshoots/home.png" width="250" title="Home screen">
+  <img src="https://github.com/selmanon/BluePets/blob/main/screenshoots/home.png" width="250" title="Home screen">
   &nbsp; &nbsp; &nbsp; 
-  <img src="https://github.com/selmanon/composeCleanArch/blob/master/screenshoots/post_screen.png" width="250" alt="Post screen">
+  <img src="https://github.com/selmanon/BluePets/blob/master/screenshoots/post_screen.png" width="250" alt="Post screen">
   &nbsp; &nbsp; &nbsp; 
-  <img src="https://github.com/selmanon/composeCleanArch/blob/master/screenshoots/error.png" width="250" alt="Error screen">
+  <img src="https://github.com/selmanon/BluePets/blob/master/screenshoots/error.png" width="250" alt="Error screen">
 </p>
 
 ## Areas for Improvement:
