@@ -65,6 +65,7 @@ dependencies {
     implementation(libs.androidx.runtime)
     implementation(libs.androidx.compose.material3.material3)
     implementation(libs.ui.tooling.preview)
+    implementation(project(":api"))
     debugImplementation(libs.ui.tooling)
 
     // Lifecycle utilities for Compose

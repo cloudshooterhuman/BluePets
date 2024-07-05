@@ -23,8 +23,8 @@ import androidx.paging.Pager
 import androidx.paging.PagingConfig
 import androidx.paging.PagingData
 import androidx.paging.cachedIn
-import com.cleancompose.data.repositories.paging.PostByTagPagingSource
-import com.cleancompose.data.repositories.paging.PostPagingSource
+import com.cleancompose.api.paging.PostByTagPagingSource
+import com.cleancompose.api.paging.PostPagingSource
 import com.cleancompose.domain.models.PostModel
 import com.cleancompose.domain.usecases.GetPostByTagUseCase
 import com.cleancompose.domain.usecases.GetPostUseCase

@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.cleancompose.data.repositories.paging
+package com.cleancompose.api.paging
 
 import androidx.paging.PagingSource
 import androidx.paging.PagingState
