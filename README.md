@@ -14,6 +14,16 @@
 </p> 
 
 
+
+<p align="center">
+<img src="https://github.com/selmanon/BluePets/assets/2206036/949e6f75-2eca-48fe-a152-b6bd82e61291" alt="drawing" width="700"/>
+</p>
+<p align="center">
+ Diagram of Clean Architecture 
+</p> 
+
+
+
 - **Unit Testing**: with JUnit and MockK.
 
 - **Data Flow Management**: Coroutine, Flow, and Paging3.
