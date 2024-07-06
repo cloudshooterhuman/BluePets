@@ -25,12 +25,15 @@ jobs:
       
       - name: spotless
         run: ./gradlew spotlessCheck
-      
-      - name: Grant execute permission for gradlew
+
+      - uses: gradle/gradle-build-action@v2.7.1
+      - name: Make Gradle executable
         run: chmod +x gradlew
 
       - name: Build with Gradle
-        run: ./gradlew build
+        run: |
+          ./gradlew --scan --stacktrace \
+              :app:assembleDebug
 
       - name: Run tests
         run: ./gradlew test
