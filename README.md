@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="https://github.com/selmanon/composeCleanArch/blob/master/screenshoots/ic_launcher.png" width="50" title="Home screen">
+  <img src="https://github.com/selmanon/BluePets/blob/main/screenshoots/ic_launcher.png" width="50" title="Home screen">
 </p>
 
 ## Objectives
@@ -12,6 +12,16 @@
 <p align="center">
  Dependencies between Layers
 </p> 
+
+
+
+<p align="center">
+<img src="https://github.com/selmanon/BluePets/assets/2206036/949e6f75-2eca-48fe-a152-b6bd82e61291" alt="drawing" width="700"/>
+</p>
+<p align="center">
+ Diagram of Clean Architecture 
+</p> 
+
 
 
 - **Unit Testing**: with JUnit and MockK.
@@ -45,11 +55,11 @@
 ## Application Rendering
 
 <p align="center">
-  <img src="https://github.com/selmanon/composeCleanArch/blob/master/screenshoots/home.png" width="250" title="Home screen">
+  <img src="https://github.com/selmanon/BluePets/blob/main/screenshoots/home.png" width="250" title="Home screen">
   &nbsp; &nbsp; &nbsp; 
-  <img src="https://github.com/selmanon/composeCleanArch/blob/master/screenshoots/post_screen.png" width="250" alt="Post screen">
+  <img src="https://github.com/selmanon/BluePets/blob/main/screenshoots/post_screen.png" width="250" alt="Post screen">
   &nbsp; &nbsp; &nbsp; 
-  <img src="https://github.com/selmanon/composeCleanArch/blob/master/screenshoots/error.png" width="250" alt="Error screen">
+  <img src="https://github.com/selmanon/BluePets/blob/main/screenshoots/error.png" width="250" alt="Error screen">
 </p>
 
 ## Areas for Improvement:
@@ -74,23 +84,25 @@
 - Add pull-to-refresh. ✅
 - Scroll management. ✅
 - Replace error message _text_ with a _snack bar_.
+- Add/handle empty screen case.
 - Add navigation in the AppBar. ✅
 - Add an "up" button to scroll to the top of the list. ✅
 - Filter the list of posts based on a tag. ✅
 
-### Refactoring
+### Refactoring / Improvement
 
 - Remove the "material" dependency (as it is only used for "pull-to-refresh") and use _Material3_. ✅
 - Improve error handling (via _Retrofit_ `CallAdapter`). ✅
     - Use a `sealed class` to distinguish between an _exception_ and an _error_. ✅
 - Add a buildSrc module for version management (Android/release). ✅
+- Add Type-Safe Navigation for compose navigation.
 - Add documentation.
 
 ### CI/CD
 
 - Configure CI via GitHub Actions:
    - Code formatting with Spotless/Ktlint. ✅
-   - Unit test coverage via Jacoco.
+   - Unit test coverage via Jacoco. ✅
    - Generate the release.
 
 ### [Bugs/Regression]
