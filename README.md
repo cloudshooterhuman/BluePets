@@ -36,7 +36,7 @@
 
 ### The Domain Layer
 
->The domain is the application's core containing the business logic and rules. The domain needs to be independent of other modules and libraries related to the UI, Android, etc. All classes (except models) and public >methods should be tested.
+>The domain is the application's core containing the business logic and rules. The domain needs to be independent of other modules and libraries related to the UI, Android, etc. All classes (except models) and public methods should be tested.
 
 ### The Data Layer
 
