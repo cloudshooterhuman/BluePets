@@ -102,7 +102,7 @@
 
 - Configure CI via GitHub Actions:
    - Code formatting with Spotless/Ktlint. ✅
-   - Unit test coverage via Jacoco. ✅
+   - Unit test. ✅
    - Generate the release.
 
 ### [Bugs/Regression]
