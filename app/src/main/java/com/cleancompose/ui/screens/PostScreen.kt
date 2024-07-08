@@ -54,6 +54,7 @@ import androidx.paging.LoadState
 import androidx.paging.compose.collectAsLazyPagingItems
 import androidx.paging.compose.itemKey
 import com.cleancompose.R
+import com.cleancompose.ui.components.EmptyListIndicator
 import com.cleancompose.ui.components.LoadingIndicator
 import com.cleancompose.ui.components.NetworkErrorIndicator
 import com.cleancompose.ui.components.PetPostItem
@@ -133,7 +134,14 @@ fun PostScreen(
         Box {
             LazyColumn(state = listState) {
                 when (val state = lazyPagingPosts.loadState.refresh) {
-                    is LoadState.NotLoading -> Unit
+                    is LoadState.NotLoading -> {
+                        val isEmptyPostList = lazyPagingPosts.itemCount == 0
+                        if (isEmptyPostList) {
+                            item {
+                                EmptyListIndicator(modifier)
+                            }
+                        }
+                    }
 
                     is LoadState.Loading -> {
                         item {
