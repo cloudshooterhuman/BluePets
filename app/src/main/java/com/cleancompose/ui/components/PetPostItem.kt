@@ -64,13 +64,21 @@ fun PetPostItem(
     titleStyle: TextStyle = MaterialTheme.typography.titleMedium,
     iconSize: Dp = 16.dp,
 ) {
+    val reusableCardModifier = Modifier
+        .clickable(onClick = onClick)
+        .fillMaxWidth()
+        .height(180.dp)
+        .padding(start = 4.dp, end = 4.dp, top = 4.dp)
+
+    val reusableAsyncModifier = Modifier
+        .size(36.dp)
+        .clip(CircleShape)
+
+    val reusableIconModifier = Modifier.size(iconSize)
+
     Card(
         shape = RoundedCornerShape(4),
-        modifier = Modifier
-            .clickable(onClick = onClick)
-            .fillMaxWidth()
-            .height(180.dp)
-            .padding(start = 4.dp, end = 4.dp, top = 4.dp),
+        modifier = reusableCardModifier,
         elevation = CardDefaults.cardElevation(
             defaultElevation = elevation,
         ),
@@ -101,7 +109,7 @@ fun PetPostItem(
                         imageVector = Icons.Rounded.PhotoCamera,
                         tint = MaterialTheme.colorScheme.primary,
                         contentDescription = stringResource(id = R.string.camera),
-                        modifier = Modifier.size(iconSize),
+                        modifier = reusableIconModifier,
                     )
                     Text(
                         text = post.owner.name,
@@ -119,9 +127,7 @@ fun PetPostItem(
                         contentDescription = post.text,
                         contentScale = ContentScale.Crop,
                         placeholder = painterResource(id = R.drawable.ic_launcher_background),
-                        modifier = Modifier
-                            .size(36.dp)
-                            .clip(CircleShape),
+                        modifier = reusableAsyncModifier,
                     )
                 }
 
@@ -130,7 +136,7 @@ fun PetPostItem(
                         imageVector = Icons.Rounded.AccessTime,
                         tint = MaterialTheme.colorScheme.primary,
                         contentDescription = stringResource(id = R.string.publication_date),
-                        modifier = Modifier.size(iconSize),
+                        modifier = reusableIconModifier,
                     )
                     Text(
                         text = post.publishDate,

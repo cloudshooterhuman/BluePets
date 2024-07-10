@@ -48,15 +48,23 @@ import com.cleancompose.ui.tools.DevicePreviews
 
 @Composable
 fun CommentItem(comment: CommentModel) {
+    val reusableCardModifier = Modifier
+        .height(100.dp)
+        .fillMaxWidth()
+        .padding(dimensionResource(id = R.dimen.spacing_small))
+
+    val reusableAsyncModifier = Modifier
+        .size(36.dp)
+        .clip(CircleShape)
+
+    val reusableColumnModifier = Modifier.padding(start = dimensionResource(id = R.dimen.spacing_regular))
+
     Card(
         shape = RoundedCornerShape(4),
         elevation = CardDefaults.cardElevation(
             defaultElevation = 6.dp,
         ),
-        modifier = Modifier
-            .height(100.dp)
-            .fillMaxWidth()
-            .padding(dimensionResource(id = R.dimen.spacing_small)),
+        modifier = reusableCardModifier,
         colors = CardDefaults.cardColors(
             containerColor = Color.White,
         ),
@@ -71,11 +79,9 @@ fun CommentItem(comment: CommentModel) {
                     contentDescription = stringResource(R.string.post_text),
                     contentScale = ContentScale.Crop,
                     placeholder = painterResource(id = R.drawable.ic_launcher_background),
-                    modifier = Modifier
-                        .size(36.dp)
-                        .clip(CircleShape),
+                    modifier = reusableAsyncModifier,
                 )
-                Column(Modifier.padding(start = dimensionResource(id = R.dimen.spacing_regular))) {
+                Column(reusableColumnModifier) {
                     Text(
                         text = comment.owner.name,
                     )
