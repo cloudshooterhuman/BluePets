@@ -15,6 +15,7 @@
  */
 package com.cleancompose.ui.screens
 
+import android.util.Log
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -22,6 +23,7 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.SideEffect
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
@@ -73,8 +75,7 @@ fun PictureScreen(
             commentState.value.let { comment ->
                 when (comment) {
                     is ErrorState -> NetworkErrorIndicator(
-                        message = comment.message
-                            ?: stringResource(id = R.string.unknwon_error),
+                        message = comment.message,
                         modifier = Modifier,
                     ) {
                         Unit
@@ -82,6 +83,9 @@ fun PictureScreen(
 
                     is LoadingState -> LoadingIndicator(modifier = Modifier)
                     is SuccessState -> {
+                        SideEffect {
+                            Log.e("myapp", "comment.data ${comment.data.size}")
+                        }
                         LazyColumn(modifier = Modifier.fillMaxSize()) {
                             items(comment.data) {
                                 CommentItem(it)
