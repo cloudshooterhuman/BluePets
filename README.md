@@ -109,3 +109,4 @@
 
 - _Threading_ error: <code>(Skipped 78 frames!)</code> ✅
 - Scroll position is reset to the top when navigating back from "Post" screen to "Home" screen (hint: after adding the search by tag feature).
+- manager `stateful` and `stateless`.
