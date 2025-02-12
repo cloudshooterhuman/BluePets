@@ -16,6 +16,8 @@
 package com.cleancompose.domain.usecases
 
 import com.cleancompose.domain.models.DomainModelFactory.getDefaultPostModel
+import com.cleancompose.domain.models.NetworkError
+import com.cleancompose.domain.models.NetworkException
 import com.cleancompose.domain.models.NetworkSuccess
 import com.cleancompose.domain.repositories.PostsRepository
 import io.mockk.coEvery
@@ -59,4 +61,35 @@ class GetPostUseCaseTest {
             // Then
             assertTrue(postsList.data.isEmpty())
         }
+
+    // Unit test exception case
+
+    @Test
+    fun `Given repository returns exception, When GetPostUseCase is invoked, Then returns exception`() =
+        runTest {
+            val e: Throwable = Throwable("exception")
+            // Given
+            coEvery { postRepository.getPosts(0) } returns NetworkException(e)
+
+            // When
+            val exception = getPostUseCase.invoke(0) as NetworkException
+
+            // Then
+            assertEquals(exception.e.message, "exception")
+        }
+
+    // Unit test error case
+    @Test
+    fun `Given repository returns error, When GetPostUseCase is invoked, Then returns error`() =
+        runTest {
+            // Given
+            coEvery { postRepository.getPosts(0) } returns NetworkError(500, "error")
+
+            // When
+            val error = getPostUseCase.invoke(0) as NetworkError
+
+            // Then
+            assertEquals(error.code, 500)
+        }
+
 }
