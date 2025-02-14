@@ -23,6 +23,8 @@ import com.cleancompose.domain.models.NetworkException
 import com.cleancompose.domain.models.NetworkResult
 import com.cleancompose.domain.models.NetworkSuccess
 import com.cleancompose.domain.repositories.CommentsRepository
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.flow
 import org.threeten.bp.Instant
 import javax.inject.Inject
 import javax.inject.Singleton
@@ -33,19 +35,19 @@ class DefaultCommentsRepository @Inject constructor(
     private val commentMapper: CommentMapper,
 ) : CommentsRepository {
 
-    override suspend fun getComments(postId: String): NetworkResult<List<CommentModel>> {
-        return when (val commentsResponse = postService.getComment(postId)) {
-            is NetworkError -> {
-                NetworkError(commentsResponse.code, commentsResponse.message)
-            }
+    override fun getComments(postId: String): Flow<NetworkResult<List<CommentModel>>> = flow {
+    when (val commentsResponse = postService.getComment(postId)) {
+       is NetworkError -> {
+           emit(NetworkError(commentsResponse.code, commentsResponse.message))
+       }
 
-            is NetworkException -> {
-                NetworkException(commentsResponse.e)
-            }
+       is NetworkException -> {
+           emit(NetworkException(commentsResponse.e))
+       }
 
-            is NetworkSuccess -> {
-                NetworkSuccess(commentMapper.fromListDto(commentsResponse.data.data, Instant.now()))
-            }
-        }
-    }
+       is NetworkSuccess -> {
+           emit(NetworkSuccess(commentMapper.fromListDto(commentsResponse.data.data, Instant.now())))
+       }
+   }
+   }
 }

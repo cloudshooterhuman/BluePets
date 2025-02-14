@@ -45,21 +45,24 @@ class CommentViewModel @Inject constructor(
 
     fun comments(postId: String): StateFlow<ViewState<List<CommentModel>>> {
         viewModelScope.launch {
-            when (val state = getCommentUseCase.invoke(postId)) {
-                is NetworkSuccess -> {
-                    viewState.value = SuccessState(state.data)
-                    loading.value = false
-                }
-                is NetworkError -> {
-                    viewState.value = ErrorState(state.message ?: UNKNOWN_ERROR)
-                    loading.value = false
-                }
-                is NetworkException -> {
-                    viewState.value = ExceptionState(state.e)
-                    loading.value = false
+            getCommentUseCase.invoke(postId).collect { it ->
+                when (it) {
+                    is NetworkError -> {
+                        viewState.value = ErrorState(it.message.toString())
+                        loading.value = false
+                    }
+                    is NetworkException -> {
+                        viewState.value = ExceptionState(it.e)
+                        loading.value = false
+                    }
+                    is NetworkSuccess -> {
+                        viewState.value = SuccessState(it.data)
+                        loading.value = false
+                    }
                 }
             }
         }
         return viewState
     }
+
 }

@@ -17,7 +17,8 @@ package com.cleancompose.domain.repositories
 
 import com.cleancompose.domain.models.CommentModel
 import com.cleancompose.domain.models.NetworkResult
+import kotlinx.coroutines.flow.Flow
 
 interface CommentsRepository {
-    suspend fun getComments(postId: String): NetworkResult<List<CommentModel>>
+    fun getComments(postId: String): Flow<NetworkResult<List<CommentModel>>>
 }
